@@ -3,19 +3,18 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Responses
 {
-    public class PatreonResponseData<TAttributes, TRelationships>
-        where TAttributes : IPatreonAttributes
-        where TRelationships : IPatreonRelationships
+    public class PatreonIncludeData
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("attributes")]
-        public TAttributes Attributes { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
 
+        [JsonPropertyName("attributes")]
+        public IPatreonAttributes Attributes { get; set; }
+
+        // TODO: Implement
         [JsonIgnore]
         [JsonPropertyName("relationships")]
         public IPatreonRelationships Relationships { get; set; }

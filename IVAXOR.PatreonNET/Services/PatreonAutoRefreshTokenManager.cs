@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models;
+﻿using IVAXOR.PatreonNET.Exceptions;
+using IVAXOR.PatreonNET.Models;
 using IVAXOR.PatreonNET.Models.Configuration;
 using IVAXOR.PatreonNET.Services.Interfaces;
 using System.Net.Http;
@@ -42,7 +43,7 @@ namespace IVAXOR.PatreonNET.Services
             using var request = new HttpRequestMessage(HttpMethod.Post, url);
 
             using var response = await HttpClient.SendAsync(request);
-            if (!response.IsSuccessStatusCode) throw new HttpRequestException();
+            if (!response.IsSuccessStatusCode) throw new RefreshTokenException();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
             PatreonClientTokens = await JsonSerializer.DeserializeAsync<PatreonClientTokens>(responseStream);

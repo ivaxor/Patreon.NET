@@ -1,4 +1,4 @@
-﻿namespace IVAXOR.PatreonNET.Models.Constants
+﻿namespace IVAXOR.PatreonNET.Constants
 {
     public static class PatreonScopes
     {

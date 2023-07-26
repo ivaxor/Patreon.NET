@@ -24,18 +24,18 @@ namespace IVAXOR.PatreonNET.Models
         /// The campaign owner.
         /// </summary>
         [JsonPropertyName("creator")]
-        public PatreonUserV2Attributes[] Creator { get; set; }
+        public PatreonUserV2Attributes Creator { get; set; }
 
         /// <summary>
         /// The campaign's goals.
         /// </summary>
         [JsonPropertyName("goals")]
-        public PatreonGoalAttributes[] Goals { get; set; }
+        public PatreonGoalAttributes Goals { get; set; }
 
         /// <summary>
         /// The campaign's tiers.
         /// </summary>
         [JsonPropertyName("tiers")]
-        public PatreonTierAttributes[] tiers { get; set; }
+        public PatreonTierAttributes[] Tiers { get; set; }
     }
 }

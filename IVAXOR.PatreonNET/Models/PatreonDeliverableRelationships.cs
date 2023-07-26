@@ -15,19 +15,19 @@ namespace IVAXOR.PatreonNET.Models
         /// The Campaign the Deliverables were generated for.
         /// </summary>
         [JsonPropertyName("campaign")]
-        public PatreonCampaignV2Attributes campaign { get; set; }
+        public PatreonCampaignV2Attributes Campaign { get; set; }
 
         /// <summary>
         /// The member who has been granted the deliverable.
         /// </summary>
         [JsonPropertyName("member")]
-        public PatreonMemberAttributes member { get; set; }
+        public PatreonMemberAttributes Member { get; set; }
 
         /// <summary>
         /// The user who has been granted the deliverable.
         /// This user is the same as the member user.
         /// </summary>
         [JsonPropertyName("user")]
-        public PatreonUserV2Attributes user { get; set; }
+        public PatreonUserV2Attributes User { get; set; }
     }
 }

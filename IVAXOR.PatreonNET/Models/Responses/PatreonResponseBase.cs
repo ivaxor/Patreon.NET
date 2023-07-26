@@ -1,18 +1,15 @@
-﻿using IVAXOR.PatreonNET.Models.Interfaces;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Responses
 {
-    public abstract class PatreonResponseBase<TAttributes, TRelationships>
-        where TAttributes : IPatreonAttributes
-        where TRelationships : IPatreonRelationships
+    public abstract class PatreonResponseBase
     {
         // TODO: Implement
         [JsonIgnore]
         [JsonPropertyName("included")]
-        public string Included { get; set; }
+        public PatreonIncludeData[]? Included { get; set; }
 
         [JsonPropertyName("links")]
-        public PatreonResponseLinks Links { get; set; }
+        public PatreonResponseLinks? Links { get; set; }
     }
 }
