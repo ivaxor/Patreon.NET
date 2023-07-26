@@ -361,5 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/IVAXOR.PatreonNET.UnitTests/tokens.json
+
+# Test secret files
 /IVAXOR.PatreonNET.IntegrationTests/tokens.json

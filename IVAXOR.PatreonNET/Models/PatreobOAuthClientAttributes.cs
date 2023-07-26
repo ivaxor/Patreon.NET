@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -6,7 +7,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// A client created by a developer, used for getting OAuth2 access tokens.
     /// </summary>
-    public class PatreobOAuthClientAttributes
+    public class PatreobOAuthClientAttributes : IPatreonAttributes
     {
         /// <summary>
         /// The author name provided during client setup.

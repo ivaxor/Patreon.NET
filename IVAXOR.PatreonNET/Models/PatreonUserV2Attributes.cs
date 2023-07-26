@@ -1,9 +1,10 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonUserV2Attributes
+    public class PatreonUserV2Attributes : IPatreonAttributes
     {
         /// <summary>
         /// The user's about text, which appears on their profile.
@@ -12,10 +13,10 @@ namespace IVAXOR.PatreonNET.Models
         public string? About { get; set; }
 
         [JsonPropertyName("age_verification_status")]
-        public object? AgeVerificationStatus { get; set; }
+        public string? AgeVerificationStatus { get; set; }
 
         [JsonPropertyName("apple_id")]
-        public object? AppleId { get; set; }
+        public string? AppleId { get; set; }
 
         /// <summary>
         /// true if this user can view nsfw content.
@@ -30,10 +31,10 @@ namespace IVAXOR.PatreonNET.Models
         public DateTime Created { get; set; }
 
         [JsonPropertyName("default_country_code")]
-        public object? DefaultCountryCode { get; set; }
+        public string? DefaultCountryCode { get; set; }
 
         [JsonPropertyName("discord_id")]
-        public object? DiscordId { get; set; }
+        public string? DiscordId { get; set; }
 
         /// <summary>
         /// The user's email address.
@@ -44,9 +45,9 @@ namespace IVAXOR.PatreonNET.Models
         public string Email { get; set; }
 
         [JsonPropertyName("facebook")]
-        public object? Facebook { get; set; }
+        public string? Facebook { get; set; }
 
-        [JsonPropertyName("facebook")]
+        [JsonPropertyName("facebook_id")]
         public string? FacebookId { get; set; }
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace IVAXOR.PatreonNET.Models
         public int? like_count { get; set; }
 
         [JsonPropertyName("patron_currency")]
-        public object? PatronCurrency { get; set; }
+        public string? PatronCurrency { get; set; }
 
         /// <summary>
         /// Mapping from user's connected app names to external user id on the respective app.
@@ -128,10 +129,10 @@ namespace IVAXOR.PatreonNET.Models
         public string ThumbUrl { get; set; }
 
         [JsonPropertyName("twitch")]
-        public object? Twitch { get; set; }
+        public string? Twitch { get; set; }
 
         [JsonPropertyName("twitter")]
-        public object? Twitter { get; set; }
+        public string? Twitter { get; set; }
 
         /// <summary>
         /// URL of this user's creator or patron profile.
@@ -146,9 +147,9 @@ namespace IVAXOR.PatreonNET.Models
         /// </summary>
         [Obsolete("Use campaign.vanity")]
         [JsonPropertyName("vanity")]
-        public object? Vanity { get; set; }
+        public string? Vanity { get; set; }
 
         [JsonPropertyName("youtube")]
-        public object? Youtube { get; set; }
+        public string? Youtube { get; set; }
     }
 }

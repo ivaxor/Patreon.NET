@@ -1,6 +1,8 @@
-﻿namespace IVAXOR.PatreonNET.Models
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+
+namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonBenefitAttributes
+    public class PatreonBenefitAttributes : IPatreonAttributes
     {
     }
 }

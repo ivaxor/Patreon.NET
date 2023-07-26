@@ -1,12 +1,13 @@
 ﻿using System.Text.Json.Serialization;
 using System;
+using IVAXOR.PatreonNET.Models.Interfaces;
 
 namespace IVAXOR.PatreonNET.Models
 {
     /// <summary>
     /// A file uploaded to patreon.com, usually an image.
     /// </summary>
-    public class PatreonMediaAttributes
+    public class PatreonMediaAttributes : IPatreonAttributes
     {
         /// <summary>
         /// When the file was created.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -6,7 +7,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// Content posted by a creator on a campaign page.
     /// </summary>
-    public class PatreonPostV2Attributes
+    public class PatreonPostV2Attributes : IPatreonAttributes
     {
         /// <summary>
         /// Platform app id.

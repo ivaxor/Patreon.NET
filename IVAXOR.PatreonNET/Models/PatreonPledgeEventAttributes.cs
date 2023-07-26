@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -6,7 +7,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// The record of a pledging action taken by the user, or that action's failure.
     /// </summary>
-    public class PatreonPledgeEventAttributes
+    public class PatreonPledgeEventAttributes : IPatreonAttributes
     {
         /// <summary>
         /// Amount (in the currency in which the patron paid) of the underlying event.

@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonAddressRelationships
+    public class PatreonAddressRelationships : IPatreonRelationships
     {
         /// <summary>
         /// The campaigns that have access to the address.

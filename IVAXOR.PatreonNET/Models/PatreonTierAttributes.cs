@@ -1,9 +1,10 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonTierAttributes
+    public class PatreonTierAttributes : IPatreonAttributes
     {
         /// <summary>
         /// Monetary amount associated with this tier (in U.S. cents).

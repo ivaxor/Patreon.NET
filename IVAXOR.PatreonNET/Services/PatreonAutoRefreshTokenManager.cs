@@ -39,12 +39,12 @@ namespace IVAXOR.PatreonNET.Services
                 $"client_id={PatreonClient.ClientId}" +
                 $"client_secret={PatreonClient.ClientSecret}";
 
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
+            using var request = new HttpRequestMessage(HttpMethod.Post, url);
 
-            var response = await HttpClient.SendAsync(request);
+            using var response = await HttpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode) throw new HttpRequestException();
 
-            var responseStream = await response.Content.ReadAsStreamAsync();
+            using var responseStream = await response.Content.ReadAsStreamAsync();
             PatreonClientTokens = await JsonSerializer.DeserializeAsync<PatreonClientTokens>(responseStream);
         }
     }

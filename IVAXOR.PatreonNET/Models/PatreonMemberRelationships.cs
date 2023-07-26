@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonMemberRelationships
+    public class PatreonMemberRelationships : IPatreonRelationships
     {
         /// <summary>
         /// The member's shipping address that they entered for the campaign.

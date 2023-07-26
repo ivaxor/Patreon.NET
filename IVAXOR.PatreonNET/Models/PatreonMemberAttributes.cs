@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -7,7 +8,7 @@ namespace IVAXOR.PatreonNET.Models
     /// The record of a user's membership to a campaign.
     /// Remains consistent across months of pledging.
     /// </summary>
-    public class PatreonMemberAttributes
+    public class PatreonMemberAttributes : IPatreonAttributes
     {
         /// <summary>
         /// The total amount that the member has ever paid to the campaign in campaign's currency.

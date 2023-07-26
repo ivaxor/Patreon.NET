@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -6,7 +7,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// A patron's shipping address.
     /// </summary>
-    public class PatreonAddressAttributes
+    public class PatreonAddressAttributes : IPatreonAttributes
     {
         /// <summary>
         /// Full recipient name.

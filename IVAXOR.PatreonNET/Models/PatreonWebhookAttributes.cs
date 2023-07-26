@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -6,7 +7,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// Webhooks are fired based on events happening on a particular campaign.
     /// </summary>
-    public class PatreonWebhookAttributes
+    public class PatreonWebhookAttributes : IPatreonAttributes
     {
         /// <summary>
         /// Last date that the webhook was attempted or used.

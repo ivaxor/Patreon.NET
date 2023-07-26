@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonCampaignV2Relationships
+    public class PatreonCampaignV2Relationships : IPatreonRelationships
     {
         /// <summary>
         /// The campaign's benefits.

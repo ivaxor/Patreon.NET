@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonTierRelationships
+    public class PatreonTierRelationships : IPatreonRelationships
     {
         /// <summary>
         /// The benefits attached to the tier, which are used for generating deliverables.

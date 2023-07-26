@@ -1,12 +1,13 @@
 ﻿using System.Text.Json.Serialization;
 using System;
+using IVAXOR.PatreonNET.Models.Interfaces;
 
 namespace IVAXOR.PatreonNET.Models
 {
     /// <summary>
     /// A funding goal in USD set by a creator on a campaign.
     /// </summary>
-    public class PatreonGoalAttributes
+    public class PatreonGoalAttributes : IPatreonAttributes
     {
         /// <summary>
         /// Goal amount in USD cents.

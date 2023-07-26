@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
@@ -6,7 +7,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// The creator's page, and the top-level object for accessing lists of members, tiers, etc.
     /// </summary>
-    public class PatreonCampaignV2Attributes
+    public class PatreonCampaignV2Attributes : IPatreonAttributes
     {
         /// <summary>
         /// Datetime that the creator first began the campaign creation process.

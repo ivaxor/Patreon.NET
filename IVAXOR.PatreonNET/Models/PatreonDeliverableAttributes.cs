@@ -1,9 +1,10 @@
-﻿using System;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonDeliverableAttributes
+    public class PatreonDeliverableAttributes : IPatreonAttributes
     {
         /// <summary>
         /// When the creator marked the deliverable as completed or fulfilled to the patron.

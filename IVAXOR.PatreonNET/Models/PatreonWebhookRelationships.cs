@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonWebhookRelationships
+    public class PatreonWebhookRelationships : IPatreonRelationships
     {
         /// <summary>
         /// The campaign whose events trigger the webhook.
