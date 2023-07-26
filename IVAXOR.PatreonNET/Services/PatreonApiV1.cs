@@ -58,7 +58,7 @@ namespace IVAXOR.PatreonNET.Services
             return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>>(responseStream, cancellationToken: cancellationToken);
         }
 
-        public async ValueTask<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEvenRelationships>> GetCampaignPledgesAsync(
+        public async ValueTask<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>> GetCampaignPledgesAsync(
             string campaignId,
             CancellationToken cancellationToken = default)
         {
@@ -71,7 +71,7 @@ namespace IVAXOR.PatreonNET.Services
             if (!response.IsSuccessStatusCode) throw new HttpRequestException();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
-            return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEvenRelationships>>(responseStream, cancellationToken: cancellationToken);
+            return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>>(responseStream, cancellationToken: cancellationToken);
         }
     }
 }

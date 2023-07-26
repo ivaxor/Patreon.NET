@@ -1,7 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Goals;
-using IVAXOR.PatreonNET.Models.Interfaces;
-using IVAXOR.PatreonNET.Models.Tiers;
-using IVAXOR.PatreonNET.Models.Users;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Campaigns
@@ -12,33 +10,33 @@ namespace IVAXOR.PatreonNET.Models.Campaigns
         /// The campaign's benefits.
         /// </summary>
         [JsonPropertyName("benefits")]
-        public PatreonCampaignInstallation[] Benefits { get; set; }
+        public PatreonRelationshipsMulti Benefits { get; set; }
 
         [JsonPropertyName("campaign_installations")]
-        public PatreonCampaignInstallation[] CampaignInstallations { get; set; }
+        public PatreonRelationshipsMulti CampaignInstallations { get; set; }
 
         /// <summary>
         /// 	The campaign's categories.
         /// </summary>
         [JsonPropertyName("categories")]
-        public PatreonCategoryCategory[] Categories { get; set; }
+        public PatreonRelationshipsMulti Categories { get; set; }
 
         /// <summary>
         /// The campaign owner.
         /// </summary>
         [JsonPropertyName("creator")]
-        public PatreonUserV2Attributes Creator { get; set; }
+        public PatreonRelationshipsSingle Creator { get; set; }
 
         /// <summary>
         /// The campaign's goals.
         /// </summary>
         [JsonPropertyName("goals")]
-        public PatreonGoalAttributes Goals { get; set; }
+        public PatreonRelationshipsMulti Goals { get; set; }
 
         /// <summary>
         /// The campaign's tiers.
         /// </summary>
         [JsonPropertyName("tiers")]
-        public PatreonTierAttributes[] Tiers { get; set; }
+        public PatreonRelationshipsMulti Tiers { get; set; }
     }
 }

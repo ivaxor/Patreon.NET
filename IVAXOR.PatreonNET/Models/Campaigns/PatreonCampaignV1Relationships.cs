@@ -1,7 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Goals;
-using IVAXOR.PatreonNET.Models.Interfaces;
-using IVAXOR.PatreonNET.Models.Rewards;
-using IVAXOR.PatreonNET.Models.Users;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Campaigns
@@ -12,15 +10,15 @@ namespace IVAXOR.PatreonNET.Models.Campaigns
         /// The campaign owner.
         /// </summary>
         [JsonPropertyName("creator")]
-        public PatreonUserV2Attributes Creator { get; set; }
+        public PatreonRelationshipsSingle Creator { get; set; }
 
         /// <summary>
         /// The campaign's goals.
         /// </summary>
         [JsonPropertyName("goals")]
-        public PatreonGoalAttributes Goals { get; set; }
+        public PatreonRelationshipsMulti Goals { get; set; }
 
         [JsonPropertyName("rewards")]
-        public PatreonRewards[] Rewards { get; set; }
+        public PatreonRelationshipsMulti Rewards { get; set; }
     }
 }

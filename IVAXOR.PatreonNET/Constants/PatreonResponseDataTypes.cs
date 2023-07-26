@@ -1,5 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models;
-using IVAXOR.PatreonNET.Models.Addresses;
+﻿using IVAXOR.PatreonNET.Models.Addresses;
 using IVAXOR.PatreonNET.Models.Campaigns;
 using IVAXOR.PatreonNET.Models.Members;
 using IVAXOR.PatreonNET.Models.Pledges;
@@ -33,7 +32,7 @@ namespace IVAXOR.PatreonNET.Constants
             { "member", typeof(PatreonMemberRelationships) },
             { "user", typeof(PatreonUserV2Relationships) },
             { "webhook", typeof(PatreonWebhookRelationships) },
-            { "pledge", typeof(PatreonPledgeEvenRelationships) },
+            { "pledge", typeof(PatreonPledgeEventRelationships) },
             { "reward", typeof(PatreonTierRelationships) }
         };
     }

@@ -1,6 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Interfaces;
-using IVAXOR.PatreonNET.Models.Users;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Posts
@@ -11,12 +10,12 @@ namespace IVAXOR.PatreonNET.Models.Posts
         /// The author of the post.
         /// </summary>
         [JsonPropertyName("user")]
-        public PatreonUserV2Attributes user { get; set; }
+        public PatreonRelationshipsSingle User { get; set; }
 
         /// <summary>
         /// The campaign that the membership is for.
         /// </summary>
         [JsonPropertyName("campaign")]
-        public PatreonCampaignV2Attributes campaign { get; set; }
+        public PatreonRelationshipsSingle Campaign { get; set; }
     }
 }

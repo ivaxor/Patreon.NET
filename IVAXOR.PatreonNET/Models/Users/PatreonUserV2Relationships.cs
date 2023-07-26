@@ -1,5 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Users
@@ -7,9 +7,9 @@ namespace IVAXOR.PatreonNET.Models.Users
     public class PatreonUserV2Relationships : IPatreonRelationships
     {
         [JsonPropertyName("campaign")]
-        public PatreonCampaignV2Attributes Campaign { get; set; }
+        public PatreonRelationshipsSingle Campaign { get; set; }
 
         [JsonPropertyName("memberships")]
-        public PatreonMemberAttributes[] Memberships { get; set; }
+        public PatreonRelationshipsMulti Memberships { get; set; }
     }
 }

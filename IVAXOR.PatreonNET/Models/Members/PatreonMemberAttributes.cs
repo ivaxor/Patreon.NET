@@ -2,7 +2,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models
+namespace IVAXOR.PatreonNET.Models.Members
 {
     /// <summary>
     /// The record of a user's membership to a campaign.

@@ -1,6 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Interfaces;
-using IVAXOR.PatreonNET.Models.Users;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Addresses
@@ -11,12 +10,12 @@ namespace IVAXOR.PatreonNET.Models.Addresses
         /// The campaigns that have access to the address.
         /// </summary>
         [JsonPropertyName("campaigns")]
-        public PatreonCampaignV2Attributes Campaigns { get; set; }
+        public PatreonRelationshipsMulti Campaigns { get; set; }
 
         /// <summary>
         /// The user this address belongs to.
         /// </summary>
         [JsonPropertyName("user")]
-        public PatreonUserV2Attributes User { get; set; }
+        public PatreonRelationshipsSingle User { get; set; }
     }
 }

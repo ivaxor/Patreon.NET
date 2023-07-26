@@ -1,6 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Interfaces;
-using IVAXOR.PatreonNET.Models.OAuths;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Webhooks
@@ -11,12 +10,12 @@ namespace IVAXOR.PatreonNET.Models.Webhooks
         /// The campaign whose events trigger the webhook.
         /// </summary>
         [JsonPropertyName("campaign")]
-        public PatreonCampaignV2Attributes Campaign { get; set; }
+        public PatreonRelationshipsSingle Campaign { get; set; }
 
         /// <summary>
         /// The client which created the webhook.
         /// </summary>
         [JsonPropertyName("client")]
-        public PatreonOAuthClientAttributes Client { get; set; }
+        public PatreonRelationshipsSingle Client { get; set; }
     }
 }

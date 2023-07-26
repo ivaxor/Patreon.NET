@@ -1,5 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Goals
@@ -10,6 +10,6 @@ namespace IVAXOR.PatreonNET.Models.Goals
         /// The campaign trying to reach the goal.
         /// </summary>
         [JsonPropertyName("campaign")]
-        public PatreonCampaignV2Attributes Campaign { get; set; }
+        public PatreonRelationshipsSingle Campaign { get; set; }
     }
 }

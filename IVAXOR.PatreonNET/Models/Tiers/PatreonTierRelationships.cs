@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
+﻿using IVAXOR.PatreonNET.Models.Benefits;
+using IVAXOR.PatreonNET.Models.Campaigns;
 using IVAXOR.PatreonNET.Models.Interfaces;
 using System.Text.Json.Serialization;
 
