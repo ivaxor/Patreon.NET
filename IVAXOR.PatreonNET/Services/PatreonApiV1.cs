@@ -41,7 +41,7 @@ namespace IVAXOR.PatreonNET.Services
             string[] includes = null,
             CancellationToken cancellationToken = default)
         {
-            if (includes?.All(_ => AvailableIncludes.V1CurrentUsercampaigns.Contains(_)) ?? false) throw new InvalidIncludeException();
+            if (!includes?.All(_ => AvailableIncludes.V1CurrentUsercampaigns.Contains(_)) ?? false) throw new InvalidIncludeException();
 
             var url = "https://www.patreon.com/api/oauth2/api/current_user/campaigns";
             if (includes?.Any() ?? false) url += $"?includes={string.Join(',', includes)}";
@@ -53,8 +53,6 @@ namespace IVAXOR.PatreonNET.Services
             if (!response.IsSuccessStatusCode) throw new HttpRequestException();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
-            var rs = await response.Content.ReadAsStringAsync();
-
             return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>>(responseStream, cancellationToken: cancellationToken);
         }
     }

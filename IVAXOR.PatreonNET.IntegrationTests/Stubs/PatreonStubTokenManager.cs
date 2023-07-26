@@ -1,5 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models;
-using IVAXOR.PatreonNET.Services.Interfaces;
+﻿using IVAXOR.PatreonNET.Services.Interfaces;
 using System.Reflection;
 using System.Text.Json;
 
