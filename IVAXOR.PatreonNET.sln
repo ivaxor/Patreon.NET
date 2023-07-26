@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVAXOR.PatreonNET", "IVAXOR.PatreonNET\IVAXOR.PatreonNET.csproj", "{6742997A-CDFE-4608-A483-210AA456753A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IVAXOR.PatreonNET", "IVAXOR.PatreonNET\IVAXOR.PatreonNET.csproj", "{6742997A-CDFE-4608-A483-210AA456753A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{41B2EE5C-62B4-428B-9BF2-26F662752205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVAXOR.PatreonNET.UnitTests", "IVAXOR.PatreonNET.UnitTests\IVAXOR.PatreonNET.UnitTests.csproj", "{B44A3ADB-14A3-4F26-A34F-974A6324CD85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVAXOR.PatreonNET.IntegrationTests", "IVAXOR.PatreonNET.IntegrationTests\IVAXOR.PatreonNET.IntegrationTests.csproj", "{07EC8FBE-83C0-41CE-A249-298DB456BC14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,21 @@ Global
 		{6742997A-CDFE-4608-A483-210AA456753A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6742997A-CDFE-4608-A483-210AA456753A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6742997A-CDFE-4608-A483-210AA456753A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44A3ADB-14A3-4F26-A34F-974A6324CD85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44A3ADB-14A3-4F26-A34F-974A6324CD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44A3ADB-14A3-4F26-A34F-974A6324CD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44A3ADB-14A3-4F26-A34F-974A6324CD85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B44A3ADB-14A3-4F26-A34F-974A6324CD85} = {41B2EE5C-62B4-428B-9BF2-26F662752205}
+		{07EC8FBE-83C0-41CE-A249-298DB456BC14} = {41B2EE5C-62B4-428B-9BF2-26F662752205}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2A2F884-C5BC-4709-B238-E078348C76E5}

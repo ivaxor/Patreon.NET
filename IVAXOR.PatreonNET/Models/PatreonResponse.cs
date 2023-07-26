@@ -8,9 +8,11 @@ namespace IVAXOR.PatreonNET.Models
         [JsonPropertyName("data")]
         public TData Data { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("included")]
         public object Included { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("links")]
         public object Links { get; set; }
     }
