@@ -6,7 +6,7 @@ namespace IVAXOR.PatreonNET.Models
     /// <summary>
     /// A patron's shipping address.
     /// </summary>
-    public class PatreonAddress
+    public class PatreonAddressAttributes
     {
         /// <summary>
         /// Full recipient name.

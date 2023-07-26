@@ -1,6 +1,6 @@
 ﻿namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonCampaignTier
+    public class PatreonCampaignInstallation
     {
     }
 }

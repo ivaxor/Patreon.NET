@@ -1,9 +1,8 @@
-﻿using IVAXOR.PatreonNET.Models.Interfaces;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonCampaignV2Relationships : IPatreonRelationships
+    public class PatreonCampaignV2Relationships
     {
         /// <summary>
         /// The campaign's benefits.
@@ -24,18 +23,18 @@ namespace IVAXOR.PatreonNET.Models
         /// The campaign owner.
         /// </summary>
         [JsonPropertyName("creator")]
-        public PatreonUserV2[] Creator { get; set; }
+        public PatreonUserV2Attributes[] Creator { get; set; }
 
         /// <summary>
         /// The campaign's goals.
         /// </summary>
         [JsonPropertyName("goals")]
-        public PatreonCampaignGoal[] Goals { get; set; }
+        public PatreonGoalAttributes[] Goals { get; set; }
 
         /// <summary>
         /// The campaign's tiers.
         /// </summary>
         [JsonPropertyName("tiers")]
-        public PatreonCampaignTier[] tiers { get; set; }
+        public PatreonTierAttributes[] tiers { get; set; }
     }
 }

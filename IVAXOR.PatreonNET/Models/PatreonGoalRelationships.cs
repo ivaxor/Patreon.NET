@@ -2,12 +2,12 @@
 
 namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonUserV2Relationships
+    public class PatreonGoalRelationships
     {
+        /// <summary>
+        /// The campaign trying to reach the goal.
+        /// </summary>
         [JsonPropertyName("campaign")]
         public PatreonCampaignV2Attributes Campaign { get; set; }
-
-        [JsonPropertyName("memberships")]
-        public PatreonMemberAttributes[] Memberships { get; set; }
     }
 }

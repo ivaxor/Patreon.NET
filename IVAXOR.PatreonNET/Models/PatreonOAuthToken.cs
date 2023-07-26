@@ -1,6 +1,6 @@
 ﻿namespace IVAXOR.PatreonNET.Models
 {
-    public class PatreonCampaignGoal
+    public class PatreonOAuthToken
     {
     }
 }
