@@ -15,8 +15,8 @@ namespace IVAXOR.PatreonNET.Services
 {
     public class PatreonApiV1
     {
-        private readonly HttpClient HttpClient;
-        private readonly IPatreonTokenManager PatreonTokenManager;
+        protected readonly HttpClient HttpClient;
+        protected readonly IPatreonTokenManager PatreonTokenManager;
 
         public PatreonApiV1(
             HttpClient httpClient,

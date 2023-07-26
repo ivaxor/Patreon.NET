@@ -12,10 +12,11 @@ namespace IVAXOR.PatreonNET.Services
     {
         public string AccessToken => PatreonClientTokens.AccessToken;
 
-        private HttpClient HttpClient { get; set; }
-        private PatreonClient PatreonClient { get; set; }
-        private PatreonClientTokens PatreonClientTokens { get; set; }
-        private Timer Timer { get; set; }
+        protected PatreonClientTokens PatreonClientTokens { get; set; }
+
+        protected readonly HttpClient HttpClient;
+        protected readonly PatreonClient PatreonClient;
+        protected readonly Timer Timer;
 
         public PatreonAutoRefreshTokenManager(
             HttpClient httpClient,

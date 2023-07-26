@@ -1,8 +1,10 @@
-﻿using IVAXOR.PatreonNET.Models.Interfaces;
+﻿using IVAXOR.PatreonNET.JsonConverters;
+using IVAXOR.PatreonNET.Models.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Response
 {
+    [JsonConverter(typeof(PatreonIncludeDataJsonConverter))]
     public class PatreonIncludeData
     {
         [JsonPropertyName("id")]
@@ -14,8 +16,6 @@ namespace IVAXOR.PatreonNET.Models.Response
         [JsonPropertyName("attributes")]
         public IPatreonAttributes Attributes { get; set; }
 
-        // TODO: Implement
-        [JsonIgnore]
         [JsonPropertyName("relationships")]
         public IPatreonRelationships Relationships { get; set; }
     }

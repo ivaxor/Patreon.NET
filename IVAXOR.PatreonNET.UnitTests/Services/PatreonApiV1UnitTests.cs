@@ -3,7 +3,7 @@ namespace IVAXOR.PatreonNET.UnitTests.Services;
 [TestClass]
 public class PatreonApiV1UnitTests
 {
-    private readonly PatreonApiV1 PatreonAPI;
+    protected private readonly PatreonApiV1 PatreonAPI;
 
     public PatreonApiV1UnitTests()
     {

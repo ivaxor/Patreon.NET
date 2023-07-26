@@ -4,8 +4,6 @@ namespace IVAXOR.PatreonNET.Models.Response
 {
     public abstract class PatreonResponseBase
     {
-        // TODO: Implement
-        [JsonIgnore]
         [JsonPropertyName("included")]
         public PatreonIncludeData[]? Included { get; set; }
 
