@@ -1,4 +1,11 @@
 ﻿using IVAXOR.PatreonNET.Models;
+using IVAXOR.PatreonNET.Models.Addresses;
+using IVAXOR.PatreonNET.Models.Campaigns;
+using IVAXOR.PatreonNET.Models.Members;
+using IVAXOR.PatreonNET.Models.Pledges;
+using IVAXOR.PatreonNET.Models.Tiers;
+using IVAXOR.PatreonNET.Models.Users;
+using IVAXOR.PatreonNET.Models.Webhooks;
 using System;
 using System.Collections.Generic;
 

@@ -1,7 +1,9 @@
 ﻿using IVAXOR.PatreonNET.Constants;
 using IVAXOR.PatreonNET.Exceptions;
-using IVAXOR.PatreonNET.Models;
-using IVAXOR.PatreonNET.Models.Responses;
+using IVAXOR.PatreonNET.Models.Campaigns;
+using IVAXOR.PatreonNET.Models.Pledges;
+using IVAXOR.PatreonNET.Models.Response;
+using IVAXOR.PatreonNET.Models.Users;
 using IVAXOR.PatreonNET.Services.Interfaces;
 using System.Linq;
 using System.Net.Http;
@@ -54,6 +56,22 @@ namespace IVAXOR.PatreonNET.Services
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
             return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>>(responseStream, cancellationToken: cancellationToken);
+        }
+
+        public async ValueTask<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEvenRelationships>> GetCampaignPledgesAsync(
+            string campaignId,
+            CancellationToken cancellationToken = default)
+        {
+            var url = $"https://patreon.com/api/oauth2/api/campaigns/{campaignId}/pledges";
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
+            request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
+
+            using var response = await HttpClient.SendAsync(request, cancellationToken);
+            if (!response.IsSuccessStatusCode) throw new HttpRequestException();
+
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEvenRelationships>>(responseStream, cancellationToken: cancellationToken);
         }
     }
 }
