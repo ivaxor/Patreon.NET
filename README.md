@@ -1,4 +1,7 @@
 # Patreon.NET
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2d817284f92d4115811d495306f79796)](https://app.codacy.com/gh/ivaxor/Patreon.NET?utm_source=github.com&utm_medium=referral&utm_content=ivaxor/Patreon.NET&utm_campaign=Badge_Grade)
+
 ![Nuget](https://img.shields.io/nuget/dt/IVAXOR.PatreonNET?label=NuGet)
 
 .NET library for accessing [Patreon API](https://docs.patreon.com)
