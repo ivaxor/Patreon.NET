@@ -1,7 +1,4 @@
-﻿using Moq.Protected;
-using System.Net;
-
-namespace IVAXOR.PatreonNET.UnitTests.Services;
+﻿namespace IVAXOR.PatreonNET.UnitTests.Services;
 
 [TestClass]
 public class PatreonApiV1MockedTests

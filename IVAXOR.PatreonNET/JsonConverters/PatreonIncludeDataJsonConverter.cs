@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using IVAXOR.PatreonNET.Models.Response;
 using IVAXOR.PatreonNET.Constants;
-using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Response.Interfaces;
 
 namespace IVAXOR.PatreonNET.JsonConverters
 {

@@ -4,7 +4,7 @@ using IVAXOR.PatreonNET.Models.Campaigns;
 using IVAXOR.PatreonNET.Models.Pledges;
 using IVAXOR.PatreonNET.Models.Response;
 using IVAXOR.PatreonNET.Models.Users;
-using IVAXOR.PatreonNET.Services.Interfaces;
+using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;

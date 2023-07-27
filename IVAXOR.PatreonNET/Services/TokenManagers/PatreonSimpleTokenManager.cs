@@ -1,6 +1,6 @@
-﻿using IVAXOR.PatreonNET.Services.Interfaces;
+﻿using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 
-namespace IVAXOR.PatreonNET.Services
+namespace IVAXOR.PatreonNET.Services.TokenManagers
 {
     public class PatreonSimpleTokenManager : IPatreonTokenManager
     {

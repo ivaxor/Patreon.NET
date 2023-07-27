@@ -1,4 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using IVAXOR.PatreonNET.Models.Tiers;
 using System;
 using System.Text.Json.Serialization;

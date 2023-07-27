@@ -1,8 +1,4 @@
-﻿using IVAXOR.PatreonNET.Services.Interfaces;
-using System.Reflection;
-using System.Text.Json;
-
-namespace IVAXOR.PatreonNET.IntegrationTests.Stubs;
+﻿namespace IVAXOR.PatreonNET.IntegrationTests.Stubs;
 
 internal class PatreonStubTokenManager : IPatreonTokenManager
 {

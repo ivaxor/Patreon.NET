@@ -1,12 +1,12 @@
 ﻿using IVAXOR.PatreonNET.Exceptions;
 using IVAXOR.PatreonNET.Models;
 using IVAXOR.PatreonNET.Models.Configuration;
-using IVAXOR.PatreonNET.Services.Interfaces;
+using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
 using System.Text.Json;
 using System.Timers;
 
-namespace IVAXOR.PatreonNET.Services
+namespace IVAXOR.PatreonNET.Services.TokenManagers
 {
     public class PatreonAutoRefreshTokenManager : IPatreonTokenManager
     {

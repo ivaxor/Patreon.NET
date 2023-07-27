@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System;
-using IVAXOR.PatreonNET.Models.Interfaces;
+using IVAXOR.PatreonNET.Models.Response.Interfaces;
 
 namespace IVAXOR.PatreonNET.Models
 {

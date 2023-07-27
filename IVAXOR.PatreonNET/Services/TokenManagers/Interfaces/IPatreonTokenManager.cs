@@ -1,4 +1,4 @@
-﻿namespace IVAXOR.PatreonNET.Services.Interfaces
+﻿namespace IVAXOR.PatreonNET.Services.TokenManagers.Interfaces
 {
     public interface IPatreonTokenManager
     {
