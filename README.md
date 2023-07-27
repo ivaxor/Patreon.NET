@@ -11,7 +11,7 @@ You'll need to register an OAuth client account to receive a `client_id`, `clien
 Visit the [OAuth Documentation Page](https://docs.patreon.com/#oauth) **while logged in as a Patreon creator on patreon.com** to register your client.
 
 ## Installation
-Install with [dotnet CLI]([https://www.npmjs.com](https://learn.microsoft.com/en-us/dotnet/core/tools/)) or manually via your IDE UI.
+Install with [dotnet CLI](https://learn.microsoft.com/en-us/dotnet/core/tools).
 ```powershell
 dotnet add package IVAXOR.PatreonNET
 ```
