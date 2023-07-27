@@ -6,7 +6,6 @@ namespace IVAXOR.PatreonNET.Models.Users
 {
     public class PatreonUserRelationships : IPatreonRelationships
     {
-        [JsonRequired]
         [JsonPropertyName("campaign")]
         public PatreonRelationshipsSingle Campaign { get; set; }
 

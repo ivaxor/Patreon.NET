@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Threading;
 using IVAXOR.PatreonNET.Services.API.Extensions;
+using IVAXOR.PatreonNET.Exceptions;
 
 namespace IVAXOR.PatreonNET.Services.API
 {
@@ -78,7 +79,7 @@ namespace IVAXOR.PatreonNET.Services.API
             request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
 
             using var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode) throw new HttpRequestException();
+            if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
 
