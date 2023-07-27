@@ -7,6 +7,7 @@ namespace IVAXOR.PatreonNET.Models.Response
         where TAttributes : IPatreonAttributes
         where TIRelationships : IPatreonRelationships
     {
+        [JsonRequired]
         [JsonPropertyName("data")]
         public PatreonData<TAttributes, TIRelationships>[] Data { get; set; }
     }

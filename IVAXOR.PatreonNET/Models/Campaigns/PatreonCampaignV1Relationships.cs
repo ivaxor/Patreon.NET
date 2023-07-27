@@ -9,15 +9,18 @@ namespace IVAXOR.PatreonNET.Models.Campaigns
         /// <summary>
         /// The campaign owner.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("creator")]
         public PatreonRelationshipsSingle Creator { get; set; }
 
         /// <summary>
         /// The campaign's goals.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("goals")]
         public PatreonRelationshipsMulti Goals { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("rewards")]
         public PatreonRelationshipsMulti Rewards { get; set; }
     }

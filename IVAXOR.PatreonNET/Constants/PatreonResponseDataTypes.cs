@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Addresses;
+﻿using IVAXOR.PatreonNET.Models;
+using IVAXOR.PatreonNET.Models.Addresses;
 using IVAXOR.PatreonNET.Models.Campaigns;
 using IVAXOR.PatreonNET.Models.Members;
 using IVAXOR.PatreonNET.Models.Pledges;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 
 namespace IVAXOR.PatreonNET.Constants
 {
-    public static class PatreonResponseDataTypes
+    internal static class PatreonResponseDataTypes
     {
         public static readonly Dictionary<string, Type> PatreonAttributesByTypes = new Dictionary<string, Type>()
         {
@@ -21,7 +22,7 @@ namespace IVAXOR.PatreonNET.Constants
             { "user", typeof(PatreonUserV2Attributes) },
             { "webhook", typeof(PatreonWebhookAttributes) },
             { "pledge", typeof(PatreonPledgeEventAttributes) },
-            { "reward", typeof(PatreonTierAttributes) }
+            { "reward", typeof(PatreonRewardAttributes) }
         };
 
         public static readonly Dictionary<string, Type> PatreonRelationshipsByTypes = new Dictionary<string, Type>()
@@ -32,8 +33,7 @@ namespace IVAXOR.PatreonNET.Constants
             { "member", typeof(PatreonMemberRelationships) },
             { "user", typeof(PatreonUserV2Relationships) },
             { "webhook", typeof(PatreonWebhookRelationships) },
-            { "pledge", typeof(PatreonPledgeEventRelationships) },
-            { "reward", typeof(PatreonTierRelationships) }
+            { "pledge", typeof(PatreonPledgeEventRelationships) }
         };
     }
 }
