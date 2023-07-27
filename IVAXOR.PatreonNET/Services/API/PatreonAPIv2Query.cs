@@ -43,6 +43,16 @@ namespace IVAXOR.PatreonNET.Services.API
             return this;
         }
 
+        public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeAllFields()
+        {
+            typeof(TAttributes).GetProperties()
+                .Select(_ => _.Name)
+                .ToList()
+                .ForEach(_ => IncludeFields.Add(_));
+
+            return this;
+        }
+
         public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(string propertyName)
         {
             if (!typeof(TAttributes).GetProperties().Any(_ => _.Name == propertyName)) throw new ArgumentException("Invalid value", nameof(propertyName));
