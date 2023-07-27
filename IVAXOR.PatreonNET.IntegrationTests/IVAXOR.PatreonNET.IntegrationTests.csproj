@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="tokens.json" />
+    <EmbeddedResource Condition="'$(Configuration)' == 'Debug'" Include="tokens.json" />
   </ItemGroup>
 
   <ItemGroup>

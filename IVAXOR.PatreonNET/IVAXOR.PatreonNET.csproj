@@ -10,6 +10,8 @@
     <RepositoryUrl>https://github.com/ivaxor/Patreon.NET</RepositoryUrl>
     <PackageTags>patreon</PackageTags>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Description>.NET library for Patreon</Description>
+    <Title>Patreon.NET</Title>
   </PropertyGroup>
 	
   <ItemGroup>

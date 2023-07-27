@@ -1,4 +1,6 @@
 # Patreon.NET
+![Nuget](https://img.shields.io/nuget/dt/IVAXOR.PatreonNET?label=NuGet)
+
 .NET library for accessing [Patreon API](https://docs.patreon.com)
 
 ## Setup
