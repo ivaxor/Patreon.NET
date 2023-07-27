@@ -20,4 +20,6 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test IVAXOR.PatreonNET.UnitTests --no-build --verbosity normal
+      run: dotnet test IVAXOR.PatreonNET.UnitTests --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
