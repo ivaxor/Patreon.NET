@@ -32,8 +32,7 @@ public class PatreonAPIv1MockedTests
           .Setup<Task<HttpResponseMessage>>(
              "SendAsync",
              ItExpr.IsAny<HttpRequestMessage>(),
-             ItExpr.IsAny<CancellationToken>()
-          )
+             ItExpr.IsAny<CancellationToken>())
           .ReturnsAsync(new HttpResponseMessage()
           {
               StatusCode = HttpStatusCode.OK,
@@ -81,8 +80,7 @@ public class PatreonAPIv1MockedTests
           .Setup<Task<HttpResponseMessage>>(
              "SendAsync",
              ItExpr.IsAny<HttpRequestMessage>(),
-             ItExpr.IsAny<CancellationToken>()
-          )
+             ItExpr.IsAny<CancellationToken>())
           .ReturnsAsync(new HttpResponseMessage()
           {
               StatusCode = HttpStatusCode.OK,

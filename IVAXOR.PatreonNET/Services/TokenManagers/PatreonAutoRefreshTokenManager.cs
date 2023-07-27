@@ -2,6 +2,7 @@
 using IVAXOR.PatreonNET.Models;
 using IVAXOR.PatreonNET.Models.Configuration;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Timers;
@@ -28,9 +29,10 @@ namespace IVAXOR.PatreonNET.Services.TokenManagers
             PatreonClientTokens = tokens;
 
             Timer = new Timer();
-            Timer.Interval = PatreonClientTokens.ExpiresIn - 300000;
+            Timer.Interval = PatreonClientTokens.ExpiresIn - TimeSpan.FromMinutes(1).TotalMilliseconds;
             Timer.AutoReset = false;
             Timer.Elapsed += OnTimerElapsed;
+            Timer.Start();
         }
 
         protected async void OnTimerElapsed(object sender, ElapsedEventArgs e)
@@ -48,6 +50,9 @@ namespace IVAXOR.PatreonNET.Services.TokenManagers
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
             PatreonClientTokens = await JsonSerializer.DeserializeAsync<PatreonClientTokens>(responseStream);
+
+            Timer.Interval = PatreonClientTokens.ExpiresIn - 300000;
+            Timer.Start();
         }
     }
 }
