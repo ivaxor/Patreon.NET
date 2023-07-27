@@ -10,8 +10,7 @@ namespace IVAXOR.PatreonNET.Models.Users
         [JsonPropertyName("campaign")]
         public PatreonRelationshipsSingle Campaign { get; set; }
 
-        [JsonRequired]
         [JsonPropertyName("pledges")]
-        public PatreonRelationshipsMulti Pledges { get; set; }
+        public PatreonRelationshipsMulti? Pledges { get; set; }
     }
 }

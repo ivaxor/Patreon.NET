@@ -40,7 +40,7 @@ namespace IVAXOR.PatreonNET.Services
 
         }
 
-        public async ValueTask<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>> GetCurrentUserCampaignsAsync(
+        public async ValueTask<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>> GetCurrentUserCampaignsAsync(
             string[] includes = null,
             CancellationToken cancellationToken = default)
         {
@@ -56,7 +56,7 @@ namespace IVAXOR.PatreonNET.Services
             if (!response.IsSuccessStatusCode) throw new HttpRequestException();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
-            return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>>(responseStream, Json.SerializerOptions, cancellationToken);
+            return await JsonSerializer.DeserializeAsync<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>>(responseStream, Json.SerializerOptions, cancellationToken);
         }
 
         public async ValueTask<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>> GetCampaignPledgesAsync(

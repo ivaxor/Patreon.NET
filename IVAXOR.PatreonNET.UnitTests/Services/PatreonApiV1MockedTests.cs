@@ -1,6 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models;
-using IVAXOR.PatreonNET.Models.Campaigns;
-using Moq.Protected;
+﻿using Moq.Protected;
 using System.Net;
 
 namespace IVAXOR.PatreonNET.UnitTests.Services;
@@ -96,10 +94,45 @@ public class PatreonApiV1MockedTests
         var currentUserCampaings = await PatreonAPI.GetCurrentUserCampaignsAsync();
 
         // Assert
-        Assert.AreEqual("0000000", currentUserCampaings.Data.Single().Id);
-        Assert.AreEqual("Documentation", currentUserCampaings.Data.Single().Attributes.CreationName);
-        Assert.AreEqual(false, currentUserCampaings.Data.Single().Attributes.IsChargedImmediately);
-        Assert.AreEqual(false, currentUserCampaings.Data.Single().Attributes.IsMonthly);
+        Assert.AreEqual("10855995", currentUserCampaings.Data.Single().Id);
+        Assert.AreEqual("campaign", currentUserCampaings.Data.Single().Type);
+
+        Assert.AreEqual("https://c8.patreon.com/2/620/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoImageUrls.Default);
+        Assert.AreEqual("https://c8.patreon.com/2/360/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoImageUrls.DefaultSsmall);
+        Assert.AreEqual("https://c8.patreon.com/2/None/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoImageUrls.Original);
+        Assert.AreEqual("https://c8.patreon.com/2/360/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoImageUrls.Thumbnail);
+        Assert.AreEqual("https://c8.patreon.com/2/1080/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoImageUrls.ThumbnailLarge);
+        Assert.AreEqual("https://c8.patreon.com/2/100/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoImageUrls.ThumbnailSmall);
+
+        Assert.AreEqual("https://c8.patreon.com/2/200/c10855995", currentUserCampaings.Data.Single().Attributes.AvatarPhotoUrl);
+        Assert.AreEqual(0, currentUserCampaings.Data.Single().Attributes.CampaignPledgeSum);
+        Assert.AreEqual(0, currentUserCampaings.Data.Single().Attributes.CreationCount);
+        Assert.AreEqual("USD", currentUserCampaings.Data.Single().Attributes.Currency);
+        Assert.AreEqual(false, currentUserCampaings.Data.Single().Attributes.DisplayPatronGoals);
+        Assert.AreEqual("public", currentUserCampaings.Data.Single().Attributes.EarningsVisibility);
+        Assert.AreEqual("None", currentUserCampaings.Data.Single().Attributes.ImageSmallUrl);
+        Assert.AreEqual(true, currentUserCampaings.Data.Single().Attributes.IsChargeUpfront);
+        Assert.AreEqual(true, currentUserCampaings.Data.Single().Attributes.IsChargedImmediately);
+        Assert.AreEqual(true, currentUserCampaings.Data.Single().Attributes.IsMonthly);
         Assert.AreEqual(false, currentUserCampaings.Data.Single().Attributes.IsNsfw);
+        Assert.AreEqual(false, currentUserCampaings.Data.Single().Attributes.IsPlural);
+        Assert.AreEqual("Patreon.NET", currentUserCampaings.Data.Single().Attributes.Name);
+        Assert.AreEqual(0, currentUserCampaings.Data.Single().Attributes.OutstandingPaymentAmountCents);
+        Assert.AreEqual(0, currentUserCampaings.Data.Single().Attributes.PaidMemberCcount);
+        Assert.AreEqual(0, currentUserCampaings.Data.Single().Attributes.PatronCount);
+        Assert.AreEqual("month", currentUserCampaings.Data.Single().Attributes.PayPerName);
+        Assert.AreEqual(0, currentUserCampaings.Data.Single().Attributes.PledgeSum);
+        Assert.AreEqual("USD", currentUserCampaings.Data.Single().Attributes.PledgeSumCurrency);
+        Assert.AreEqual("/join/10855995", currentUserCampaings.Data.Single().Attributes.PledgeUrl);
+        Assert.AreEqual("https://www.patreon.com/user?u=97752217", currentUserCampaings.Data.Single().Attributes.Url);
+
+        Assert.AreEqual("97752217", currentUserCampaings.Data.Single().Relationships.Creator.Data.Id);
+        Assert.AreEqual("https://www.patreon.com/api/user/97752217", currentUserCampaings.Data.Single().Relationships.Creator.Links.Related);
+
+        Assert.AreEqual("-1", currentUserCampaings.Data.Single().Relationships.Rewards.Data.First().Id);
+        Assert.AreEqual("0", currentUserCampaings.Data.Single().Relationships.Rewards.Data.Last().Id);
+
+        Assert.AreEqual(1, currentUserCampaings.Included.Count(_ => _.Type == "user"));
+        Assert.AreEqual(2, currentUserCampaings.Included.Count(_ => _.Type == "reward"));
     }
 }
