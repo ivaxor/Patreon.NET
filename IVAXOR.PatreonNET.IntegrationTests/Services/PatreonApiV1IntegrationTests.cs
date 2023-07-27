@@ -1,23 +1,25 @@
+using IVAXOR.PatreonNET.Services.API;
+
 namespace IVAXOR.PatreonNET.IntegrationTests.Services;
 
 [TestClass]
 public class PatreonAPIv1IntegrationTests
 {
-    protected readonly PatreonAPIv1 PatreonAPI;
+    protected readonly PatreonAPIv1 PatreonAPIv1;
 
     public PatreonAPIv1IntegrationTests()
     {
         var httpClient = new HttpClient();
         var tokenManager = new PatreonStubTokenManager();
 
-        PatreonAPI = new(httpClient, tokenManager);
+        PatreonAPIv1 = new(httpClient, tokenManager);
     }
 
     [TestMethod]
-    public async Task GetCurrentUser()
+    public async Task CurrentUser()
     {
         // Act
-        var currentUser = await PatreonAPI.GetCurrentUser().ExecuteAsync();
+        var currentUser = await PatreonAPIv1.CurrentUser().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("user", currentUser.Data.Type);
@@ -28,10 +30,10 @@ public class PatreonAPIv1IntegrationTests
     }
 
     [TestMethod]
-    public async Task GetCurrentUserCampaigns()
+    public async Task CurrentUserCampaigns()
     {
         // Act
-        var currentUserCampaigns = await PatreonAPI.GetCurrentUserCampaigns().ExecuteAsync();
+        var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("campaign", currentUserCampaigns.Data.Single().Type);

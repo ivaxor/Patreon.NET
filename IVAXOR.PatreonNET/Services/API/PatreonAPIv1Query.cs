@@ -10,19 +10,21 @@ using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
 using IVAXOR.PatreonNET.Constants;
 using System.Text.Json;
+using IVAXOR.PatreonNET.Services.API.Extensions;
 
-namespace IVAXOR.PatreonNET.Services
+namespace IVAXOR.PatreonNET.Services.API
 {
     public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
         where TResponse : IPatreonResponse<TAttributes, TRelationships>
         where TAttributes : IPatreonAttributes
         where TRelationships : IPatreonRelationships
     {
-        protected readonly string Url;
+        public readonly string Url;
+
         protected readonly HttpClient HttpClient;
         protected readonly IPatreonTokenManager PatreonTokenManager;
 
-        protected internal HashSet<string> IncludeFields { get; set; } = new HashSet<string>();
+        protected internal HashSet<string> IncludeAdditionalFields { get; set; } = new HashSet<string>();
 
         public PatreonAPIv1Query(
             string url,
@@ -37,7 +39,7 @@ namespace IVAXOR.PatreonNET.Services
         public PatreonAPIv1Query<TResponse, TAttributes, TRelationships> IncludeAdditionalField(string propertyName)
         {
             if (!typeof(TAttributes).GetProperties().Any(_ => _.Name == propertyName)) throw new ArgumentException("Invalid value", nameof(propertyName));
-            IncludeFields.Add(propertyName);
+            IncludeAdditionalFields.Add(propertyName);
 
             return this;
         }
@@ -52,7 +54,12 @@ namespace IVAXOR.PatreonNET.Services
 
         public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, Url);
+            var url = Url;
+
+            var fields = this.GetIncludeAdditionalFieldsQuery();
+            if (fields == null) url = $"{Url}?{fields}";
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
 
             using var response = await HttpClient.SendAsync(request, cancellationToken);

@@ -1,4 +1,6 @@
-﻿namespace IVAXOR.PatreonNET.UnitTests.Services;
+﻿using IVAXOR.PatreonNET.Services.API;
+
+namespace IVAXOR.PatreonNET.UnitTests.Services;
 
 [TestClass]
 public class PatreonAPIv1MockedTests
@@ -22,7 +24,7 @@ public class PatreonAPIv1MockedTests
     }
 
     [TestMethod]
-    public async Task GetCurrentUserAsync()
+    public async Task CurrentUser()
     {
         // Arrange
         HttpMessageHandlerMock
@@ -39,7 +41,7 @@ public class PatreonAPIv1MockedTests
           });
 
         // Act
-        var currentUser = await PatreonAPIv1.GetCurrentUser().ExecuteAsync();
+        var currentUser = await PatreonAPIv1.CurrentUser().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("97752217", currentUser.Data.Id);
@@ -71,7 +73,7 @@ public class PatreonAPIv1MockedTests
     }
 
     [TestMethod]
-    public async Task GetCurrentUserCampaignsAsync()
+    public async Task CurrentUserCampaigns()
     {
         // Arrange
         HttpMessageHandlerMock
@@ -88,7 +90,7 @@ public class PatreonAPIv1MockedTests
           });
 
         // Act
-        var currentUserCampaings = await PatreonAPIv1.GetCurrentUserCampaigns().ExecuteAsync();
+        var currentUserCampaings = await PatreonAPIv1.CurrentUserCampaigns().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("10855995", currentUserCampaings.Data.Single().Id);
