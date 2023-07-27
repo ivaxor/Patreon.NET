@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test IVAXOR.PatreonNET.UnitTests --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test IVAXOR.PatreonNET.UnitTests --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
