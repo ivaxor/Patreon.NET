@@ -24,4 +24,5 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
-        file: IVAXOR.PatreonNET.UnitTests/coverage.opencover.xml
+        format: lcov
+        file: IVAXOR.PatreonNET.UnitTests/coverage.info
