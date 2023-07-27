@@ -9,18 +9,21 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Monetary amount associated with this tier (in U.S. cents).
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("amount_cents")]
         public int AmountCents { get; set; }
 
         /// <summary>
         /// Datetime this tier was created.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Tier display description.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
@@ -33,6 +36,7 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Datetime tier was last modified.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("edited_at")]
         public DateTime EditedAt { get; set; }
 
@@ -45,6 +49,7 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Number of patrons currently registered for this tier.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("patron_count")]
         public int PatronCount { get; set; }
 
@@ -57,6 +62,7 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// true if the tier is currently published.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("published")]
         public bool Published { get; set; }
 
@@ -75,12 +81,14 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// true if this tier requires a shipping address from patrons.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("requires_shipping")]
         public bool RequiresShipping { get; set; }
 
         /// <summary>
         /// Tier display title.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
@@ -93,6 +101,7 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Fully qualified URL associated with this tier.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("url")]
         public string Url { get; set; }
 

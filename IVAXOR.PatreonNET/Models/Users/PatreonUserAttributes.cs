@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Users
 {
-    public class PatreonUserV1Attributes : IPatreonAttributes
+    public class PatreonUserAttributes : IPatreonAttributes
     {
         /// <summary>
         /// The user's about text, which appears on their profile.
@@ -21,13 +21,13 @@ namespace IVAXOR.PatreonNET.Models.Users
         /// <summary>
         /// true if this user can view nsfw content.
         /// </summary>
-        
         [JsonPropertyName("can_see_nsfw")]
         public bool? CanSeeNsfw { get; set; }
 
         /// <summary>
         /// Datetime of this user's account creation.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("created")]
         public DateTime Created { get; set; }
 
@@ -42,6 +42,7 @@ namespace IVAXOR.PatreonNET.Models.Users
         /// Requires certain scopes to access.
         /// See the scopes section of this documentation.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
@@ -54,65 +55,64 @@ namespace IVAXOR.PatreonNET.Models.Users
         /// <summary>
         /// First name.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("first_name")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Combined first and last name.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("full_name")]
         public string FullName { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("gender")]
         public int Gender { get; set; }
 
         [JsonPropertyName("google_id")]
         public string? GoogleId { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("has_password")]
         public bool HasPassword { get; set; }
 
         /// <summary>
-        /// true if the user has chosen to keep private which creators they pledge to.
-        /// </summary>
-        [JsonPropertyName("hide_pledges")]
-        public bool? HidePledges { get; set; }
-
-        /// <summary>
         /// The user's profile picture URL, scaled to width 400px.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("image_url")]
         public string ImageUrl { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("is_deleted")]
         public bool IsDeleted { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("is_eligible_for_idv")]
         public bool IsEligibleForIdv { get; set; }
 
         /// <summary>
         /// true if the user has confirmed their email.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("is_email_verified")]
         public bool IsEmailVerified { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("is_nuked")]
         public bool IsNuked { get; set; }
 
+        [JsonRequired]
         [JsonPropertyName("is_suspended")]
         public bool IsSuspended { get; set; }
 
         /// <summary>
         /// Last name.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("last_name")]
-        public string? LastName { get; set; }
-
-        /// <summary>
-        /// How many posts this user has liked.
-        /// </summary>
-        [JsonPropertyName("like_count")]
-        public int? like_count { get; set; }
+        public string LastName { get; set; }
 
         [JsonPropertyName("patron_currency")]
         public string? PatronCurrency { get; set; }
@@ -120,12 +120,14 @@ namespace IVAXOR.PatreonNET.Models.Users
         /// <summary>
         /// Mapping from user's connected app names to external user id on the respective app.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("social_connections")]
-        public PatreonUserV2SocialConnections? SocialConnections { get; set; }
+        public PatreonUserSocialConnections SocialConnections { get; set; }
 
         /// <summary>
         /// The user's profile picture URL, scaled to a square of size 100x100px.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("thumb_url")]
         public string ThumbUrl { get; set; }
 
@@ -138,6 +140,7 @@ namespace IVAXOR.PatreonNET.Models.Users
         /// <summary>
         /// URL of this user's creator or patron profile.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("url")]
         public string Url { get; set; }
 

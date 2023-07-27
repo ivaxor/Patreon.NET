@@ -14,6 +14,7 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// The total amount that the member has ever paid to the campaign in campaign's currency.
         /// 0 if never paid.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("campaign_lifetime_support_cents")]
         public int CampaignLifetimeSupportCents { get; set; }
 
@@ -21,6 +22,7 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// The amount in cents that the member is entitled to.
         /// This includes a current pledge, or payment that covers the current payment period.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("currently_entitled_amount_cents")]
         public int CurrentlyEntitledAmountCents { get; set; }
 
@@ -28,18 +30,21 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// The member's email address.
         /// Requires the campaigns.members[email] scope.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
         /// <summary>
         /// Full name of the member user.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("full_name")]
         public string FullName { get; set; }
 
         /// <summary>
         /// The user is not a pledging patron but has subscribed to updates about public posts.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("is_follower")]
         public bool IsFollower { get; set; }
 
@@ -62,6 +67,7 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// The total amount that the member has ever paid to the campaign.
         /// 0 if never paid.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("lifetime_support_cents")]
         public int LifetimeSupportCents { get; set; }
 
@@ -75,6 +81,7 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// <summary>
         /// The creator's notes on the member.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("note")]
         public string Note { get; set; }
 
@@ -88,6 +95,7 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// <summary>
         /// Number of months between charges.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("pledge_cadence")]
         public int PledgeCadence { get; set; }
 
@@ -101,6 +109,7 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// <summary>
         /// The amount in cents the user will pay at the next pay cycle.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("will_pay_amount_cents")]
         public int WillPayAmountCents { get; set; }
     }

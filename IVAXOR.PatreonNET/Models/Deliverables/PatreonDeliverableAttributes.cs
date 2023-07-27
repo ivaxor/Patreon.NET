@@ -15,12 +15,14 @@ namespace IVAXOR.PatreonNET.Models.Deliverables
         /// <summary>
         /// One of delivered, not_delivered, wont_deliver.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("delivery_status")]
         public string DeliveryStatus { get; set; }
 
         /// <summary>
         /// When the deliverable is due to the patron.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("due_at")]
         public DateTime DueAt { get; set; }
     }

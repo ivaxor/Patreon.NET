@@ -16,11 +16,11 @@ namespace IVAXOR.PatreonNET.Constants
     {
         public static readonly Dictionary<string, Type> PatreonAttributesByTypes = new Dictionary<string, Type>()
         {
-            { "campaign", typeof(PatreonCampaignV2Attributes) },
+            { "campaign", typeof(PatreonCampaignAttributes) },
             { "address", typeof(PatreonAddressAttributes) },
             { "tier", typeof(PatreonTierAttributes) },
             { "member", typeof(PatreonMemberAttributes) },
-            { "user", typeof(PatreonUserV2Attributes) },
+            { "user", typeof(PatreonUserAttributes) },
             { "webhook", typeof(PatreonWebhookAttributes) },
             { "pledge", typeof(PatreonPledgeEventAttributes) },
             { "reward", typeof(PatreonRewardAttributes) }
@@ -29,11 +29,11 @@ namespace IVAXOR.PatreonNET.Constants
 
         public static readonly Dictionary<string, Type> PatreonRelationshipsByTypes = new Dictionary<string, Type>()
         {
-            { "campaign", typeof(PatreonCampaignV2Relationships) },
+            { "campaign", typeof(PatreonCampaignRelationships) },
             { "address", typeof(PatreonAddressRelationships) },
             { "tier", typeof(PatreonTierRelationships) },
             { "member", typeof(PatreonMemberRelationships) },
-            { "user", typeof(PatreonUserV2Relationships) },
+            { "user", typeof(PatreonUserRelationships) },
             { "webhook", typeof(PatreonWebhookRelationships) },
             { "pledge", typeof(PatreonPledgeEventRelationships) }
         };

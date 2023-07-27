@@ -22,47 +22,47 @@ namespace IVAXOR.PatreonNET.Services.API
             PatreonTokenManager = tokenManager;
         }
 
-        public PatreonAPIv2Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> Identity() =>
-            new PatreonAPIv2Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships>(
-                "https://www.patreon.com/api/oauth2/v2/identity",
+        public PatreonAPIv2Query<PatreonResponseSingle<PatreonUserAttributes, PatreonUserRelationships>, PatreonUserAttributes, PatreonUserRelationships> Identity() =>
+            new PatreonAPIv2Query<PatreonResponseSingle<PatreonUserAttributes, PatreonUserRelationships>, PatreonUserAttributes, PatreonUserRelationships>(
+                "https://patreon.com/api/oauth2/v2/identity",
                 HttpClient,
                 PatreonTokenManager);
 
-        public PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaigns() =>
-            new PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>(
-                "https://www.patreon.com/api/oauth2/v2/campaigns",
+        public PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships> Campaigns() =>
+            new PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships>(
+                "https://patreon.com/api/oauth2/v2/campaigns",
                 HttpClient,
                 PatreonTokenManager);
 
-        public PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaign(string campaignId) =>
-           new PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>(
-               $"https://www.patreon.com/api/oauth2/v2/campaigns/{campaignId}",
+        public PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships> Campaign(string campaignId) =>
+           new PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships>(
+               $"https://patreon.com/api/oauth2/v2/campaigns/{campaignId}",
                HttpClient,
                PatreonTokenManager);
 
         /*
         public PatreonAPIv2Query<PatreonResponseMulti<object, object>, object, object> CampaignMembers(string campaignId) =>
             new PatreonAPIv2Query<PatreonResponseMulti<object, object>, object, object>(
-                $"https://www.patreon.com/api/oauth2/v2/campaigns/{campaignId}/members",
+                $"https://patreon.com/api/oauth2/v2/campaigns/{campaignId}/members",
                 HttpClient,
                 PatreonTokenManager);
 
         public PatreonAPIv2Query<PatreonResponseSingle<object, object>, object, object> CampaignMembers(string memberId) =>
             new PatreonAPIv2Query<PatreonResponseSingle<object, object>, object, object>(
-                $"https://www.patreon.com/api/oauth2/v2/members/{memberId}",
+                $"https://patreon.com/api/oauth2/v2/members/{memberId}",
                 HttpClient,
                 PatreonTokenManager);
         */
 
-        public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> CampaignPosts(string campaignId) =>
-            new PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships>(
-                $"https://www.patreon.com/api/oauth2/v2/campaigns/{campaignId}/posts",
+        public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships> CampaignPosts(string campaignId) =>
+            new PatreonAPIv2Query<PatreonResponseMulti<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships>(
+                $"https://patreon.com/api/oauth2/v2/campaigns/{campaignId}/posts",
                 HttpClient,
                 PatreonTokenManager);
 
-        public PatreonAPIv2Query<PatreonResponseSingle<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> Post(string postId) =>
-            new PatreonAPIv2Query<PatreonResponseSingle<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships>(
-                $"https://www.patreon.com/api/oauth2/v2/posts/{postId}",
+        public PatreonAPIv2Query<PatreonResponseSingle<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships> Post(string postId) =>
+            new PatreonAPIv2Query<PatreonResponseSingle<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships>(
+                $"https://patreon.com/api/oauth2/v2/posts/{postId}",
                 HttpClient,
                 PatreonTokenManager);
 

@@ -4,17 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Posts
 {
-    public class PatreonPostV2Relationships : IPatreonRelationships
+    public class PatreonPostRelationships : IPatreonRelationships
     {
         /// <summary>
         /// The author of the post.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("user")]
         public PatreonRelationshipsSingle User { get; set; }
 
         /// <summary>
         /// The campaign that the membership is for.
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("campaign")]
         public PatreonRelationshipsSingle Campaign { get; set; }
     }

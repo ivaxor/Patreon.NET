@@ -8,7 +8,7 @@ namespace IVAXOR.PatreonNET.Models.Posts
     /// <summary>
     /// Content posted by a creator on a campaign page.
     /// </summary>
-    public class PatreonPostV2Attributes : IPatreonAttributes
+    public class PatreonPostAttributes : IPatreonAttributes
     {
         /// <summary>
         /// Platform app id.
@@ -29,6 +29,7 @@ namespace IVAXOR.PatreonNET.Models.Posts
         /// An object containing embed data if media is embedded in the post
         /// None if there is no embed
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("embed_data")]
         public string EmbedData { get; set; }
 
@@ -70,6 +71,7 @@ namespace IVAXOR.PatreonNET.Models.Posts
         /// <summary>
         /// A URL to access this post on patreon.com
         /// </summary>
+        [JsonRequired]
         [JsonPropertyName("url")]
         public string Url { get; set; }
     }

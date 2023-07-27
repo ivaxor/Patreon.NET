@@ -21,14 +21,14 @@ namespace IVAXOR.PatreonNET.Services.API
             PatreonTokenManager = tokenManager;
         }
 
-        public PatreonAPIv1Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> CurrentUser() =>
-            new PatreonAPIv1Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships>(
+        public PatreonAPIv1Query<PatreonResponseSingle<PatreonUserAttributes, PatreonUserRelationships>, PatreonUserAttributes, PatreonUserRelationships> CurrentUser() =>
+            new PatreonAPIv1Query<PatreonResponseSingle<PatreonUserAttributes, PatreonUserRelationships>, PatreonUserAttributes, PatreonUserRelationships>(
                 "https://patreon.com/api/oauth2/api/current_user",
                 HttpClient,
                 PatreonTokenManager);
 
-        public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> CurrentUserCampaigns() =>
-            new PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>(
+        public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships> CurrentUserCampaigns() =>
+            new PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships>(
                 "https://patreon.com/api/oauth2/api/current_user/campaigns",
                 HttpClient,
                 PatreonTokenManager);

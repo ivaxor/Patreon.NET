@@ -4,13 +4,13 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Users
 {
-    public class PatreonUserV1Relationships : IPatreonRelationships
+    public class PatreonUserRelationships : IPatreonRelationships
     {
-        [JsonPropertyName("campaign")]
-        public PatreonRelationshipsSingle? Campaign { get; set; }
-
         [JsonRequired]
+        [JsonPropertyName("campaign")]
+        public PatreonRelationshipsSingle Campaign { get; set; }
+
         [JsonPropertyName("pledges")]
-        public PatreonRelationshipsMulti Pledges { get; set; }
+        public PatreonRelationshipsMulti? Pledges { get; set; }
     }
 }

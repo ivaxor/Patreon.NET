@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Campaigns
 {
-    public class PatreonCampaignV2Relationships : IPatreonRelationships
+    public class PatreonCampaignRelationships : IPatreonRelationships
     {
         /// <summary>
         /// The campaign owner.
