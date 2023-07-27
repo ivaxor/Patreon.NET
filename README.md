@@ -1,7 +1,8 @@
 # Patreon.NET
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ivaxor/Patreon.NET/dotnet.yml?link=https%3A%2F%2Fgithub.com%2Fivaxor%2FPatreon.NET)
-![Codacy grade](https://img.shields.io/codacy/grade/6f11ccec0a574668a3eacdfa47b87ea2?link=https%3A%2F%2Fapp.codacy.com%2Fgh%2Fivaxor%2FPatreon.NET)
-![Nuget](https://img.shields.io/nuget/dt/IVAXOR.PatreonNET?link=https%3A%2F%2Fnuget.org%2Fpackages%2FIVAXOR.PatreonNET)
+[![GitHub build](https://img.shields.io/github/actions/workflow/status/ivaxor/Patreon.NET/dotnet.yml)](https://github.com/ivaxor/Patreon.NET)
+[![Codacy grade](https://img.shields.io/codacy/grade/6f11ccec0a574668a3eacdfa47b87ea2)](https://app.codacy.com/gh/ivaxor/Patreon.NET/dashboard)
+[![Coveralls coverage](https://img.shields.io/coverallsCoverage/github/ivaxor/Patreon.NET)](https://coveralls.io/github/ivaxor/Patreon.NET)
+[![NuGet downloads](https://img.shields.io/nuget/dt/IVAXOR.PatreonNET?link=)](https://nuget.org/packages/IVAXOR.PatreonNET)
 
 .NET library for accessing [Patreon API](https://docs.patreon.com)
 
