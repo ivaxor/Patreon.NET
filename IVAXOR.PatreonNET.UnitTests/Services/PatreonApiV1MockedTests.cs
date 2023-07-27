@@ -1,13 +1,13 @@
 ﻿namespace IVAXOR.PatreonNET.UnitTests.Services;
 
 [TestClass]
-public class PatreonApiV1MockedTests
+public class PatreonAPIv1MockedTests
 {
     protected readonly Mock<HttpMessageHandler> HttpMessageHandlerMock;
 
-    protected readonly PatreonApiV1 PatreonAPI;
+    protected readonly PatreonAPIv1 PatreonAPIv1;
 
-    public PatreonApiV1MockedTests()
+    public PatreonAPIv1MockedTests()
     {
         HttpMessageHandlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
 
@@ -18,7 +18,7 @@ public class PatreonApiV1MockedTests
             .Setup(_ => _.AccessToken)
             .Returns("TestAccessToken");
 
-        PatreonAPI = new(httpClient, patreonTokenManagerMock.Object);
+        PatreonAPIv1 = new(httpClient, patreonTokenManagerMock.Object);
     }
 
     [TestMethod]
@@ -39,7 +39,7 @@ public class PatreonApiV1MockedTests
           });
 
         // Act
-        var currentUser = await PatreonAPI.GetCurrentUserAsync();
+        var currentUser = await PatreonAPIv1.GetCurrentUser().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("97752217", currentUser.Data.Id);
@@ -88,7 +88,7 @@ public class PatreonApiV1MockedTests
           });
 
         // Act
-        var currentUserCampaings = await PatreonAPI.GetCurrentUserCampaignsAsync();
+        var currentUserCampaings = await PatreonAPIv1.GetCurrentUserCampaigns().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("10855995", currentUserCampaings.Data.Single().Id);

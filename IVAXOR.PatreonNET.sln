@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IVAXOR.PatreonNET", "IVAXOR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{41B2EE5C-62B4-428B-9BF2-26F662752205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVAXOR.PatreonNET.UnitTests", "IVAXOR.PatreonNET.UnitTests\IVAXOR.PatreonNET.UnitTests.csproj", "{B44A3ADB-14A3-4F26-A34F-974A6324CD85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IVAXOR.PatreonNET.UnitTests", "IVAXOR.PatreonNET.UnitTests\IVAXOR.PatreonNET.UnitTests.csproj", "{B44A3ADB-14A3-4F26-A34F-974A6324CD85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVAXOR.PatreonNET.IntegrationTests", "IVAXOR.PatreonNET.IntegrationTests\IVAXOR.PatreonNET.IntegrationTests.csproj", "{07EC8FBE-83C0-41CE-A249-298DB456BC14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IVAXOR.PatreonNET.IntegrationTests", "IVAXOR.PatreonNET.IntegrationTests\IVAXOR.PatreonNET.IntegrationTests.csproj", "{07EC8FBE-83C0-41CE-A249-298DB456BC14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,12 +3,12 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Response
 {
-    public class PatreonResponseMulti<TAttributes, TIRelationships> : PatreonResponseBase
+    public class PatreonResponseMulti<TAttributes, TRelationships> : PatreonResponseBase, IPatreonResponse<TAttributes, TRelationships>
         where TAttributes : IPatreonAttributes
-        where TIRelationships : IPatreonRelationships
+        where TRelationships : IPatreonRelationships
     {
         [JsonRequired]
         [JsonPropertyName("data")]
-        public PatreonData<TAttributes, TIRelationships>[] Data { get; set; }
+        public PatreonData<TAttributes, TRelationships>[] Data { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 namespace IVAXOR.PatreonNET.IntegrationTests.Services;
 
 [TestClass]
-public class PatreonApiV1IntegrationTests
+public class PatreonAPIv1IntegrationTests
 {
-    protected readonly PatreonApiV1 PatreonAPI;
+    protected readonly PatreonAPIv1 PatreonAPI;
 
-    public PatreonApiV1IntegrationTests()
+    public PatreonAPIv1IntegrationTests()
     {
         var httpClient = new HttpClient();
         var tokenManager = new PatreonStubTokenManager();
@@ -14,10 +14,10 @@ public class PatreonApiV1IntegrationTests
     }
 
     [TestMethod]
-    public async Task GetCurrentUserAsync()
+    public async Task GetCurrentUser()
     {
         // Act
-        var currentUser = await PatreonAPI.GetCurrentUserAsync();
+        var currentUser = await PatreonAPI.GetCurrentUser().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("user", currentUser.Data.Type);
@@ -28,46 +28,10 @@ public class PatreonApiV1IntegrationTests
     }
 
     [TestMethod]
-    public async Task GetCurrentUserCampaignsAsync()
+    public async Task GetCurrentUserCampaigns()
     {
         // Act
-        var currentUserCampaigns = await PatreonAPI.GetCurrentUserCampaignsAsync();
-
-        // Assert
-        Assert.AreEqual("campaign", currentUserCampaigns.Data.Single().Type);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.CreatedAt);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.Url);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.PledgeUrl);
-    }
-
-    [TestMethod]
-    [DataRow("rewards")]
-    [DataRow("creator")]
-    [DataRow("goals")]
-    [DataRow("pledges")]
-    public async Task GetCurrentUserCampaignsAsync_SingleInclude(string include)
-    {
-        // Arrange
-        var includes = new string[] { include };
-
-        // Act
-        var currentUserCampaigns = await PatreonAPI.GetCurrentUserCampaignsAsync();
-
-        // Assert
-        Assert.AreEqual("campaign", currentUserCampaigns.Data.Single().Type);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.CreatedAt);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.Url);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.PledgeUrl);
-    }
-
-    [TestMethod]
-    public async Task GetCurrentUserCampaignsAsync_AllInclude()
-    {
-        // Arrange
-        var includes = AvailableIncludes.V1CurrentUsercampaigns;
-
-        // Act
-        var currentUserCampaigns = await PatreonAPI.GetCurrentUserCampaignsAsync(includes);
+        var currentUserCampaigns = await PatreonAPI.GetCurrentUserCampaigns().ExecuteAsync();
 
         // Assert
         Assert.AreEqual("campaign", currentUserCampaigns.Data.Single().Type);

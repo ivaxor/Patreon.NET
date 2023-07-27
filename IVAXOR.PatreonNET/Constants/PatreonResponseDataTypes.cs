@@ -8,6 +8,7 @@ using IVAXOR.PatreonNET.Models.Users;
 using IVAXOR.PatreonNET.Models.Webhooks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IVAXOR.PatreonNET.Constants
 {
@@ -24,6 +25,7 @@ namespace IVAXOR.PatreonNET.Constants
             { "pledge", typeof(PatreonPledgeEventAttributes) },
             { "reward", typeof(PatreonRewardAttributes) }
         };
+        public static readonly Dictionary<Type, string> TypeByPatreonAttributes = PatreonAttributesByTypes.ToDictionary(_ => _.Value, _ => _.Key);
 
         public static readonly Dictionary<string, Type> PatreonRelationshipsByTypes = new Dictionary<string, Type>()
         {
@@ -35,5 +37,6 @@ namespace IVAXOR.PatreonNET.Constants
             { "webhook", typeof(PatreonWebhookRelationships) },
             { "pledge", typeof(PatreonPledgeEventRelationships) }
         };
+        public static readonly Dictionary<Type, string> TypeByPatreonRelationships = PatreonRelationshipsByTypes.ToDictionary(_ => _.Value, _ => _.Key);
     }
 }
