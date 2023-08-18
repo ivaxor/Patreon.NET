@@ -9,23 +9,20 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Monetary amount associated with this tier (in U.S. cents).
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("amount_cents")]
-        public int AmountCents { get; set; }
+        public int? AmountCents { get; set; }
 
         /// <summary>
         /// Datetime this tier was created.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Tier display description.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// The discord role IDs granted by this tier.
@@ -36,9 +33,8 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Datetime tier was last modified.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("edited_at")]
-        public DateTime EditedAt { get; set; }
+        public DateTime? EditedAt { get; set; }
 
         /// <summary>
         /// Full qualified image URL associated with this tier.
@@ -49,9 +45,8 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Number of patrons currently registered for this tier.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("patron_count")]
-        public int PatronCount { get; set; }
+        public int? PatronCount { get; set; }
 
         /// <summary>
         /// Number of posts published to this tier.
@@ -62,9 +57,8 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// true if the tier is currently published.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("published")]
-        public bool Published { get; set; }
+        public bool? Published { get; set; }
 
         /// <summary>
         /// Datetime this tier was last published. 
@@ -81,16 +75,14 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// true if this tier requires a shipping address from patrons.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("requires_shipping")]
-        public bool RequiresShipping { get; set; }
+        public bool? RequiresShipping { get; set; }
 
         /// <summary>
         /// Tier display title.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         /// Datetime tier was unpublished, while applicable.
@@ -101,9 +93,8 @@ namespace IVAXOR.PatreonNET.Models.Tiers
         /// <summary>
         /// Fully qualified URL associated with this tier.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("url")]
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         /// <summary>
         /// Maximum number of patrons this tier is limited to, if applicable.

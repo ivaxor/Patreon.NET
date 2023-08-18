@@ -12,23 +12,20 @@ namespace IVAXOR.PatreonNET.Models.Goals
         /// <summary>
         /// Goal amount in USD cents.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("amount_cents")]
-        public int AmountCents { get; set; }
+        public int? AmountCents { get; set; }
 
         /// <summary>
         /// Equal to (pledge_sum/goal amount)*100, helpful when a creator
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("completed_percentage")]
-        public int CompletedPercentage { get; set; }
+        public int? CompletedPercentage { get; set; }
 
         /// <summary>
         /// When the goal was created for the campaign.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Goal description.
@@ -45,8 +42,7 @@ namespace IVAXOR.PatreonNET.Models.Goals
         /// <summary>
         /// Goal title.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
     }
 }

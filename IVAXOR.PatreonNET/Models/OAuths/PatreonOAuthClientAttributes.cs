@@ -18,25 +18,22 @@ namespace IVAXOR.PatreonNET.Models.OAuths
         /// <summary>
         /// The client's secret.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("client_secret")]
-        public string ClientSecret { get; set; }
+        public string? ClientSecret { get; set; }
 
         /// <summary>
         /// Deprecated in APIv2
         /// The client's default OAuth scopes for the authorization flow.
         /// </summary>
-        [JsonRequired]
         [Obsolete("Deprecated in APIv2")]
         [JsonPropertyName("default_scopes")]
-        public string DefaultScopes { get; set; }
+        public string? DefaultScopes { get; set; }
 
         /// <summary>
         /// The description provided during client setup.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// The domain provided during client setup.
@@ -53,9 +50,8 @@ namespace IVAXOR.PatreonNET.Models.OAuths
         /// <summary>
         /// The name provided during client setup.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// The URL of the privacy policy provided during client setup.
@@ -66,9 +62,8 @@ namespace IVAXOR.PatreonNET.Models.OAuths
         /// <summary>
         /// The allowable redirect URIs for the OAuth authorization flow.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("redirect_uris")]
-        public string RedirectUris { get; set; }
+        public string? RedirectUris { get; set; }
 
         /// <summary>
         /// The URL of the terms of service provided during client setup.
@@ -79,8 +74,7 @@ namespace IVAXOR.PatreonNET.Models.OAuths
         /// <summary>
         /// The Patreon API version the client is targeting.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("version")]
-        public string Version { get; set; }
+        public string? Version { get; set; }
     }
 }

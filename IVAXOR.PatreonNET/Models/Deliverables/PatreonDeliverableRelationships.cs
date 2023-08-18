@@ -9,30 +9,26 @@ namespace IVAXOR.PatreonNET.Models.Deliverables
         /// <summary>
         /// The Benefit the Deliverables were generated for.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("benefit")]
-        public PatreonRelationshipsSingle Benefit { get; set; }
+        public PatreonRelationshipsSingle? Benefit { get; set; }
 
         /// <summary>
         /// The Campaign the Deliverables were generated for.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("campaign")]
-        public PatreonRelationshipsSingle Campaign { get; set; }
+        public PatreonRelationshipsSingle? Campaign { get; set; }
 
         /// <summary>
         /// The member who has been granted the deliverable.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("member")]
-        public PatreonRelationshipsSingle Member { get; set; }
+        public PatreonRelationshipsSingle? Member { get; set; }
 
         /// <summary>
         /// The user who has been granted the deliverable.
         /// This user is the same as the member user.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("user")]
-        public PatreonRelationshipsSingle User { get; set; }
+        public PatreonRelationshipsSingle? User { get; set; }
     }
 }

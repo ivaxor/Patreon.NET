@@ -12,44 +12,38 @@ namespace IVAXOR.PatreonNET.Models.Webhooks
         /// <summary>
         /// Last date that the webhook was attempted or used.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("last_attempted_at")]
-        public DateTime LastAttemptedAt { get; set; }
+        public DateTime? LastAttemptedAt { get; set; }
 
         /// <summary>
         /// Number of times the webhook has failed consecutively, when in an error state.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("num_consecutive_times_failed")]
-        public int NumConsecutiveTimesFailed { get; set; }
+        public int? NumConsecutiveTimesFailed { get; set; }
 
         /// <summary>
         /// true if the webhook is paused as a result of repeated failed attempts to post to uri.
         /// Set to false to attempt to re-enable a previously failing webhook.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("paused")]
-        public bool Paused { get; set; }
+        public bool? Paused { get; set; }
 
         /// <summary>
         /// Secret used to sign your webhook message body, so you can validate authenticity upon receipt.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("secret")]
-        public string Secret { get; set; }
+        public string? Secret { get; set; }
 
         /// <summary>
         /// List of events that will trigger this webhook.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("triggers")]
-        public string Triggers { get; set; }
+        public string? Triggers { get; set; }
 
         /// <summary>
         /// Fully qualified uri where webhook will be sent.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("uri")]
-        public string Uri { get; set; }
+        public string? Uri { get; set; }
     }
 }

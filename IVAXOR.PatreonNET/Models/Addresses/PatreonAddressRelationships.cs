@@ -9,15 +9,13 @@ namespace IVAXOR.PatreonNET.Models.Addresses
         /// <summary>
         /// The campaigns that have access to the address.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("campaigns")]
-        public PatreonRelationshipsMulti Campaigns { get; set; }
+        public PatreonRelationshipsMulti? Campaigns { get; set; }
 
         /// <summary>
         /// The user this address belongs to.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("user")]
-        public PatreonRelationshipsSingle User { get; set; }
+        public PatreonRelationshipsSingle? User { get; set; }
     }
 }

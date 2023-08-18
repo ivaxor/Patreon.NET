@@ -18,23 +18,20 @@ namespace IVAXOR.PatreonNET.Models.Addresses
         /// <summary>
         /// City.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         /// <summary>
         /// Country.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// Datetime address was first created.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// First line of street address.

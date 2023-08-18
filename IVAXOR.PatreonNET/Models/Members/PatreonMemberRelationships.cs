@@ -10,37 +10,32 @@ namespace IVAXOR.PatreonNET.Models.Members
         /// The member's shipping address that they entered for the campaign.
         /// Requires the campaign.members.address scope.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("address")]
-        public PatreonRelationshipsSingle Address { get; set; }
+        public PatreonRelationshipsSingle? Address { get; set; }
 
         /// <summary>
         /// The campaign that the membership is for.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("campaign")]
-        public PatreonRelationshipsSingle Campaign { get; set; }
+        public PatreonRelationshipsSingle? Campaign { get; set; }
 
         /// <summary>
         /// The tiers that the member is entitled to.
         /// This includes a current pledge, or payment that covers the current payment period.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("currently_entitled_tiers")]
-        public PatreonRelationshipsMulti CurrentlyEntitledTiers { get; set; }
+        public PatreonRelationshipsMulti? CurrentlyEntitledTiers { get; set; }
 
         /// <summary>
         /// The pledge history of the member.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("pledge_history")]
-        public PatreonRelationshipsMulti PledgeHistory { get; set; }
+        public PatreonRelationshipsMulti? PledgeHistory { get; set; }
 
         /// <summary>
         /// The user who is pledging to the campaign.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("user")]
-        public PatreonRelationshipsSingle User { get; set; }
+        public PatreonRelationshipsSingle? User { get; set; }
     }
 }

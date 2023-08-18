@@ -9,22 +9,19 @@ namespace IVAXOR.PatreonNET.Models.Pledges
         /// <summary>
         /// The campaign being pledged to.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("campaign")]
-        public PatreonRelationshipsSingle Campaign { get; set; }
+        public PatreonRelationshipsSingle? Campaign { get; set; }
 
         /// <summary>
         /// The pledging user.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("patron")]
-        public PatreonRelationshipsSingle Patron { get; set; }
+        public PatreonRelationshipsSingle? Patron { get; set; }
 
         /// <summary>
         /// The tier associated with this pledge event.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("tier")]
-        public PatreonRelationshipsSingle Tier { get; set; }
+        public PatreonRelationshipsSingle? Tier { get; set; }
     }
 }

@@ -9,8 +9,7 @@ namespace IVAXOR.PatreonNET.Models.Goals
         /// <summary>
         /// The campaign trying to reach the goal.
         /// </summary>
-        [JsonRequired]
         [JsonPropertyName("campaign")]
-        public PatreonRelationshipsSingle Campaign { get; set; }
+        public PatreonRelationshipsSingle? Campaign { get; set; }
     }
 }
