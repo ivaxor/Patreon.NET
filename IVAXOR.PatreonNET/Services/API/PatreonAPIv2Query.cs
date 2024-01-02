@@ -72,8 +72,16 @@ namespace IVAXOR.PatreonNET.Services.API
         {
             var url = Url;
 
+            var includes = this.GetTopLevelIncludeQuery();
             var fields = this.GetIncludeFieldsQuery();
-            if (fields == null) url = $"{Url}?{fields}";
+
+
+            if (includes != null && fields != null) url = $"{Url}?{includes}&{fields}";
+            else
+            {
+                if (includes != null) url = $"{Url}?{includes}";
+                if (fields != null) url = $"{Url}?{fields}";
+            }
 
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
@@ -81,9 +89,8 @@ namespace IVAXOR.PatreonNET.Services.API
             using var response = await HttpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
 
-            using var responseStream = await response.Content.ReadAsStreamAsync();
-
-            return await JsonSerializer.DeserializeAsync<TResponse>(responseStream, Json.SerializerOptions, cancellationToken);
+            var rawJson = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<TResponse>(rawJson, Json.SerializerOptions);
         }
     }
 }

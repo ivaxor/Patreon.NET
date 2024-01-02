@@ -26,6 +26,16 @@ namespace IVAXOR.PatreonNET.Services.API.Extensions
             return $"fields[{rootObjectName}]={string.Join(',', includedFieldNames)}";
         }
 
+        public static string? GetTopLevelIncludeQuery<TResponse, TAttributes, TRelationships>(this PatreonAPIv2Query<TResponse, TAttributes, TRelationships> query)
+            where TResponse : IPatreonResponse<TAttributes, TRelationships>
+            where TAttributes : IPatreonAttributes
+            where TRelationships : IPatreonRelationships
+        {
+            if (!query.TopLevelIncludes.Any()) return null;
+
+            return $"include={string.Join(',', query.TopLevelIncludes)}";
+        }
+
         public static string? GetIncludeFieldsQuery<TResponse, TAttributes, TRelationships>(this PatreonAPIv2Query<TResponse, TAttributes, TRelationships> query)
             where TResponse : IPatreonResponse<TAttributes, TRelationships>
             where TAttributes : IPatreonAttributes
