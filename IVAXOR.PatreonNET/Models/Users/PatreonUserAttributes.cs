@@ -30,6 +30,9 @@ namespace IVAXOR.PatreonNET.Models.Users
         [JsonPropertyName("created")]
         public DateTime? Created { get; set; }
 
+        [JsonPropertyName("current_user_block_status")]
+        public string? CurrentUserBlockStatus { get; set; }
+
         [JsonPropertyName("default_country_code")]
         public string? DefaultCountryCode { get; set; }
 

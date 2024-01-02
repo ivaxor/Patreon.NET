@@ -58,7 +58,7 @@ namespace IVAXOR.PatreonNET.Services.API
             var url = Url;
 
             var fields = this.GetIncludeAdditionalFieldsQuery();
-            if (fields == null) url = $"{Url}?{fields}";
+            if (fields != null) url = $"{Url}?{fields}";
 
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
