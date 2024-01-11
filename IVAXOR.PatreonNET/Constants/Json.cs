@@ -8,18 +8,7 @@ namespace IVAXOR.PatreonNET.Constants;
 
 internal static class Json
 {
-    internal static readonly JsonSerializerOptions SerializerOptions;
-
-    static Json()
-    {
-        SerializerOptions = new JsonSerializerOptions()
-        {
-            TypeInfoResolver = new DefaultJsonTypeInfoResolver
-            {
-                Modifiers = { AddMissingMemberHandling }
-            }
-        };
-    }
+    internal static readonly JsonSerializerOptions SerializerOptions = new() { TypeInfoResolver = new DefaultJsonTypeInfoResolver { Modifiers = { AddMissingMemberHandling } } };
 
     /// <summary>
     /// https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft?pivots=dotnet-7-0#handle-missing-members
