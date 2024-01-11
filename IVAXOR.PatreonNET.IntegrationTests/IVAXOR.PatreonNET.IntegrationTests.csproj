@@ -9,7 +9,7 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
 	  <EmbeddedResource Include="appsettings.json" LogicalName="appsettings.json" />
   </ItemGroup>
 
