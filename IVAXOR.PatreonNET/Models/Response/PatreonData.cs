@@ -15,9 +15,8 @@ public class PatreonData<TAttributes, TRelationships>
     [JsonPropertyName("type")]
     public string Type { get; set; }
 
-    [JsonRequired]
     [JsonPropertyName("attributes")]
-    public TAttributes Attributes { get; set; }
+    public TAttributes? Attributes { get; set; }
 
     [JsonPropertyName("relationships")]
     public TRelationships? Relationships { get; set; }

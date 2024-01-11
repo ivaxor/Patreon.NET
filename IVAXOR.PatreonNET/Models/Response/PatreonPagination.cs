@@ -7,7 +7,6 @@ public class PatreonPagination
     [JsonPropertyName("cursors")]
     public PatreonCursors? Cursors { get; set; }
 
-    [JsonRequired]
     [JsonPropertyName("total")]
-    public int Total { get; set; }
+    public int? Total { get; set; }
 }

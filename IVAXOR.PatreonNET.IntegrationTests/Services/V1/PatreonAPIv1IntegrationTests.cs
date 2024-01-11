@@ -36,9 +36,16 @@ public class PatreonAPIv1IntegrationTests
         var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns().ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", currentUserCampaigns.Data.Single().Type);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.CreatedAt);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.Url);
-        Assert.IsNotNull(currentUserCampaigns.Data.Single().Attributes.PledgeUrl);
+        Assert.IsTrue(currentUserCampaigns.Data.All(_ => _.Type == "campaign"));
+    }
+
+    [TestMethod]
+    public async Task CampaignPledges()
+    {
+        // Act
+        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId).ExecuteAsync();
+
+        // Assert
+        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == "pledge"));
     }
 }

@@ -4,7 +4,9 @@ namespace IVAXOR.PatreonNET.Models.Response;
 
 public class PatreonResponseLinks
 {
-    [JsonRequired]
     [JsonPropertyName("self")]
-    public string Self { get; set; }
+    public string? Self { get; set; }
+
+    [JsonPropertyName("first")]
+    public string? First { get; set; }
 }

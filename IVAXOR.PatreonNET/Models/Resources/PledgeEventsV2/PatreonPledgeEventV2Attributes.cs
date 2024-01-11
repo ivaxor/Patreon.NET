@@ -2,12 +2,12 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Resources.Pledges;
+namespace IVAXOR.PatreonNET.Models.Resources.PledgeEventsV2;
 
 /// <summary>
 /// The record of a pledging action taken by the user, or that action's failure.
 /// </summary>
-public class PatreonPledgeEventAttributes : IPatreonAttributes
+public class PatreonPledgeEventV2Attributes : IPatreonAttributes
 {
     /// <summary>
     /// Amount (in the currency in which the patron paid) of the underlying event.

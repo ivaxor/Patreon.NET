@@ -1,5 +1,4 @@
-﻿using IVAXOR.PatreonNET.JsonConverters;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Response;
@@ -15,9 +14,8 @@ public class PatreonIncludeData
     [JsonPropertyName("type")]
     public string Type { get; set; }
 
-    [JsonRequired]
     [JsonPropertyName("attributes")]
-    public IPatreonAttributes Attributes { get; set; }
+    public IPatreonAttributes? Attributes { get; set; }
 
     [JsonPropertyName("relationships")]
     public IPatreonRelationships? Relationships { get; set; }

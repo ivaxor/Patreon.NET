@@ -1,5 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
-using IVAXOR.PatreonNET.Models.Resources.Pledges;
+using IVAXOR.PatreonNET.Models.Resources.PledgeV1;
 using IVAXOR.PatreonNET.Models.Resources.UsersV1;
 using IVAXOR.PatreonNET.Models.Response;
 using IVAXOR.PatreonNET.Services.API.Interfaces;
@@ -28,6 +28,6 @@ public class PatreonAPIv1 : IPatreonAPIv1
     public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships> CurrentUserCampaigns() =>
         new($"{Url}/current_user/campaigns", HttpClient, PatreonTokenManager);
 
-    public PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>, PatreonPledgeEventAttributes, PatreonPledgeEventRelationships> CampaignPledges(string campaignId) =>
+    public PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships> CampaignPledges(int campaignId) =>
         new($"{Url}/campaigns/{campaignId}/pledges", HttpClient, PatreonTokenManager);
 }

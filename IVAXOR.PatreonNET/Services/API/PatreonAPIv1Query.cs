@@ -37,8 +37,7 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
         using var response = await HttpClient.SendAsync(request, cancellationToken);
         if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
 
-        using var responseStream = await response.Content.ReadAsStreamAsync();
-
-        return await JsonSerializer.DeserializeAsync<TResponse>(responseStream, Json.SerializerOptions, cancellationToken);
+        var json = await response.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<TResponse>(json, Json.SerializerOptions);
     }
 }

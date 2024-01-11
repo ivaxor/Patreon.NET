@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using IVAXOR.PatreonNET.Models.Response;
 using IVAXOR.PatreonNET.Constants;
 using IVAXOR.PatreonNET.Models.Response.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace IVAXOR.PatreonNET.JsonConverters;
+namespace IVAXOR.PatreonNET.Models.Response;
 
 public class PatreonIncludeDataJsonConverter : JsonConverter<PatreonIncludeData>
 {
@@ -20,12 +21,12 @@ public class PatreonIncludeDataJsonConverter : JsonConverter<PatreonIncludeData>
         };
 
         if (jsonDocument.RootElement.TryGetProperty(nameof(PatreonIncludeData.Attributes).ToLower(), out var attributeJsonElement))
-            if (PatreonResponseDataTypes.PatreonAttributesByTypes.TryGetValue(patreonIncludeData.Type, out var attributeType))
-                patreonIncludeData.Attributes = (IPatreonAttributes)attributeJsonElement.Deserialize(attributeType, options);
+            if (PatreonResponseDataTypes.PatreonAttributesByTypes.TryGetValue(patreonIncludeData.Type, out var attributeTypes))
+                patreonIncludeData.Attributes = (IPatreonAttributes)IterativeParse(attributeJsonElement, attributeTypes, options);
 
         if (jsonDocument.RootElement.TryGetProperty(nameof(PatreonIncludeData.Relationships).ToLower(), out var relationshipsJsonElement))
             if (PatreonResponseDataTypes.PatreonRelationshipsByTypes.TryGetValue(patreonIncludeData.Type, out var relationshipsType))
-                patreonIncludeData.Relationships = (IPatreonRelationships)relationshipsJsonElement.Deserialize(relationshipsType, options);
+                patreonIncludeData.Relationships = (IPatreonRelationships)IterativeParse(relationshipsJsonElement, relationshipsType, options);
 
         return patreonIncludeData;
     }
@@ -33,5 +34,21 @@ public class PatreonIncludeDataJsonConverter : JsonConverter<PatreonIncludeData>
     public override void Write(Utf8JsonWriter writer, PatreonIncludeData value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value, value.GetType());
+    }
+
+    protected object IterativeParse(JsonElement attributeJsonElement, IEnumerable<Type> attributeTypes, JsonSerializerOptions options)
+    {
+        if (attributeTypes.Count() == 1) return attributeJsonElement.Deserialize(attributeTypes.Single(), options);
+
+        var attributeType = attributeTypes.First();
+        try
+        {
+            return attributeJsonElement.Deserialize(attributeType, options);
+        }
+        catch (JsonException)
+        {
+            attributeTypes = attributeTypes.Where(_ => _ != attributeType);
+            return IterativeParse(attributeJsonElement, attributeTypes, options);
+        }
     }
 }

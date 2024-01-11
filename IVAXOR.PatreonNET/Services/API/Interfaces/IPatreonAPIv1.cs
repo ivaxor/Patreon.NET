@@ -1,5 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
-using IVAXOR.PatreonNET.Models.Resources.Pledges;
+using IVAXOR.PatreonNET.Models.Resources.PledgeV1;
 using IVAXOR.PatreonNET.Models.Resources.UsersV1;
 using IVAXOR.PatreonNET.Models.Response;
 
@@ -11,5 +11,5 @@ public interface IPatreonAPIv1
 
     public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships> CurrentUserCampaigns();
 
-    public PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>, PatreonPledgeEventAttributes, PatreonPledgeEventRelationships> CampaignPledges(string campaignId);
+    public PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships> CampaignPledges(int campaignId);
 }

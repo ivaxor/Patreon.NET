@@ -2,9 +2,9 @@
 using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Resources.Pledges;
+namespace IVAXOR.PatreonNET.Models.Resources.PledgeEventsV2;
 
-public class PatreonPledgeEventRelationships : IPatreonRelationships
+public class PatreonPledgeEventV2Relationships : IPatreonRelationships
 {
     /// <summary>
     /// The campaign being pledged to.
