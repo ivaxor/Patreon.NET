@@ -17,7 +17,17 @@ public static class PatreonTopLevelIncludes
     {
         public static class Identity
         {
+            /// <summary>
+            /// If you request memberships and don't have the identity.memberships scope, you will receive data about the user’s membership to your campaign.
+            /// If you do have the scope, you will receive data about all of the user’s memberships, to all the campaigns they’re members of.
+            /// If you request Campaign and memberships, you will receive information about the user’s memberships and the Campaigns they are Member of, provided you have the campaigns and identity.memberships scopes.
+            /// </summary>
             public static readonly string Memberships = "memberships";
+
+            /// <summary>
+            /// If you request Campaign and have the campaigns scope, you will receive information about the user’s Campaign.
+            /// If you request Campaign and memberships, you will receive information about the user’s memberships and the Campaigns they are Member of, provided you have the campaigns and identity.memberships scopes.
+            /// </summary>
             public static readonly string Campaign = "campaign";
         }
 

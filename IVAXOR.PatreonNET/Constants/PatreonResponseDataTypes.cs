@@ -1,6 +1,8 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources;
 using IVAXOR.PatreonNET.Models.Resources.Addresses;
+using IVAXOR.PatreonNET.Models.Resources.Benefits;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.Pledges;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
@@ -23,7 +25,9 @@ internal static class PatreonResponseDataTypes
             { "user", typeof(PatreonUserV2Attributes) },
             { "webhook", typeof(PatreonWebhookAttributes) },
             { "pledge", typeof(PatreonPledgeEventAttributes) },
-            { "reward", typeof(PatreonRewardAttributes) }
+            { "reward", typeof(PatreonRewardAttributes) },
+            { "benefit", typeof(PatreonBenefitAttributes) },
+            { "goal", typeof(PatreonGoalAttributes) }
         };
     public static readonly Dictionary<Type, string> TypeByPatreonAttributes = PatreonAttributesByTypes.ToDictionary(_ => _.Value, _ => _.Key);
 

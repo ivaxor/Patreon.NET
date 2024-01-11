@@ -8,11 +8,11 @@ using System.Text.Json.Serialization;
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
 [TestClass]
-public class PatreonAPIv2IdentityIntegrationTests
+public class IdentityIntegrationTests
 {
     protected readonly PatreonAPIv2 PatreonAPIv2;
 
-    public PatreonAPIv2IdentityIntegrationTests()
+    public IdentityIntegrationTests()
     {
         var httpClient = new HttpClient();
         var tokenManager = new PatreonStubTokenManager();

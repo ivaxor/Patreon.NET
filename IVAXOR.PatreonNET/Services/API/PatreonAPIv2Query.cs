@@ -28,6 +28,9 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
 
     protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
     protected Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; } = new();
+    protected int? PageSize { get; set; }
+    protected Tuple<string, bool>? SortByDesc { get; set; }
+    protected DateTime? Cursor { get; set; }
 
     public PatreonAPIv2Query(
         string url,
@@ -37,6 +40,22 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         Url = url;
         HttpClient = httpClient;
         PatreonTokenManager = patreonTokenManager;
+    }
+
+    public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
+    {
+        var urlBuilder = new UriBuilder(Url);
+        urlBuilder.Query = BuildQuery();
+        var url = urlBuilder.ToString();
+
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
+
+        using var response = await HttpClient.SendAsync(request, cancellationToken);
+        if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
+
+        var json = await response.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<TResponse>(json, Json.SerializerOptions);
     }
 
     public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> Include(string topLevelInclude)
@@ -92,20 +111,42 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         return this;
     }
 
-    public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Maximum number of results returned.
+    /// </summary>
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> SetPageSize(int pageSize)
     {
-        var urlBuilder = new UriBuilder(Url);
-        urlBuilder.Query = BuildQuery();
-        var url = urlBuilder.ToString();
+        PageSize = pageSize;
+        return this;
+    }
 
-        using var request = new HttpRequestMessage(HttpMethod.Get, url);
-        request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
+    /// <summary>
+    /// Comma-separated attributes to sort by, in order of precedence.
+    /// Each attribute can be prepended with - to indicate descending order.
+    /// Currently, we support created and updated for pledges.
+    /// </summary>
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> SortBy(Expression<Func<TAttributes, DateTime>> selector, bool descending = false)
+    {
+        var propertyInfo = selector.Body switch
+        {
+            MemberExpression me => me.Member,
+            UnaryExpression ue => ((MemberExpression)ue.Operand).Member,
+            _ => throw new NotImplementedException()
+        };
+        var fieldName = propertyInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
 
-        using var response = await HttpClient.SendAsync(request, cancellationToken);
-        if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
+        SortByDesc = new(fieldName, descending);
 
-        var json = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<TResponse>(json, Json.SerializerOptions);
+        return this;
+    }
+
+    /// <summary>
+    /// From the sorted results, start returning where the first attribute in sort equals this value.
+    /// </summary>
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> SetCursor(DateTime cursor)
+    {
+        Cursor = cursor;
+        return this;
     }
 
     protected string BuildQuery()
@@ -118,6 +159,9 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         var queryParams = HttpUtility.ParseQueryString(string.Empty);
         if (topLevelIncldues.Any()) queryParams.Add("include", string.Join(',', topLevelIncldues));
         if (includedFields.Any()) includedFields.AsParallel().ForAll(_ => queryParams.Add(_.Key, _.Value));
+        if (PageSize != null) queryParams.Add("page[count]", PageSize.Value.ToString());
+        if (SortByDesc != null) queryParams.Add("sort", SortByDesc.Item2 ? $"-{SortByDesc.Item1}" : SortByDesc.Item1);
+        if (SortByDesc != null && Cursor != null) queryParams.Add("page[cursor]", Cursor.Value.ToString("yyyy-MM-dd"));
 
         var query = queryParams.ToString();
         var decodedQuery = HttpUtility.UrlDecode(query);
