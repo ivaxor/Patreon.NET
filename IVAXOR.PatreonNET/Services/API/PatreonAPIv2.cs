@@ -37,7 +37,7 @@ public class PatreonAPIv2 : IPatreonAPIv2
     public PatreonAPIv2Query<PatreonResponseMulti<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> CampaignMembers(int campaignId) =>
         new($"{Url}/campaigns/{campaignId}/members", HttpClient, PatreonTokenManager);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> Member(int memberId) =>
+    public PatreonAPIv2Query<PatreonResponseSingle<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> Member(string memberId) =>
         new($"{Url}/members/{memberId}", HttpClient, PatreonTokenManager);
 
     public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> CampaignPosts(int campaignId) =>

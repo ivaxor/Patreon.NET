@@ -3,6 +3,7 @@
 public static class AppSettingsProvider
 {
     public static int CampaignId => JsonDocument.RootElement.GetProperty(nameof(CampaignId)).GetInt32();
+    public static string MemberId => JsonDocument.RootElement.GetProperty(nameof(MemberId)).GetString();
 
     private static JsonDocument JsonDocument { get; }
 

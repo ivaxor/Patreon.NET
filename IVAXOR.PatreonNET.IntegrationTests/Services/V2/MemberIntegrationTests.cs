@@ -8,11 +8,11 @@ using IVAXOR.PatreonNET.Services.API;
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
 [TestClass]
-public class CampaignMembersIntegrationTests
+public class MemberIntegrationTests
 {
     protected PatreonAPIv2 PatreonAPIv2 { get; }
 
-    public CampaignMembersIntegrationTests()
+    public MemberIntegrationTests()
     {
         var httpClient = new HttpClient();
         var tokenManager = new PatreonStubTokenManager();
@@ -21,20 +21,22 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers()
+    public async Task Member()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId).ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 
     [TestMethod]
-    public async Task CampaignMembers_Full_IncludeField()
+    public async Task Member_Full_IncludeField()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
             .IncludeField(_ => _.CampaignLifetimeSupportCents)
             .IncludeField(_ => _.CurrentlyEntitledAmountCents)
             .IncludeField(_ => _.Email)
@@ -52,70 +54,82 @@ public class CampaignMembersIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 
     [TestMethod]
-    public async Task CampaignMembers_Full_IncludeAllFields()
+    public async Task Member_Full_IncludeAllFields()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
             .IncludeAllFields()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithAddress()
+    public async Task Member_WithAddress()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
             .Include(PatreonTopLevelIncludes.V2.Members.Address)
             .IncludeAllFields<PatreonAddressAttributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithCampaign()
+    public async Task Member_WithCampaign()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
             .Include(PatreonTopLevelIncludes.V2.Members.Campaign)
             .IncludeAllFields<PatreonCampaignV2Attributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithCurrentlyEntitledTiers()
+    public async Task Member_WithCurrentlyEntitledTiers()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
             .Include(PatreonTopLevelIncludes.V2.Members.CurrentlyEntitledTiers)
             .IncludeAllFields<PatreonTierAttributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithUser()
+    public async Task Member_WithUser()
     {
         // Act
-        var campaignMembers = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+        var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
             .Include(PatreonTopLevelIncludes.V2.Members.User)
             .IncludeAllFields<PatreonUserV2Attributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignMembers.Data.All(_ => _.Type == "member"));
+        Assert.AreEqual("member", member.Data.Type);
+        Assert.IsNotNull(member.Data.Id);
+        Assert.IsNotNull(member.Links.Self);
     }
 }
