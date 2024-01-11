@@ -10,87 +10,107 @@ using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Threading;
-using IVAXOR.PatreonNET.Services.API.Extensions;
 using IVAXOR.PatreonNET.Exceptions;
+using System.Text.Json.Serialization;
+using System.Web;
 
-namespace IVAXOR.PatreonNET.Services.API
+namespace IVAXOR.PatreonNET.Services.API;
+
+public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
+    where TResponse : IPatreonResponse<TAttributes, TRelationships>
+    where TAttributes : IPatreonAttributes
+    where TRelationships : IPatreonRelationships
 {
-    public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
-        where TResponse : IPatreonResponse<TAttributes, TRelationships>
-        where TAttributes : IPatreonAttributes
-        where TRelationships : IPatreonRelationships
+    public readonly string Url;
+
+    protected readonly HttpClient HttpClient;
+    protected readonly IPatreonTokenManager PatreonTokenManager;
+
+    protected internal Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; set; } = new();
+
+    public PatreonAPIv2Query(
+        string url,
+        HttpClient httpClient,
+        IPatreonTokenManager patreonTokenManager)
     {
-        public readonly string Url;
+        Url = url;
+        HttpClient = httpClient;
+        PatreonTokenManager = patreonTokenManager;
+    }
 
-        protected readonly HttpClient HttpClient;
-        protected readonly IPatreonTokenManager PatreonTokenManager;
-
-        protected internal HashSet<string> TopLevelIncludes { get; set; } = new HashSet<string>();
-        protected internal HashSet<string> IncludeFields { get; set; } = new HashSet<string>();
-
-        public PatreonAPIv2Query(
-            string url,
-            HttpClient httpClient,
-            IPatreonTokenManager patreonTokenManager)
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(string resourceName, string fieldName)
+    {
+        if (!IncludedFieldsByResource.TryGetValue(resourceName, out var fields))
         {
-            Url = url;
-            HttpClient = httpClient;
-            PatreonTokenManager = patreonTokenManager;
+            fields = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
+        fields.Add(fieldName);
 
-        public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> Include(string topLevelInclude)
+        IncludedFieldsByResource[resourceName] = fields;
+
+        return this;
+    }
+
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(Expression<Func<TAttributes, object>> selector)
+    {
+        return IncludeField<TAttributes>(selector);
+    }
+
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField<TNonBaseAttributes>(Expression<Func<TNonBaseAttributes, object>> selector)
+        where TNonBaseAttributes : IPatreonAttributes
+    {
+        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(TNonBaseAttributes)];
+        var propertyInfo = selector.Body switch
         {
-            TopLevelIncludes.Add(topLevelInclude);
-            return this;
-        }
+            MemberExpression me => me.Member,
+            UnaryExpression ue => ((MemberExpression)ue.Operand).Member,
+            _ => throw new NotImplementedException()
+        };
 
-        public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeAllFields()
-        {
-            typeof(TAttributes).GetProperties()
-                .Select(_ => _.Name)
-                .ToList()
-                .ForEach(_ => IncludeFields.Add(_));
+        var fieldName = propertyInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
+        return IncludeField(resourceName, fieldName);
+    }
 
-            return this;
-        }
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeAllFields()
+    {
+        return IncludeAllFields<TAttributes>();
+    }
 
-        public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(string propertyName)
-        {
-            if (!typeof(TAttributes).GetProperties().Any(_ => _.Name == propertyName)) throw new ArgumentException("Invalid value", nameof(propertyName));
-            IncludeFields.Add(propertyName);
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeAllFields<TNonBaseAttributes>()
+         where TNonBaseAttributes : IPatreonAttributes
+    {
+        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(TNonBaseAttributes)];
+        var fieldNames = typeof(TNonBaseAttributes).GetProperties()
+            .Where(_ => _.GetCustomAttribute<JsonPropertyNameAttribute>() != null)
+            .Select(_ => _.GetCustomAttribute<JsonPropertyNameAttribute>().Name)
+            .ToList();
+        fieldNames.ForEach(_ => IncludeField(resourceName, _));
 
-            return this;
-        }
+        return this;
+    }
 
-        public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(Expression<Func<TAttributes, object>> selector)
-        {
-            var propertyType = (PropertyInfo)((MemberExpression)selector.Body).Member;
-            return IncludeField(propertyType.Name);
-        }
+    public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
+    {
+        var queryParams = HttpUtility.ParseQueryString(string.Empty);
+        IncludedFieldsByResource
+            .ToDictionary(_ => $"fields[{_.Key}]", _ => string.Join(',', _.Value))
+            .AsParallel()
+            .ForAll(_ => queryParams.Add(_.Key, _.Value));
+        var query = queryParams.ToString();
+        var decodedQuery = HttpUtility.UrlDecode(query);
+        var patreonEncodedQuery = decodedQuery.Replace("[", "%5B").Replace("]", "%5D");
 
-        public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
-        {
-            var url = Url;
+        var urlBuilder = new UriBuilder(Url);
+        urlBuilder.Query = patreonEncodedQuery;
+        var url = urlBuilder.ToString();
 
-            var includes = this.GetTopLevelIncludeQuery();
-            var fields = this.GetIncludeFieldsQuery();
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
 
+        using var response = await HttpClient.SendAsync(request, cancellationToken);
+        if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
 
-            if (includes != null && fields != null) url = $"{Url}?{includes}&{fields}";
-            else
-            {
-                if (includes != null) url = $"{Url}?{includes}";
-                if (fields != null) url = $"{Url}?{fields}";
-            }
-
-            using var request = new HttpRequestMessage(HttpMethod.Get, url);
-            request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
-
-            using var response = await HttpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
-
-            var rawJson = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<TResponse>(rawJson, Json.SerializerOptions);
-        }
+        var json = await response.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<TResponse>(json, Json.SerializerOptions);
     }
 }
