@@ -5,7 +5,7 @@ namespace IVAXOR.PatreonNET.IntegrationTests.Services.V1;
 [TestClass]
 public class PatreonAPIv1IntegrationTests
 {
-    protected readonly PatreonAPIv1 PatreonAPIv1;
+    protected PatreonAPIv1 PatreonAPIv1 { get; }
 
     public PatreonAPIv1IntegrationTests()
     {

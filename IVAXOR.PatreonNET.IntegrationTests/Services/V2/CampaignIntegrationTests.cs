@@ -8,11 +8,11 @@ using IVAXOR.PatreonNET.Services.API;
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
 [TestClass]
-public class CampaignsIntegrationTests
+public class CampaignIntegrationTests
 {
     protected PatreonAPIv2 PatreonAPIv2 { get; }
 
-    public CampaignsIntegrationTests()
+    public CampaignIntegrationTests()
     {
         var httpClient = new HttpClient();
         var tokenManager = new PatreonStubTokenManager();
@@ -21,20 +21,22 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns()
+    public async Task Campaign()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns().ExecuteAsync();
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId).ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 
     [TestMethod]
-    public async Task Campaigns_Full_IncludeField()
+    public async Task Campaign_Full_IncludeField()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns()
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .IncludeField(_ => _.CreatedAt)
             .IncludeField(_ => _.CreationName)
             .IncludeField(_ => _.DiscordServerId)
@@ -65,70 +67,82 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 
     [TestMethod]
-    public async Task Campaigns_Full_IncludeAllFields()
+    public async Task Campaign_Full_IncludeAllFields()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns()
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .IncludeAllFields()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 
     [TestMethod]
-    public async Task Campaigns_WithTiers()
+    public async Task Campaign_WithTiers()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns()
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V2.Campaigns.Tiers)
             .IncludeAllFields<PatreonTierAttributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 
     [TestMethod]
-    public async Task Campaigns_WithCreator()
+    public async Task Campaign_WithCreator()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns()
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V2.Campaigns.Creator)
             .IncludeAllFields<PatreonUserV2Attributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 
     [TestMethod]
-    public async Task Campaigns_WithBenefits()
+    public async Task Campaign_WithBenefits()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns()
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V2.Campaigns.Benefits)
             .IncludeAllFields<PatreonBenefitAttributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 
     [TestMethod]
-    public async Task Campaigns_WithGoals()
+    public async Task Campaign_WithGoals()
     {
         // Act
-        var campaigns = await PatreonAPIv2.Campaigns()
+        var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V2.Campaigns.Goals)
             .IncludeAllFields<PatreonGoalAttributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.IsNotNull(campaign.Data.Id);
+        Assert.IsNotNull(campaign.Links.Self);
     }
 }

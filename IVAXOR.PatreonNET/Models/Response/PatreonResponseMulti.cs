@@ -10,4 +10,8 @@ public class PatreonResponseMulti<TAttributes, TRelationships> : PatreonResponse
     [JsonRequired]
     [JsonPropertyName("data")]
     public PatreonData<TAttributes, TRelationships>[] Data { get; set; }
+
+    [JsonRequired]
+    [JsonPropertyName("meta")]
+    public PatreonMeta Meta { get; set; }
 }

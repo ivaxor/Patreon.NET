@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Test secret files
-/IVAXOR.PatreonNET.IntegrationTests/tokens.json
+/IVAXOR.PatreonNET.IntegrationTests/*.json

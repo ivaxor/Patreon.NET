@@ -45,7 +45,7 @@ internal static class Json
                 if (cwt.TryGetValue(obj, out Dictionary<string, object>? dict))
                 {
                     cwt.Remove(obj);
-                    throw new JsonException($"JSON properties {string.Join(", ", dict.Keys)} could not bind to any members of type {typeInfo.Type}");
+                    throw new JsonException($"JSON properties \"{string.Join(", ", dict.Keys)}\" could not bind to any members of {typeInfo.Type} type");
                 }
             };
         }

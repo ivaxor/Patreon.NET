@@ -42,7 +42,7 @@ public class PatreonBenefitAttributes : IPatreonAttributes
     /// <summary>
     /// Number of deliverables for this benefit that have been marked complete.
     /// </summary>
-    [JsonPropertyName("DeliveredDeliverablesCount")]
+    [JsonPropertyName("delivered_deliverables_count")]
     public int? DeliveredDeliverablesCount { get; set; }
 
     /// <summary>

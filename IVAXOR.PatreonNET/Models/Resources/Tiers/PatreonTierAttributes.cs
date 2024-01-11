@@ -28,7 +28,7 @@ public class PatreonTierAttributes : IPatreonAttributes
     /// The discord role IDs granted by this tier.
     /// </summary>
     [JsonPropertyName("discord_role_ids")]
-    public string? DiscordRoleIds { get; set; }
+    public string[]? DiscordRoleIds { get; set; }
 
     /// <summary>
     /// Datetime tier was last modified.

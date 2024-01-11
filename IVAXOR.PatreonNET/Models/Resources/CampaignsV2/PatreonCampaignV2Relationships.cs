@@ -10,16 +10,16 @@ public class PatreonCampaignV2Relationships : IPatreonRelationships
     /// The campaign's benefits.
     /// </summary>
     [JsonPropertyName("benefits")]
-    public PatreonRelationshipsSingle? Benefits { get; set; }
+    public PatreonRelationshipsMulti? Benefits { get; set; }
 
     [JsonPropertyName("campaign_installations")]
-    public PatreonRelationshipsSingle? CampaignInstallations { get; set; }
+    public PatreonRelationshipsMulti? CampaignInstallations { get; set; }
 
     /// <summary>
     /// The campaign's categories.
     /// </summary>
     [JsonPropertyName("categories")]
-    public PatreonRelationshipsSingle? Categories { get; set; }
+    public PatreonRelationshipsMulti? Categories { get; set; }
 
     /// <summary>
     /// The campaign owner.

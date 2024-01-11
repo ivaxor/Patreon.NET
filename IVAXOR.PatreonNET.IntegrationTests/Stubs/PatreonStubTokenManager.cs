@@ -3,11 +3,13 @@
 internal class PatreonStubTokenManager : IPatreonTokenManager
 {
     public string AccessToken => PatreonClientTokens.AccessToken;
-    public PatreonClientTokens PatreonClientTokens { get; protected set; }
+
+    protected PatreonClientTokens PatreonClientTokens { get; }
 
     public PatreonStubTokenManager()
     {
-        using var tokensFileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("IVAXOR.PatreonNET.IntegrationTests.tokens.json");
-        PatreonClientTokens = JsonSerializer.Deserialize<PatreonClientTokens>(tokensFileStream);
+        using var appsettingsFileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("appsettings.json");
+        var appsettings = JsonDocument.Parse(appsettingsFileStream);
+        PatreonClientTokens = appsettings.RootElement.GetProperty(nameof(PatreonClientTokens)).Deserialize<PatreonClientTokens>();
     }
 }

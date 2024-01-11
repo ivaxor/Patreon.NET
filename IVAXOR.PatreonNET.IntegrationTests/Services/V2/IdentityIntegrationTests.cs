@@ -10,7 +10,7 @@ namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 [TestClass]
 public class IdentityIntegrationTests
 {
-    protected readonly PatreonAPIv2 PatreonAPIv2;
+    protected PatreonAPIv2 PatreonAPIv2 { get; }
 
     public IdentityIntegrationTests()
     {
