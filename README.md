@@ -28,13 +28,44 @@ Library have multiple ways to handle and manage OAuth tokens, but for simplicity
 var tokenManager = new PatreonSimpleTokenManager("access_token");
 ```
 
-### API v1 calls
+### API v1 calls (NOT RECOMMENDED)
 ```csharp
 var httpClient = new HttpClient();
 var patreonAPIv1 = new PatreonAPIv1(httpClient, tokenManager);
 
-var currentUser = await PatreonAPIv1.CurrentUser().ExecuteAsync();
-var currentUserCampaings = await PatreonAPIv1.CurrentUserCampaigns().ExecuteAsync();
+var currentUser = await patreonAPIv1.CurrentUser().ExecuteAsync();
+var currentUserCampaigns = await patreonAPIv1.CurrentUserCampaigns().ExecuteAsync();
 ```
 
-### API v2 calls (in development)
+### API v2 calls
+```csharp
+var httpClient = new HttpClient();
+var patreonAPIv2 = new PatreonAPIv2(httpClient, tokenManager);
+var identity = await patreonAPIv2.Identity().IncludeAllFields().ExecuteAsync();
+var campaigns = await PatreonAPIv2.Campaigns()
+  .IncludeField(_ => _.OneLiner)
+  .IncludeField(_ => _.PatronCount)
+  .IncludeField(_ => _.Summary)
+  .IncludeField(_ => _.Url)
+  .ExecuteAsync();
+```
+
+
+### Other API calls
+Solution includes `IVAXOR.PatreonNET.IntegrationTests` project with integration tests to run live request to API.
+You can use them as examples or references to get familiar with library.
+To run them you will need to create `IVAXOR.PatreonNET.IntegrationTests/appsettings.json` file and fill it with your OAuth tokens and other settings:
+```json
+{
+  "CampaignId": 00000000,
+  "MemberId": "00000000-0000-0000-0000-000000000000",
+  "PatreonClientTokens": {
+    "access_token": "0000000000000000000000000000000000000000000",
+    "expires_in": 2678400,
+    "token_type": "Bearer",
+    "scope": "identity identity[email] identity.memberships campaigns campaigns.members campaigns.posts w:campaigns.webhook",
+    "refresh_token": "0000000000000000000000000000000000000000000",
+    "version": "0.0.1"
+  }
+}
+```
