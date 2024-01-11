@@ -1,6 +1,6 @@
 ﻿namespace IVAXOR.PatreonNET.Models.Response.Interfaces;
 
-public interface IPatreonResponse<TAttributes, TIRelationships>
+public interface IPatreonResponse<TAttributes, TRelationships>
     where TAttributes : IPatreonAttributes
-    where TIRelationships : IPatreonRelationships
+    where TRelationships : IPatreonRelationships
 { }

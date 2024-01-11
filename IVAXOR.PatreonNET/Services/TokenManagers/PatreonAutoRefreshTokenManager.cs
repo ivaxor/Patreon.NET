@@ -14,11 +14,11 @@ public class PatreonAutoRefreshTokenManager : IPatreonTokenManager
 {
     public string AccessToken => PatreonClientTokens.AccessToken;
 
-    protected PatreonClientTokens PatreonClientTokens { get; set; }
+    protected PatreonClientTokens PatreonClientTokens { get; private set; }
 
-    protected readonly HttpClient HttpClient;
-    protected readonly PatreonClient PatreonClient;
-    protected readonly Timer Timer;
+    protected HttpClient HttpClient { get; }
+    protected PatreonClient PatreonClient { get; }
+    protected Timer Timer { get; }
 
     public PatreonAutoRefreshTokenManager(
         HttpClient httpClient,

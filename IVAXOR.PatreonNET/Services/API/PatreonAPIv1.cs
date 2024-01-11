@@ -10,8 +10,9 @@ namespace IVAXOR.PatreonNET.Services.API;
 
 public class PatreonAPIv1 : IPatreonAPIv1
 {
-    protected readonly HttpClient HttpClient;
-    protected readonly IPatreonTokenManager PatreonTokenManager;
+    protected string Url { get; } = "https://patreon.com/api/oauth2/api";
+    protected HttpClient HttpClient { get; }
+    protected IPatreonTokenManager PatreonTokenManager { get; }
 
     public PatreonAPIv1(
         HttpClient httpClient,
@@ -22,20 +23,11 @@ public class PatreonAPIv1 : IPatreonAPIv1
     }
 
     public PatreonAPIv1Query<PatreonResponseSingle<PatreonUserV1Attributes, PatreonUserV1Relationships>, PatreonUserV1Attributes, PatreonUserV1Relationships> CurrentUser() =>
-        new PatreonAPIv1Query<PatreonResponseSingle<PatreonUserV1Attributes, PatreonUserV1Relationships>, PatreonUserV1Attributes, PatreonUserV1Relationships>(
-            "https://patreon.com/api/oauth2/api/current_user",
-            HttpClient,
-            PatreonTokenManager);
+        new($"{Url}/current_user", HttpClient, PatreonTokenManager);
 
     public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships> CurrentUserCampaigns() =>
-        new PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>(
-            "https://patreon.com/api/oauth2/api/current_user/campaigns",
-            HttpClient,
-            PatreonTokenManager);
+        new($"{Url}/current_user/campaigns", HttpClient, PatreonTokenManager);
 
     public PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>, PatreonPledgeEventAttributes, PatreonPledgeEventRelationships> CampaignPledges(string campaignId) =>
-        new PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>, PatreonPledgeEventAttributes, PatreonPledgeEventRelationships>(
-            $"https://patreon.com/api/oauth2/api/campaigns/{campaignId}/pledges",
-            HttpClient,
-            PatreonTokenManager);
+        new($"{Url}/campaigns/{campaignId}/pledges", HttpClient, PatreonTokenManager);
 }

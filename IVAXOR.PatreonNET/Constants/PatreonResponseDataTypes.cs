@@ -19,7 +19,7 @@ internal static class PatreonResponseDataTypes
             { "campaign", typeof(PatreonCampaignV2Attributes) },
             { "address", typeof(PatreonAddressAttributes) },
             { "tier", typeof(PatreonTierAttributes) },
-            { "memberships", typeof(PatreonMemberAttributes) },
+            { "member", typeof(PatreonMemberAttributes) },
             { "user", typeof(PatreonUserV2Attributes) },
             { "webhook", typeof(PatreonWebhookAttributes) },
             { "pledge", typeof(PatreonPledgeEventAttributes) },
@@ -32,7 +32,7 @@ internal static class PatreonResponseDataTypes
             { "campaign", typeof(PatreonCampaignV2Relationships) },
             { "address", typeof(PatreonAddressRelationships) },
             { "tier", typeof(PatreonTierRelationships) },
-            { "memberships", typeof(PatreonMemberRelationships) },
+            { "member", typeof(PatreonMemberRelationships) },
             { "user", typeof(PatreonUserV2Relationships) },
             { "webhook", typeof(PatreonWebhookRelationships) },
             { "pledge", typeof(PatreonPledgeEventRelationships) }

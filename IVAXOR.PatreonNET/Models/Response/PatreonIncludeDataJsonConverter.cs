@@ -19,15 +19,13 @@ public class PatreonIncludeDataJsonConverter : JsonConverter<PatreonIncludeData>
             Type = jsonDocument.RootElement.GetProperty(nameof(PatreonIncludeData.Type).ToLower()).GetString(),
         };
 
-        if (PatreonResponseDataTypes.PatreonAttributesByTypes.TryGetValue(patreonIncludeData.Type, out var attributeType))
-            patreonIncludeData.Attributes = (IPatreonAttributes)jsonDocument.RootElement
-                .GetProperty(nameof(PatreonIncludeData.Attributes).ToLower())
-                .Deserialize(attributeType, options);
+        if (jsonDocument.RootElement.TryGetProperty(nameof(PatreonIncludeData.Attributes).ToLower(), out var attributeJsonElement))
+            if (PatreonResponseDataTypes.PatreonAttributesByTypes.TryGetValue(patreonIncludeData.Type, out var attributeType))
+                patreonIncludeData.Attributes = (IPatreonAttributes)attributeJsonElement.Deserialize(attributeType, options);
 
-        if (PatreonResponseDataTypes.PatreonRelationshipsByTypes.TryGetValue(patreonIncludeData.Type, out var relationshipsType))
-            patreonIncludeData.Relationships = (IPatreonRelationships)jsonDocument.RootElement
-                .GetProperty(nameof(PatreonIncludeData.Relationships).ToLower())
-                .Deserialize(relationshipsType, options);
+        if (jsonDocument.RootElement.TryGetProperty(nameof(PatreonIncludeData.Relationships).ToLower(), out var relationshipsJsonElement))
+            if (PatreonResponseDataTypes.PatreonRelationshipsByTypes.TryGetValue(patreonIncludeData.Type, out var relationshipsType))
+                patreonIncludeData.Relationships = (IPatreonRelationships)relationshipsJsonElement.Deserialize(relationshipsType, options);
 
         return patreonIncludeData;
     }

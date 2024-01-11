@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Response;
 
-public class PatreonData<TAttributes, TIRelationships>
+public class PatreonData<TAttributes, TRelationships>
     where TAttributes : IPatreonAttributes
-    where TIRelationships : IPatreonRelationships
+    where TRelationships : IPatreonRelationships
 {
     [JsonRequired]
     [JsonPropertyName("id")]
@@ -20,5 +20,5 @@ public class PatreonData<TAttributes, TIRelationships>
     public TAttributes Attributes { get; set; }
 
     [JsonPropertyName("relationships")]
-    public TIRelationships? Relationships { get; set; }
+    public TRelationships? Relationships { get; set; }
 }

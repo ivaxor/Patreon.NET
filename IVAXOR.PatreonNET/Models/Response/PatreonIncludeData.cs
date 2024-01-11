@@ -19,7 +19,6 @@ public class PatreonIncludeData
     [JsonPropertyName("attributes")]
     public IPatreonAttributes Attributes { get; set; }
 
-    [JsonRequired]
     [JsonPropertyName("relationships")]
-    public IPatreonRelationships Relationships { get; set; }
+    public IPatreonRelationships? Relationships { get; set; }
 }

@@ -7,8 +7,10 @@ namespace IVAXOR.PatreonNET.Exceptions;
 [Serializable]
 public class PatreonAPIException : Exception
 {
-    public int StatusCode { get; set; }
-    public string Response { get; set; }
+    public int StatusCode { get; }
+    public string Response { get; }
+
+    public override string Message => $"Patreon API responded with {StatusCode} status code. Raw response: \"{Response}\"";
 
     public PatreonAPIException() { }
 

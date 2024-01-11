@@ -21,10 +21,10 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     where TAttributes : IPatreonAttributes
     where TRelationships : IPatreonRelationships
 {
-    public readonly string Url;
+    public string Url { get; }
 
-    protected readonly HttpClient HttpClient;
-    protected readonly IPatreonTokenManager PatreonTokenManager;
+    protected HttpClient HttpClient { get; }
+    protected IPatreonTokenManager PatreonTokenManager { get; }
 
     protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
     protected Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; } = new();
@@ -47,14 +47,11 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
 
     public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(string resourceName, string fieldName)
     {
-        if (!IncludedFieldsByResource.TryGetValue(resourceName, out var fields))
-        {
-            fields = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        }
+        if (!IncludedFieldsByResource.TryGetValue(resourceName, out var fields)) fields = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         fields.Add(fieldName);
         IncludedFieldsByResource[resourceName] = fields;
 
-        return Include(resourceName);
+        return this;
     }
 
     public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(Expression<Func<TAttributes, object>> selector)

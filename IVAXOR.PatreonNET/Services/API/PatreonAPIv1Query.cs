@@ -14,10 +14,10 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
     where TAttributes : IPatreonAttributes
     where TRelationships : IPatreonRelationships
 {
-    public readonly string Url;
+    public string Url { get; }
 
-    protected readonly HttpClient HttpClient;
-    protected readonly IPatreonTokenManager PatreonTokenManager;
+    protected HttpClient HttpClient { get; }
+    protected IPatreonTokenManager PatreonTokenManager { get; }
 
     public PatreonAPIv1Query(
         string url,
