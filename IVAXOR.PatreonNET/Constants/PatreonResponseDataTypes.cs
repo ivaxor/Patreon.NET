@@ -4,6 +4,7 @@ using IVAXOR.PatreonNET.Models.Resources.Benefits;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Members;
+using IVAXOR.PatreonNET.Models.Resources.OAuths;
 using IVAXOR.PatreonNET.Models.Resources.Pledges;
 using IVAXOR.PatreonNET.Models.Resources.PostsV2;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
