@@ -1,4 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.PostsV2;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Resources.Webhooks;
@@ -33,19 +34,11 @@ public class PatreonAPIv2 : IPatreonAPIv2
     public PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaign(int campaignId) =>
        new($"{Url}/campaigns/{campaignId}", HttpClient, PatreonTokenManager);
 
-    /*
-    public PatreonAPIv2Query<PatreonResponseMulti<object, object>, object, object> CampaignMembers(string campaignId) =>
-        new PatreonAPIv2Query<PatreonResponseMulti<object, object>, object, object>(
-            $"https://patreon.com/api/oauth2/v2/campaigns/{campaignId}/members",
-            HttpClient,
-            PatreonTokenManager);
+    public PatreonAPIv2Query<PatreonResponseMulti<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> CampaignMembers(int campaignId) =>
+        new($"{Url}/campaigns/{campaignId}/members", HttpClient, PatreonTokenManager);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<object, object>, object, object> CampaignMembers(string memberId) =>
-        new PatreonAPIv2Query<PatreonResponseSingle<object, object>, object, object>(
-            $"https://patreon.com/api/oauth2/v2/members/{memberId}",
-            HttpClient,
-            PatreonTokenManager);
-    */
+    public PatreonAPIv2Query<PatreonResponseSingle<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> Member(int memberId) =>
+        new($"{Url}/members/{memberId}", HttpClient, PatreonTokenManager);
 
     public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> CampaignPosts(int campaignId) =>
         new($"{Url}/campaigns/{campaignId}/posts", HttpClient, PatreonTokenManager);
