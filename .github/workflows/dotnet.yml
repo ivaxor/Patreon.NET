@@ -18,7 +18,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./IVAXOR.PatreonNET/IVAXOR.PatreonNET.csproj --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test ./IVAXOR.PatreonNET.IntegrationTests/IVAXOR.PatreonNET.IntegrationTests.csproj --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
     - name: Codacy
