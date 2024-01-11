@@ -1,11 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Response
+namespace IVAXOR.PatreonNET.Models.Response;
+
+public class PatreonResponseLinks
 {
-    public class PatreonResponseLinks
-    {
-        [JsonRequired]
-        [JsonPropertyName("self")]
-        public string Self { get; set; }
-    }
+    [JsonRequired]
+    [JsonPropertyName("self")]
+    public string Self { get; set; }
 }

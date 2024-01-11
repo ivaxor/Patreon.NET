@@ -1,10 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Relationships
+namespace IVAXOR.PatreonNET.Models.Relationships;
+
+public class PatreonRelationshipsLinks
 {
-    public class PatreonRelationshipsLinks
-    {
-        [JsonPropertyName("related")]
-        public string? Related { get; set; }
-    }
+    [JsonPropertyName("related")]
+    public string? Related { get; set; }
 }

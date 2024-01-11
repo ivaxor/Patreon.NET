@@ -1,6 +1,5 @@
-﻿namespace IVAXOR.PatreonNET.Models.OAuths
+﻿namespace IVAXOR.PatreonNET.Models.OAuths;
+
+public class PatreonOAuthToken
 {
-    public class PatreonOAuthToken
-    {
-    }
 }

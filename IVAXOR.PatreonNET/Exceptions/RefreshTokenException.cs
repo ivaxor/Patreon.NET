@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace IVAXOR.PatreonNET.Exceptions
+namespace IVAXOR.PatreonNET.Exceptions;
+
+[Serializable]
+public class RefreshTokenException : Exception
 {
-    [Serializable]
-    public class RefreshTokenException : Exception
-    {
-        public RefreshTokenException() { }
-        protected RefreshTokenException(SerializationInfo info, StreamingContext context) : base(info, context) { }
-    }
+    public RefreshTokenException() { }
+    protected RefreshTokenException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 }

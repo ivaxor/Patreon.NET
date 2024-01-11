@@ -1,6 +1,5 @@
-﻿namespace IVAXOR.PatreonNET.Models
+﻿namespace IVAXOR.PatreonNET.Models;
+
+public class PatreonPlatformApp
 {
-    public class PatreonPlatformApp
-    {
-    }
 }
