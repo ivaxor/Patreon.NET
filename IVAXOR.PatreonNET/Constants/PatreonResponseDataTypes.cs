@@ -1,11 +1,11 @@
-﻿using IVAXOR.PatreonNET.Models;
-using IVAXOR.PatreonNET.Models.Addresses;
-using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Members;
-using IVAXOR.PatreonNET.Models.Pledges;
-using IVAXOR.PatreonNET.Models.Tiers;
-using IVAXOR.PatreonNET.Models.UsersV2;
-using IVAXOR.PatreonNET.Models.Webhooks;
+﻿using IVAXOR.PatreonNET.Models.Resources;
+using IVAXOR.PatreonNET.Models.Resources.Addresses;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Members;
+using IVAXOR.PatreonNET.Models.Resources.Pledges;
+using IVAXOR.PatreonNET.Models.Resources.Tiers;
+using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Resources.Webhooks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +16,10 @@ internal static class PatreonResponseDataTypes
 {
     public static readonly Dictionary<string, Type> PatreonAttributesByTypes = new Dictionary<string, Type>()
         {
-            { "campaign", typeof(PatreonCampaignAttributes) },
+            { "campaign", typeof(PatreonCampaignV2Attributes) },
             { "address", typeof(PatreonAddressAttributes) },
             { "tier", typeof(PatreonTierAttributes) },
-            { "member", typeof(PatreonMemberAttributes) },
+            { "memberships", typeof(PatreonMemberAttributes) },
             { "user", typeof(PatreonUserV2Attributes) },
             { "webhook", typeof(PatreonWebhookAttributes) },
             { "pledge", typeof(PatreonPledgeEventAttributes) },
@@ -29,10 +29,10 @@ internal static class PatreonResponseDataTypes
 
     public static readonly Dictionary<string, Type> PatreonRelationshipsByTypes = new Dictionary<string, Type>()
         {
-            { "campaign", typeof(PatreonCampaignRelationships) },
+            { "campaign", typeof(PatreonCampaignV2Relationships) },
             { "address", typeof(PatreonAddressRelationships) },
             { "tier", typeof(PatreonTierRelationships) },
-            { "member", typeof(PatreonMemberRelationships) },
+            { "memberships", typeof(PatreonMemberRelationships) },
             { "user", typeof(PatreonUserV2Relationships) },
             { "webhook", typeof(PatreonWebhookRelationships) },
             { "pledge", typeof(PatreonPledgeEventRelationships) }

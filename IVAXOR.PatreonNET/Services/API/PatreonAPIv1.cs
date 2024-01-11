@@ -1,7 +1,7 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Pledges;
+﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
+using IVAXOR.PatreonNET.Models.Resources.Pledges;
+using IVAXOR.PatreonNET.Models.Resources.UsersV1;
 using IVAXOR.PatreonNET.Models.Response;
-using IVAXOR.PatreonNET.Models.UsersV1;
 using IVAXOR.PatreonNET.Services.API.Interfaces;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
@@ -27,8 +27,8 @@ public class PatreonAPIv1 : IPatreonAPIv1
             HttpClient,
             PatreonTokenManager);
 
-    public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships> CurrentUserCampaigns() =>
-        new PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships>(
+    public PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships> CurrentUserCampaigns() =>
+        new PatreonAPIv1Query<PatreonResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>(
             "https://patreon.com/api/oauth2/api/current_user/campaigns",
             HttpClient,
             PatreonTokenManager);

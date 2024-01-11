@@ -1,8 +1,8 @@
-﻿using IVAXOR.PatreonNET.Models.Campaigns;
-using IVAXOR.PatreonNET.Models.Posts;
+﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.PostsV2;
+using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Resources.Webhooks;
 using IVAXOR.PatreonNET.Models.Response;
-using IVAXOR.PatreonNET.Models.UsersV2;
-using IVAXOR.PatreonNET.Models.Webhooks;
 using IVAXOR.PatreonNET.Services.API.Interfaces;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
@@ -28,14 +28,14 @@ public class PatreonAPIv2 : IPatreonAPIv2
             HttpClient,
             PatreonTokenManager);
 
-    public PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships> Campaigns() =>
-        new PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships>(
+    public PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaigns() =>
+        new PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>(
             "https://patreon.com/api/oauth2/v2/campaigns",
             HttpClient,
             PatreonTokenManager);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships> Campaign(string campaignId) =>
-       new PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignAttributes, PatreonCampaignRelationships>, PatreonCampaignAttributes, PatreonCampaignRelationships>(
+    public PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaign(string campaignId) =>
+       new PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>(
            $"https://patreon.com/api/oauth2/v2/campaigns/{campaignId}",
            HttpClient,
            PatreonTokenManager);
@@ -54,14 +54,14 @@ public class PatreonAPIv2 : IPatreonAPIv2
             PatreonTokenManager);
     */
 
-    public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships> CampaignPosts(string campaignId) =>
-        new PatreonAPIv2Query<PatreonResponseMulti<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships>(
+    public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> CampaignPosts(string campaignId) =>
+        new PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships>(
             $"https://patreon.com/api/oauth2/v2/campaigns/{campaignId}/posts",
             HttpClient,
             PatreonTokenManager);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships> Post(string postId) =>
-        new PatreonAPIv2Query<PatreonResponseSingle<PatreonPostAttributes, PatreonPostRelationships>, PatreonPostAttributes, PatreonPostRelationships>(
+    public PatreonAPIv2Query<PatreonResponseSingle<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> Post(string postId) =>
+        new PatreonAPIv2Query<PatreonResponseSingle<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships>(
             $"https://patreon.com/api/oauth2/v2/posts/{postId}",
             HttpClient,
             PatreonTokenManager);
