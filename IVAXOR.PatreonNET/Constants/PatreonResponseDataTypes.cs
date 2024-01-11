@@ -5,6 +5,7 @@ using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.Pledges;
+using IVAXOR.PatreonNET.Models.Resources.PostsV2;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Resources.Webhooks;
@@ -16,7 +17,7 @@ namespace IVAXOR.PatreonNET.Constants;
 
 internal static class PatreonResponseDataTypes
 {
-    public static readonly Dictionary<string, Type> PatreonAttributesByTypes = new Dictionary<string, Type>()
+    public static readonly Dictionary<string, Type> PatreonAttributesByTypes = new()
         {
             { "campaign", typeof(PatreonCampaignV2Attributes) },
             { "address", typeof(PatreonAddressAttributes) },
@@ -27,11 +28,12 @@ internal static class PatreonResponseDataTypes
             { "pledge", typeof(PatreonPledgeEventAttributes) },
             { "reward", typeof(PatreonRewardAttributes) },
             { "benefit", typeof(PatreonBenefitAttributes) },
-            { "goal", typeof(PatreonGoalAttributes) }
+            { "goal", typeof(PatreonGoalAttributes) },
+            { "post", typeof(PatreonPostV2Attributes) }
         };
     public static readonly Dictionary<Type, string> TypeByPatreonAttributes = PatreonAttributesByTypes.ToDictionary(_ => _.Value, _ => _.Key);
 
-    public static readonly Dictionary<string, Type> PatreonRelationshipsByTypes = new Dictionary<string, Type>()
+    public static readonly Dictionary<string, Type> PatreonRelationshipsByTypes = new()
         {
             { "campaign", typeof(PatreonCampaignV2Relationships) },
             { "address", typeof(PatreonAddressRelationships) },

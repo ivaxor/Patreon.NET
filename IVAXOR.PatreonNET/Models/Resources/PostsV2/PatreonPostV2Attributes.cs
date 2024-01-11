@@ -30,7 +30,7 @@ public class PatreonPostV2Attributes : IPatreonAttributes
     /// None if there is no embed
     /// </summary>
     [JsonPropertyName("embed_data")]
-    public string? EmbedData { get; set; }
+    public PatreonEmbedData? EmbedData { get; set; }
 
     /// <summary>
     /// Embed media url.
