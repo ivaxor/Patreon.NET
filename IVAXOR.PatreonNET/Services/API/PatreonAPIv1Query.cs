@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
-using IVAXOR.PatreonNET.Constants;
 using System.Text.Json;
 using IVAXOR.PatreonNET.Exceptions;
+using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Services.API;
 
@@ -18,6 +18,7 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
 
     protected HttpClient HttpClient { get; }
     protected IPatreonTokenManager TokenManager { get; }
+    protected JsonSerializerOptions JsonSerializerOptions { get; }
 
     public PatreonAPIv1Query(
         string url,
@@ -27,6 +28,22 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
         Url = url;
         HttpClient = httpClient;
         TokenManager = tokenManager;
+        JsonSerializerOptions = new()
+        {
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
+        };
+    }
+
+    public PatreonAPIv1Query(
+        string url,
+        HttpClient httpClient,
+        IPatreonTokenManager tokenManager,
+        JsonSerializerOptions jsonSerializerOptions)
+    {
+        Url = url;
+        HttpClient = httpClient;
+        TokenManager = tokenManager;
+        JsonSerializerOptions = jsonSerializerOptions;
     }
 
     public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
@@ -38,6 +55,6 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
         if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
 
         var json = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<TResponse>(json, Json.SerializerOptions);
+        return JsonSerializer.Deserialize<TResponse>(json, JsonSerializerOptions);
     }
 }

@@ -20,4 +20,4 @@ Because Patreon API utilizes only OAuth `code` flow you will need to know few ba
 
 ## C# resource management
 If you are new to C# resource management here are a few tips on how to run this library more efficiently:
-1. Utilize `HttpClient` more efficiently by reading [official .NET guidelines for using HttpClient](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines).
+1. Utilize `HttpClient` more efficiently. Read [official .NET guidelines for using HttpClient](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines) on how to.

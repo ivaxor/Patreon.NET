@@ -24,7 +24,8 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     public string Url { get; }
 
     protected HttpClient HttpClient { get; }
-    protected IPatreonTokenManager PatreonTokenManager { get; }
+    protected IPatreonTokenManager TokenManager { get; }
+    protected JsonSerializerOptions JsonSerializerOptions { get; }
 
     protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
     protected Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; } = new();
@@ -35,11 +36,27 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     public PatreonAPIv2Query(
         string url,
         HttpClient httpClient,
-        IPatreonTokenManager patreonTokenManager)
+        IPatreonTokenManager tokenManager)
     {
         Url = url;
         HttpClient = httpClient;
-        PatreonTokenManager = patreonTokenManager;
+        TokenManager = tokenManager;
+        JsonSerializerOptions = new()
+        {
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
+        };
+    }
+
+    public PatreonAPIv2Query(
+        string url,
+        HttpClient httpClient,
+        IPatreonTokenManager tokenManager,
+        JsonSerializerOptions jsonSerializerOptions)
+    {
+        Url = url;
+        HttpClient = httpClient;
+        TokenManager = tokenManager;
+        JsonSerializerOptions = jsonSerializerOptions;
     }
 
     public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
@@ -49,13 +66,13 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         var url = urlBuilder.ToString();
 
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
-        request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
+        request.Headers.Add("Authorization", $"Bearer {TokenManager.AccessToken}");
 
         using var response = await HttpClient.SendAsync(request, cancellationToken);
         if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);
 
         var json = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<TResponse>(json, Json.SerializerOptions);
+        return JsonSerializer.Deserialize<TResponse>(json, JsonSerializerOptions);
     }
 
     public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> Include(string topLevelInclude)
@@ -154,10 +171,10 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         var topLevelIncldues = TopLevelIncludes
             .Where(_ => _ != PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(TAttributes)])
             .ToArray();
-        var includedFields = IncludedFieldsByResource.ToDictionary(_ => $"fields[{_.Key}]", _ => string.Join(',', _.Value));
+        var includedFields = IncludedFieldsByResource.ToDictionary(_ => $"fields[{_.Key}]", _ => string.Join(",", _.Value));
 
         var queryParams = HttpUtility.ParseQueryString(string.Empty);
-        if (topLevelIncldues.Any()) queryParams.Add("include", string.Join(',', topLevelIncldues));
+        if (topLevelIncldues.Any()) queryParams.Add("include", string.Join(",", topLevelIncldues));
         if (includedFields.Any()) includedFields.AsParallel().ForAll(_ => queryParams.Add(_.Key, _.Value));
         if (PageSize != null) queryParams.Add("page[count]", PageSize.Value.ToString());
         if (SortByDesc != null) queryParams.Add("sort", SortByDesc.Item2 ? $"-{SortByDesc.Item1}" : SortByDesc.Item1);
