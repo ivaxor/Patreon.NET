@@ -9,4 +9,7 @@ public class PatreonResponseLinks
 
     [JsonPropertyName("first")]
     public string? First { get; set; }
+
+    [JsonPropertyName("next")]
+    public string? Next { get; set; }
 }

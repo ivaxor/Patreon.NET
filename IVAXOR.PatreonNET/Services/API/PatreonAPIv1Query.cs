@@ -17,22 +17,22 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
     public string Url { get; }
 
     protected HttpClient HttpClient { get; }
-    protected IPatreonTokenManager PatreonTokenManager { get; }
+    protected IPatreonTokenManager TokenManager { get; }
 
     public PatreonAPIv1Query(
         string url,
         HttpClient httpClient,
-        IPatreonTokenManager patreonTokenManager)
+        IPatreonTokenManager tokenManager)
     {
         Url = url;
         HttpClient = httpClient;
-        PatreonTokenManager = patreonTokenManager;
+        TokenManager = tokenManager;
     }
 
     public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
     {
         using var request = new HttpRequestMessage(HttpMethod.Get, Url);
-        request.Headers.Add("Authorization", $"Bearer {PatreonTokenManager.AccessToken}");
+        request.Headers.Add("Authorization", $"Bearer {TokenManager.AccessToken}");
 
         using var response = await HttpClient.SendAsync(request, cancellationToken);
         if (!response.IsSuccessStatusCode) throw new PatreonAPIException(response);

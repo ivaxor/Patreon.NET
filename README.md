@@ -5,55 +5,19 @@
 [![NuGet downloads](https://img.shields.io/nuget/dt/IVAXOR.PatreonNET?link=)](https://nuget.org/packages/IVAXOR.PatreonNET)
 [![Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dpatreon_NET%26type%3Dpatrons&style=flat)](https://patreon.com/patreon_NET)
 
-.NET library for accessing [Patreon API](https://docs.patreon.com)
+.NET Standard 2.1 library for accessing [Patreon API](https://docs.patreon.com) on both V1 and V2.
 
-## Setup
-You'll need to register an OAuth client account to receive a `client_id`, `client_secret` and other info for use with this module.
-Visit the [OAuth Documentation Page](https://docs.patreon.com/#oauth) **while logged in as a Patreon creator on patreon.com** to register your client.
+## Setup guide
+You can access [setup guide](./Documentation/Setup.md) with detailed instruction on how to use this library.
 
-## Installation
-Install with [dotnet CLI](https://learn.microsoft.com/en-us/dotnet/core/tools).
-```powershell
-dotnet add package IVAXOR.PatreonNET
-```
+## API documentation
+You can access API documentation and code samples:
+- [V1 API](./Documentation/V1.md)
+- [V2 API](./Documentation/V2.md)
 
-## Usage
-### Get OAuth tokens
-Library doesn't support full OAuth flow because of `code` flow, so you will need to get provide OAuth tokens to the library.
-If you aren't familiar with OAuth concept you should check it first.
+## Tests
+Solution includes `IVAXOR.PatreonNET.IntegrationTests` project with integration tests to run live request to API. You can use them as examples or references to get familiar with library.
 
-### Manage OAuth tokens
-Library have multiple ways to handle and manage OAuth tokens, but for simplicity of tutorial `PatreonSimpleTokenManager` will be chosen.
-```csharp
-var tokenManager = new PatreonSimpleTokenManager("access_token");
-```
-
-### API v1 calls (NOT RECOMMENDED)
-```csharp
-var httpClient = new HttpClient();
-var patreonAPIv1 = new PatreonAPIv1(httpClient, tokenManager);
-
-var currentUser = await patreonAPIv1.CurrentUser().ExecuteAsync();
-var currentUserCampaigns = await patreonAPIv1.CurrentUserCampaigns().ExecuteAsync();
-```
-
-### API v2 calls
-```csharp
-var httpClient = new HttpClient();
-var patreonAPIv2 = new PatreonAPIv2(httpClient, tokenManager);
-var identity = await patreonAPIv2.Identity().IncludeAllFields().ExecuteAsync();
-var campaigns = await PatreonAPIv2.Campaigns()
-  .IncludeField(_ => _.OneLiner)
-  .IncludeField(_ => _.PatronCount)
-  .IncludeField(_ => _.Summary)
-  .IncludeField(_ => _.Url)
-  .ExecuteAsync();
-```
-
-
-### Other API calls
-Solution includes `IVAXOR.PatreonNET.IntegrationTests` project with integration tests to run live request to API.
-You can use them as examples or references to get familiar with library.
 To run them you will need to create `IVAXOR.PatreonNET.IntegrationTests/appsettings.json` file and fill it with your OAuth tokens and other settings:
 ```json
 {
