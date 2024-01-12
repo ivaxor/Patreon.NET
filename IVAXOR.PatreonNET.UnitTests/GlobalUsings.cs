@@ -1,0 +1,10 @@
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using Moq;
+global using Moq.Protected;
+global using System.Net;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using System.Text.RegularExpressions;
+global using IVAXOR.PatreonNET.Models.Response;
+global using IVAXOR.PatreonNET.Services.API;
+global using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;

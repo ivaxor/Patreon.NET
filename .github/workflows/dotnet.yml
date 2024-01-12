@@ -18,16 +18,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./IVAXOR.PatreonNET/IVAXOR.PatreonNET.csproj --configuration Release --no-restore
-#    - name: Test
-#      run: dotnet test ./IVAXOR.PatreonNET.IntegrationTests/IVAXOR.PatreonNET.IntegrationTests.csproj --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
-#    - name: Codacy
-#      uses: codacy/codacy-coverage-reporter-action@v1
-#      with:
-#        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-#        coverage-reports: IVAXOR.PatreonNET.UnitTests/coverage.info
-#    - name: Coveralls
-#      uses: coverallsapp/github-action@v2
-#      with:
-#        format: lcov
-#        file: IVAXOR.PatreonNET.UnitTests/coverage.info
+      run: dotnet build ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
+    - name: Codacy
+      uses: codacy/codacy-coverage-reporter-action@v1
+      with:
+        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        coverage-reports: IVAXOR.PatreonNET.UnitTests/coverage.info
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        format: lcov
+        file: IVAXOR.PatreonNET.UnitTests/coverage.info
