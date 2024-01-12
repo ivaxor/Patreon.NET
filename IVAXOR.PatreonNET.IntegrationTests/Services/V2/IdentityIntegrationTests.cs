@@ -1,9 +1,5 @@
-using IVAXOR.PatreonNET.Constants;
-using IVAXOR.PatreonNET.Exceptions;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
-using IVAXOR.PatreonNET.Services.API;
-using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 

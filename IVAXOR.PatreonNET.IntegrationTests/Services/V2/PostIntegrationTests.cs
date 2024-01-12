@@ -1,6 +1,4 @@
-﻿using IVAXOR.PatreonNET.Services.API;
-
-namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
+﻿namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
 [TestClass]
 public class PostIntegrationTests

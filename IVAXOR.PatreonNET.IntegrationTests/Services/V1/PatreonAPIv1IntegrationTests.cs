@@ -1,6 +1,5 @@
 using IVAXOR.PatreonNET.Models.Resources.PledgeV1;
-using IVAXOR.PatreonNET.Models.Response;
-using IVAXOR.PatreonNET.Services.API;
+using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V1;
 

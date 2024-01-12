@@ -1,9 +1,7 @@
-﻿using IVAXOR.PatreonNET.Constants;
-using IVAXOR.PatreonNET.Models.Resources.Benefits;
+﻿using IVAXOR.PatreonNET.Models.Resources.Benefits;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
-using IVAXOR.PatreonNET.Services.API;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 

@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{41B2EE5C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IVAXOR.PatreonNET.IntegrationTests", "IVAXOR.PatreonNET.IntegrationTests\IVAXOR.PatreonNET.IntegrationTests.csproj", "{07EC8FBE-83C0-41CE-A249-298DB456BC14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVAXOR.PatreonNET.UnitTests", "IVAXOR.PatreonNET.UnitTests\IVAXOR.PatreonNET.UnitTests.csproj", "{785DD1E6-FECF-4E78-A0A5-A89CC7A463F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07EC8FBE-83C0-41CE-A249-298DB456BC14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785DD1E6-FECF-4E78-A0A5-A89CC7A463F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785DD1E6-FECF-4E78-A0A5-A89CC7A463F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785DD1E6-FECF-4E78-A0A5-A89CC7A463F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785DD1E6-FECF-4E78-A0A5-A89CC7A463F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{07EC8FBE-83C0-41CE-A249-298DB456BC14} = {41B2EE5C-62B4-428B-9BF2-26F662752205}
+		{785DD1E6-FECF-4E78-A0A5-A89CC7A463F4} = {41B2EE5C-62B4-428B-9BF2-26F662752205}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2A2F884-C5BC-4709-B238-E078348C76E5}

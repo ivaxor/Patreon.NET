@@ -1,5 +1,4 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
-using IVAXOR.PatreonNET.Services.API;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
