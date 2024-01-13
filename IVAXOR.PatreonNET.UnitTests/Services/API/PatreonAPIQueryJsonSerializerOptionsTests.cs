@@ -27,7 +27,7 @@ public class PatreonAPIQueryJsonSerializerOptionsTests
             .ReturnsAsync(new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"97866959\",\"type\":\"user\",\"newProperty\":\"test\"}}"),
+                Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"00000000\",\"type\":\"user\",\"newUnknownProperty\":\"test\"}}"),
             });
     }
 

@@ -25,14 +25,7 @@ public class PatreonAPIQueryHttpStatusCodeTests
     public async Task PatreonAPIv1Query_SuccessStatusCode_ReturnsData(HttpStatusCode httpStatusCode)
     {
         // Arrange
-        HttpMessageHandlerMock
-            .Protected()
-            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage()
-            {
-                StatusCode = httpStatusCode,
-                Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"97866959\",\"type\":\"user\"}}"),
-            });
+        SetupHttpMessageHandlerMock(httpStatusCode, "{\"data\":{\"attributes\":{},\"id\":\"00000000\",\"type\":\"user\"}}");
 
         // Act
         var result = await PatreonAPIv1Query.ExecuteAsync();
@@ -49,14 +42,7 @@ public class PatreonAPIQueryHttpStatusCodeTests
     public async Task PatreonAPIv1Query_UnsuccessStatusCode_ThrowsException(HttpStatusCode httpStatusCode)
     {
         // Arrange
-        HttpMessageHandlerMock
-            .Protected()
-            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage()
-            {
-                StatusCode = httpStatusCode,
-                Content = new StringContent(string.Empty),
-            });
+        SetupHttpMessageHandlerMock(httpStatusCode, "Error occurred");
 
         // Act
         var exception = await Assert.ThrowsExceptionAsync<PatreonAPIException>(async () => await PatreonAPIv1Query.ExecuteAsync());
@@ -70,14 +56,7 @@ public class PatreonAPIQueryHttpStatusCodeTests
     public async Task PatreonAPIv2Query_SuccessStatusCode_ReturnsData(HttpStatusCode httpStatusCode)
     {
         // Arrange
-        HttpMessageHandlerMock
-            .Protected()
-            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage()
-            {
-                StatusCode = httpStatusCode,
-                Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"97866959\",\"type\":\"user\"}}"),
-            });
+        SetupHttpMessageHandlerMock(httpStatusCode, "{\"data\":{\"attributes\":{},\"id\":\"00000000\",\"type\":\"user\"}}");
 
         // Act
         var result = await PatreonAPIv2Query.ExecuteAsync();
@@ -94,19 +73,24 @@ public class PatreonAPIQueryHttpStatusCodeTests
     public async Task PatreonAPI21Query_UnsuccessStatusCode_ThrowsException(HttpStatusCode httpStatusCode)
     {
         // Arrange
-        HttpMessageHandlerMock
-            .Protected()
-            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage()
-            {
-                StatusCode = httpStatusCode,
-                Content = new StringContent(string.Empty),
-            });
+        SetupHttpMessageHandlerMock(httpStatusCode, "Error occurred");
 
         // Act
         var exception = await Assert.ThrowsExceptionAsync<PatreonAPIException>(async () => await PatreonAPIv2Query.ExecuteAsync());
 
         // Assert
         Assert.AreEqual((int)httpStatusCode, exception.StatusCode);
+    }
+
+    private void SetupHttpMessageHandlerMock(HttpStatusCode httpStatusCode, string content)
+    {
+        HttpMessageHandlerMock
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage()
+            {
+                StatusCode = httpStatusCode,
+                Content = new StringContent(content),
+            });
     }
 }
