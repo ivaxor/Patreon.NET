@@ -18,9 +18,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-restore
+      run: dotnet build ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --no-restore --configuration Release
     - name: Test
-      run: dotnet test ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./Coverage/
+      run: dotnet test ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --no-build --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
     - name: Codacy
       uses: codacy/codacy-coverage-reporter-action@v1
       with:
