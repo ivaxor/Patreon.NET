@@ -173,13 +173,10 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
 
     protected string BuildQuery()
     {
-        var topLevelIncldues = TopLevelIncludes
-            .Where(_ => _ != PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(TAttributes)])
-            .ToArray();
         var includedFields = IncludedFieldsByResource.ToDictionary(_ => $"fields[{_.Key}]", _ => string.Join(",", _.Value));
 
         var queryParams = HttpUtility.ParseQueryString(string.Empty);
-        if (topLevelIncldues.Any()) queryParams.Add("include", string.Join(",", topLevelIncldues));
+        if (TopLevelIncludes.Any()) queryParams.Add("include", string.Join(",", TopLevelIncludes));
         if (includedFields.Any()) includedFields.AsParallel().ForAll(_ => queryParams.Add(_.Key, _.Value));
         if (PageSize != null) queryParams.Add("page[count]", PageSize.Value.ToString());
         if (SortByDesc != null) queryParams.Add("sort", SortByDesc.Item2 ? $"-{SortByDesc.Item1}" : SortByDesc.Item1);
