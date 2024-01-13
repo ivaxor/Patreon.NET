@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: dotnet build ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-restore
     - name: Test
-      run: dotnet test ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
+      run: dotnet test ./IVAXOR.PatreonNET.UnitTests/IVAXOR.PatreonNET.UnitTests.csproj --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./Coverage/
     - name: Codacy
       uses: codacy/codacy-coverage-reporter-action@v1
       with:
