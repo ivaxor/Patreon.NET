@@ -1,5 +1,4 @@
-﻿using IVAXOR.PatreonNET.Exceptions;
-using IVAXOR.PatreonNET.Models.Resources.UsersV1;
+﻿using IVAXOR.PatreonNET.Models.Resources.UsersV1;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 
 namespace IVAXOR.PatreonNET.UnitTests.Services.API;

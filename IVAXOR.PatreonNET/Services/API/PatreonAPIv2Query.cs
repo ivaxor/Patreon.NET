@@ -98,15 +98,20 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField<TNonBaseAttributes>(Expression<Func<TNonBaseAttributes, object>> selector)
         where TNonBaseAttributes : IPatreonAttributes
     {
-        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(TNonBaseAttributes)];
-        var propertyInfo = selector.Body switch
+        var memberInfo = selector.Body switch
         {
             MemberExpression me => me.Member,
             UnaryExpression ue => ((MemberExpression)ue.Operand).Member,
             _ => throw new NotImplementedException()
         };
 
-        var fieldName = propertyInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
+        return IncludeField(memberInfo);
+    }
+
+    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(MemberInfo memberInfo)
+    {
+        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[memberInfo.DeclaringType];
+        var fieldName = memberInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
         return IncludeField(resourceName, fieldName);
     }
 
