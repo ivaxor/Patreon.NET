@@ -8,10 +8,10 @@
 .NET Standard 2.0 library for accessing [Patreon API](https://docs.patreon.com) on both V1 and V2.
 
 ## Library documentation
-- [Setup guide](./Documentation/Setup.md)
-- [Exceptions](./Documentation/Exceptions.md)
-- [V1 API code samples](./Documentation/V1.md)
-- [V2 API code samples](./Documentation/V2.md)
+- [Setup guide](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/Exceptions.md)
+- [Exceptions](hhttps://github.com/ivaxor/Patreon.NET/blob/master/Documentation/Exceptions.md)
+- [V1 API code samples](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/V1.md)
+- [V2 API code samples](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/V2.md)
 
 ## Tests
 Solution includes `IVAXOR.PatreonNET.IntegrationTests` project with integration tests to run live request to API. You can use them as examples or references to get familiar with library.

@@ -4,15 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
 	<LangVersion>12</LangVersion>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>0.0.4</Version>
+    <Title>Patreon.NET</Title>
+    <Description>.NET library for Patreon</Description>    
     <Authors>IVAXOR</Authors>
     <Company>IVAXOR</Company>
+    <Version>0.0.5</Version>
     <RepositoryUrl>https://github.com/ivaxor/Patreon.NET</RepositoryUrl>
     <PackageTags>patreon</PackageTags>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Description>.NET library for Patreon</Description>
-    <Title>Patreon.NET</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>    
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>    
   </PropertyGroup>
 	
   <ItemGroup>
