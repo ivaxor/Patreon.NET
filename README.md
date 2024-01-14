@@ -1,5 +1,5 @@
 # Patreon.NET
-[![GitHub build](https://img.shields.io/github/actions/workflow/status/ivaxor/Patreon.NET/dotnet.yml)](https://github.com/ivaxor/Patreon.NET)
+[![GitHub build](https://img.shields.io/github/actions/workflow/status/ivaxor/Patreon.NET/build_test_collect.yml)](https://github.com/ivaxor/Patreon.NET)
 [![Codacy grade](https://img.shields.io/codacy/grade/6f11ccec0a574668a3eacdfa47b87ea2)](https://app.codacy.com/gh/ivaxor/Patreon.NET/dashboard)
 [![Coveralls coverage](https://img.shields.io/coverallsCoverage/github/ivaxor/Patreon.NET)](https://coveralls.io/github/ivaxor/Patreon.NET)
 [![NuGet downloads](https://img.shields.io/nuget/dt/IVAXOR.PatreonNET?link=)](https://nuget.org/packages/IVAXOR.PatreonNET)
