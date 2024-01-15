@@ -11,6 +11,7 @@
 - [Setup guide](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/Setup.md)
 - [Exceptions](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/Exceptions.md)
 - [V1 API code samples](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/V1.md)
+- [V1 undocumented API code samples](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/V1U.md)
 - [V2 API code samples](https://github.com/ivaxor/Patreon.NET/blob/master/Documentation/V2.md)
 
 ## Tests

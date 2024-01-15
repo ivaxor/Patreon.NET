@@ -8,5 +8,8 @@ public abstract class PatreonResponseBase
     public PatreonIncludeData[]? Included { get; set; }
 
     [JsonPropertyName("links")]
-    public PatreonResponseLinks? Links { get; set; }
+    public PatreonLinks? Links { get; set; }
+
+    [JsonPropertyName("meta")]
+    public PatreonMeta? Meta { get; set; }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Relationships;
+namespace IVAXOR.PatreonNET.Models.Response.Relationships;
 
 public class PatreonRelationshipsData
 {

@@ -6,6 +6,11 @@ using System.Net.Http;
 using System.Text.Json;
 using IVAXOR.PatreonNET.Exceptions;
 using System.Text.Json.Serialization;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Web;
 
 namespace IVAXOR.PatreonNET.Services.API;
 
@@ -19,6 +24,8 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
     protected HttpClient HttpClient { get; }
     protected IPatreonTokenManager TokenManager { get; }
     protected JsonSerializerOptions JsonSerializerOptions { get; }
+
+    protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
 
     public PatreonAPIv1Query(
         string url,
@@ -46,9 +53,19 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
         JsonSerializerOptions = jsonSerializerOptions;
     }
 
+    public PatreonAPIv1Query<TResponse, TAttributes, TRelationships> Include(string topLevelInclude)
+    {
+        TopLevelIncludes.Add(topLevelInclude);
+        return this;
+    }
+
     public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Get, Url);
+        var urlBuilder = new UriBuilder(Url);
+        urlBuilder.Query = BuildQuery();
+        var url = urlBuilder.ToString();
+
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("Authorization", $"Bearer {TokenManager.AccessToken}");
 
         using var response = await HttpClient.SendAsync(request, cancellationToken);
@@ -56,5 +73,17 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
 
         var json = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<TResponse>(json, JsonSerializerOptions);
+    }
+
+    protected string BuildQuery()
+    {
+        var queryParams = HttpUtility.ParseQueryString(string.Empty);
+        if (TopLevelIncludes.Any()) queryParams.Add("include", string.Join(",", TopLevelIncludes));
+
+        var query = queryParams.ToString();
+        var decodedQuery = HttpUtility.UrlDecode(query);
+        var patreonEncodedQuery = decodedQuery.Replace("[", "%5B").Replace("]", "%5D");
+
+        return patreonEncodedQuery;
     }
 }

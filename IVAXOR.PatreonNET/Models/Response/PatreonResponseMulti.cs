@@ -1,4 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Response;
@@ -10,7 +11,4 @@ public class PatreonResponseMulti<TAttributes, TRelationships> : PatreonResponse
     [JsonRequired]
     [JsonPropertyName("data")]
     public PatreonData<TAttributes, TRelationships>[] Data { get; set; }
-
-    [JsonPropertyName("meta")]
-    public PatreonMeta? Meta { get; set; }
 }

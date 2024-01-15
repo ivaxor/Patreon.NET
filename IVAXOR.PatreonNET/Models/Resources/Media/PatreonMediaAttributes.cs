@@ -2,7 +2,7 @@
 using System;
 using IVAXOR.PatreonNET.Models.Response.Interfaces;
 
-namespace IVAXOR.PatreonNET.Models.Resources;
+namespace IVAXOR.PatreonNET.Models.Resources.Media;
 
 /// <summary>
 /// A file uploaded to patreon.com, usually an image.

@@ -2,10 +2,13 @@
 
 namespace IVAXOR.PatreonNET.Models.Response;
 
-public class PatreonResponseLinks
+public class PatreonLinks
 {
     [JsonPropertyName("self")]
     public string? Self { get; set; }
+
+    [JsonPropertyName("related")]
+    public string? Related { get; set; }
 
     [JsonPropertyName("first")]
     public string? First { get; set; }

@@ -13,6 +13,7 @@ using System.Threading;
 using IVAXOR.PatreonNET.Exceptions;
 using System.Text.Json.Serialization;
 using System.Web;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 
 namespace IVAXOR.PatreonNET.Services.API;
 

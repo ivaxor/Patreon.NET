@@ -5,8 +5,10 @@ using IVAXOR.PatreonNET.Constants;
 using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+using IVAXOR.PatreonNET.Models.Response;
 
-namespace IVAXOR.PatreonNET.Models.Response;
+namespace IVAXOR.PatreonNET.Converters;
 
 public class PatreonIncludeDataJsonConverter : JsonConverter<PatreonIncludeData>
 {

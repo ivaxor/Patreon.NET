@@ -1,4 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Response;

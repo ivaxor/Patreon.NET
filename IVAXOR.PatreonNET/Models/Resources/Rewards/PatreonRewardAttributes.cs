@@ -2,7 +2,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Resources;
+namespace IVAXOR.PatreonNET.Models.Resources.Rewards;
 
 public class PatreonRewardAttributes : IPatreonAttributes
 {

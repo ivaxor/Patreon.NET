@@ -1,4 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models.Relationships;
+﻿using IVAXOR.PatreonNET.Models.Response.Relationships;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.Benefits;

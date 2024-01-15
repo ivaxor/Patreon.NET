@@ -9,4 +9,7 @@ public class PatreonMeta
 
     [JsonPropertyName("count")]
     public int? Count { get; set; }
+
+    [JsonPropertyName("posts_count")]
+    public int? PostsCount { get; set; }
 }

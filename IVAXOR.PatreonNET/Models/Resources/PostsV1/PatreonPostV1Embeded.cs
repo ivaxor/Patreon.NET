@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Resources.PostsV2;
+namespace IVAXOR.PatreonNET.Models.Resources.PostsV1;
 
-public class PatreonEmbedData
+public class PatreonPostV1Embeded
 {
     [JsonPropertyName("description")]
     public string? Description { get; set; }
@@ -11,13 +11,13 @@ public class PatreonEmbedData
     public string? HTML { get; set; }
 
     [JsonPropertyName("product_variant_id")]
-    public string? ProductVariantId { get; set; }
+    public string? Product_variant_id { get; set; }
 
     [JsonPropertyName("provider")]
     public string? Provider { get; set; }
 
     [JsonPropertyName("provider_url")]
-    public string? ProviderUrl { get; set; }
+    public string? Provider_url { get; set; }
 
     [JsonPropertyName("subject")]
     public string? Subject { get; set; }

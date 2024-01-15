@@ -4,12 +4,37 @@ public static class PatreonTopLevelIncludes
 {
     public static class V1
     {
+        public static class CurrentUser
+        {
+            public static readonly string Campaign = "campaign";
+            public static readonly string Pledges = "pledges";
+        }
+
         public static class CurrentUserCampaigns
         {
-            public static readonly string Rewards = "rewards";
             public static readonly string Creator = "creator";
             public static readonly string Goals = "goals";
+            public static readonly string Rewards = "rewards";
             public static readonly string Pledges = "pledges";
+        }
+
+        public static class CampaignPledges
+        {
+            public static readonly string Address = "address";
+            public static readonly string Creator = "creator";
+            public static readonly string Patron = "patron";
+            public static readonly string Reward = "reward";
+        }
+
+        public static class CampaignPosts
+        {
+            public static readonly string Attachments = "attachments";
+            public static readonly string Campaign = "campaign";
+            public static readonly string ContentLocks = "content_locks";
+            public static readonly string Comments = "comments";
+            public static readonly string Likes = "likes";
+            public static readonly string User = "user";
+            public static readonly string UserDefinedTags = "user_defined_tags";
         }
     }
 

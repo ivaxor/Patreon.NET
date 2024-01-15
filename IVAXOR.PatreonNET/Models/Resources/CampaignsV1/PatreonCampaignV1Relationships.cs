@@ -1,5 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Relationships;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Response.Relationships;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
@@ -17,6 +17,9 @@ public class PatreonCampaignV1Relationships : IPatreonRelationships
     /// </summary>
     [JsonPropertyName("goals")]
     public PatreonRelationshipsMulti? Goals { get; set; }
+
+    [JsonPropertyName("pledges")]
+    public PatreonRelationshipsMulti? Pledges { get; set; }
 
     /// <summary>
     /// The campaign's rewards.

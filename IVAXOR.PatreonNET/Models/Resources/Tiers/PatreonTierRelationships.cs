@@ -1,6 +1,7 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.Benefits;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
+using IVAXOR.PatreonNET.Models.Resources.Media;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.Tiers;
