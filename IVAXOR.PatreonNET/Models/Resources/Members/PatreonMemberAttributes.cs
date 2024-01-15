@@ -92,7 +92,7 @@ public class PatreonMemberAttributes : IPatreonAttributes
     public int? PledgeCadence { get; set; }
 
     /// <summary>
-    /// Datetime of beginning of most recent pledge chainfrom this member to the campaign.
+    /// Datetime of beginning of most recent pledge chain from this member to the campaign.
     /// Pledge updates do not change this value.
     /// </summary>
     [JsonPropertyName("pledge_relationship_start")]

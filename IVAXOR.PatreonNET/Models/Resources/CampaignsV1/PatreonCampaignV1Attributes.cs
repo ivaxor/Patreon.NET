@@ -112,7 +112,7 @@ public class PatreonCampaignV1Attributes : IPatreonAttributes
     public int? OutstandingPaymentAmountCents { get; set; }
 
     [JsonPropertyName("paid_member_count")]
-    public int? PaidMemberCcount { get; set; }
+    public int? PaidMemberCount { get; set; }
 
     /// <summary>
     /// Number of patrons pledging to this creator.

@@ -34,7 +34,7 @@ public class PatreonPostV1Attributes : IPatreonAttributes
     public DateTime? EditedAt { get; set; }
 
     [JsonPropertyName("embed")]
-    public PatreonPostV1Embeded? Embed { get; set; }
+    public PatreonPostV1Embed? Embed { get; set; }
 
     [JsonPropertyName("has_ti_violation")]
     public bool? HasTIViolation { get; set; }

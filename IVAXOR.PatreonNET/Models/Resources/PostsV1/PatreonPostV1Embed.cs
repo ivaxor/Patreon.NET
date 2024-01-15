@@ -2,7 +2,7 @@
 
 namespace IVAXOR.PatreonNET.Models.Resources.PostsV1;
 
-public class PatreonPostV1Embeded
+public class PatreonPostV1Embed
 {
     [JsonPropertyName("description")]
     public string? Description { get; set; }

@@ -63,7 +63,6 @@ public class WebhookIntegrationTests
         // Act
         var webhooks = await PatreonAPIv2.Webhooks()
             .Include("client")
-            //.IncludeAllFields<PatreonOAuthClientAttributes>()
             .ExecuteAsync();
 
         // Assert

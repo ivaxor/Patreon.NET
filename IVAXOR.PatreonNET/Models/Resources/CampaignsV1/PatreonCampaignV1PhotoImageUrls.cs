@@ -8,7 +8,7 @@ public class PatreonCampaignV1PhotoImageUrls
     public string? Default { get; set; }
 
     [JsonPropertyName("default_small")]
-    public string? DefaultSsmall { get; set; }
+    public string? DefaultSmall { get; set; }
 
     [JsonPropertyName("original")]
     public string? Original { get; set; }

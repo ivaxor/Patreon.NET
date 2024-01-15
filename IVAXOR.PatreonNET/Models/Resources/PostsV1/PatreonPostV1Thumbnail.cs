@@ -11,7 +11,7 @@ public class PatreonPostV1Thumbnail
     public string? Large { get; set; }
 
     [JsonPropertyName("large_2")]
-    public string? Large_2 { get; set; }
+    public string? Large2 { get; set; }
 
     [JsonPropertyName("square")]
     public string? Square { get; set; }

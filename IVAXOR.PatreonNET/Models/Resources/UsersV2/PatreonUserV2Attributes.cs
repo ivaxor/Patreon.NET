@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Resources.Users;
+using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using System;
 using System.Text.Json.Serialization;
 
@@ -78,7 +79,7 @@ public class PatreonUserV2Attributes : IPatreonAttributes
     /// Mapping from user's connected app names to external user id on the respective app.
     /// </summary>
     [JsonPropertyName("social_connections")]
-    public PatreonUserV2SocialConnections? SocialConnections { get; set; }
+    public PatreonUserSocialConnections? SocialConnections { get; set; }
 
     /// <summary>
     /// The user's profile picture URL, scaled to a square of size 100x100px.

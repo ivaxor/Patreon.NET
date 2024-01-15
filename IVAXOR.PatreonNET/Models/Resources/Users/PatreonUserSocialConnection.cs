@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Resources.UsersV1;
+namespace IVAXOR.PatreonNET.Models.Resources.Users;
 
-public class PatreonUserV1SocialConnection
+public class PatreonUserSocialConnection
 {
     [JsonPropertyName("scopes")]
     public string[]? Scopes { get; set; }

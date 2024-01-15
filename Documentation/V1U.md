@@ -16,7 +16,8 @@ var patreonAPIv1 = new PatreonAPIv1(httpClient, tokenManager);
 
 ## Campaign posts including comments, likes and other
 ```csharp
-var campaignPosts = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId)
+var campaignId = 0;
+var campaignPosts = await PatreonAPIv1.CampaignPosts(campaignId)
   .Include(PatreonTopLevelIncludes.V1.CampaignPosts.Attachments)
   .Include(PatreonTopLevelIncludes.V1.CampaignPosts.Campaign)
   .Include(PatreonTopLevelIncludes.V1.CampaignPosts.ContentLocks)
