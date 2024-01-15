@@ -64,7 +64,7 @@ public class PatreonPostV1Attributes : IPatreonAttributes
     public string? PledgeUrl { get; set; }
 
     [JsonPropertyName("post_file")]
-    public object? PostFile { get; set; }
+    public PatreonPostV1File? PostFile { get; set; }
 
     [JsonPropertyName("post_level_suspension_removal_date")]
     public DateTime? PostLevelSuspensionRemovalDate { get; set; }
@@ -97,7 +97,7 @@ public class PatreonPostV1Attributes : IPatreonAttributes
     public string? Url { get; set; }
 
     [JsonPropertyName("video_preview")]
-    public object? VideoPreview { get; set; }
+    public PatreonPostV1File? VideoPreview { get; set; }
 
     [JsonPropertyName("was_posted_by_campaign_owner")]
     public bool? WasPostedByCampaignOwner { get; set; }

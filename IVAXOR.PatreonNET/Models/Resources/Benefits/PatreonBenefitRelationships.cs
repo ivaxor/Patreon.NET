@@ -1,9 +1,10 @@
 ﻿using IVAXOR.PatreonNET.Models.Response.Relationships;
+using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.Benefits;
 
-public class PatreonBenefitRelationships
+public class PatreonBenefitRelationships : IPatreonRelationships
 {
     [JsonPropertyName("campaign")]
     public PatreonRelationshipsSingle? Campaign { get; set; }

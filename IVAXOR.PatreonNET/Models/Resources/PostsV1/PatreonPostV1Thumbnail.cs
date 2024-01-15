@@ -4,6 +4,9 @@ namespace IVAXOR.PatreonNET.Models.Resources.PostsV1;
 
 public class PatreonPostV1Thumbnail
 {
+    [JsonPropertyName("height")]
+    public int? Height { get; set; }
+
     [JsonPropertyName("large")]
     public string? Large { get; set; }
 
@@ -15,4 +18,7 @@ public class PatreonPostV1Thumbnail
 
     [JsonPropertyName("url")]
     public string? Url { get; set; }
+
+    [JsonPropertyName("width")]
+    public int? Width { get; set; }
 }

@@ -21,10 +21,8 @@ public class PatreonCampaignV1Attributes : IPatreonAttributes
     [JsonPropertyName("cover_photo_url")]
     public string? CoverPhotoUrl { get; set; }
 
-    // TODO: Investigate schema
-    [JsonIgnore]
     [JsonPropertyName("cover_photo_url_sizes")]
-    public object CoverPhotUrlSizes { get; set; }
+    public PatreonCampaignV1CoverPhotoUrlSizes? CoverPhotoUrlSizes { get; set; }
 
     /// <summary>
     /// Datetime that the creator first began the campaign creation process.
