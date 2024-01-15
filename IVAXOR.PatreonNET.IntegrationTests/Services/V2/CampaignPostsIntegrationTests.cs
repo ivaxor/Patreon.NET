@@ -1,4 +1,6 @@
-﻿namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
+﻿using IVAXOR.PatreonNET.Models.Resources.PostsV2;
+
+namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
 [TestClass]
 public class CampaignPostsIntegrationTests
@@ -20,7 +22,7 @@ public class CampaignPostsIntegrationTests
         var campaignPosts = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == "post"));
+        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)]));
     }
 
     [TestMethod]
@@ -42,7 +44,7 @@ public class CampaignPostsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == "post"));
+        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)]));
     }
 
     [TestMethod]
@@ -54,6 +56,6 @@ public class CampaignPostsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == "post"));
+        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)]));
     }
 }

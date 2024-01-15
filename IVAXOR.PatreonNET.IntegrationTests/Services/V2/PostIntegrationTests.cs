@@ -1,4 +1,6 @@
-﻿namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
+﻿using IVAXOR.PatreonNET.Models.Resources.PostsV2;
+
+namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
 [TestClass]
 public class PostIntegrationTests
@@ -20,7 +22,7 @@ public class PostIntegrationTests
         var post = await PatreonAPIv2.Post(AppSettingsProvider.PostId).ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("post", post.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], post.Data.Type);
         Assert.IsNotNull(post.Data.Id);
         Assert.IsNotNull(post.Links.Self);
     }
@@ -43,7 +45,7 @@ public class PostIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("post", post.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], post.Data.Type);
         Assert.IsNotNull(post.Data.Id);
         Assert.IsNotNull(post.Links.Self);
     }
@@ -57,7 +59,7 @@ public class PostIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("post", post.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], post.Data.Type);
         Assert.IsNotNull(post.Data.Id);
         Assert.IsNotNull(post.Links.Self);
     }

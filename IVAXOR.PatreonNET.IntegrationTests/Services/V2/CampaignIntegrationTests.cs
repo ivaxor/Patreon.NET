@@ -1,4 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.Benefits;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
@@ -25,7 +26,7 @@ public class CampaignIntegrationTests
         var campaign = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId).ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }
@@ -65,7 +66,7 @@ public class CampaignIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }
@@ -79,7 +80,7 @@ public class CampaignIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }
@@ -94,7 +95,7 @@ public class CampaignIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }
@@ -109,7 +110,7 @@ public class CampaignIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }
@@ -124,7 +125,7 @@ public class CampaignIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }
@@ -139,7 +140,7 @@ public class CampaignIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("campaign", campaign.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], campaign.Data.Type);
         Assert.IsNotNull(campaign.Data.Id);
         Assert.IsNotNull(campaign.Links.Self);
     }

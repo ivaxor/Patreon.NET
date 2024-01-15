@@ -1,4 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Webhooks;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -22,7 +23,7 @@ public class WebhookIntegrationTests
         var webhooks = await PatreonAPIv2.Webhooks().ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == "webhook"));
+        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     [TestMethod]
@@ -39,7 +40,7 @@ public class WebhookIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == "webhook"));
+        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     [TestMethod]
@@ -51,7 +52,7 @@ public class WebhookIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == "webhook"));
+        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     /// <summary>
@@ -62,11 +63,11 @@ public class WebhookIntegrationTests
     {
         // Act
         var webhooks = await PatreonAPIv2.Webhooks()
-            .Include("client")
+            .Include(PatreonTopLevelIncludes.V2.Webhooks.Client)
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == "webhook"));
+        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     [TestMethod]
@@ -74,11 +75,11 @@ public class WebhookIntegrationTests
     {
         // Act
         var webhooks = await PatreonAPIv2.Webhooks()
-            .Include("campaign")
+            .Include(PatreonTopLevelIncludes.V2.Webhooks.Campaign)
             .IncludeAllFields<PatreonCampaignV2Attributes>()
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == "webhook"));
+        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 }

@@ -1,5 +1,6 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.Addresses;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 
@@ -25,7 +26,7 @@ public class MemberIntegrationTests
         var member = await PatreonAPIv2.Member(AppSettingsProvider.MemberId).ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }
@@ -52,7 +53,7 @@ public class MemberIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }
@@ -66,7 +67,7 @@ public class MemberIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }
@@ -81,7 +82,7 @@ public class MemberIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }
@@ -96,7 +97,7 @@ public class MemberIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }
@@ -111,7 +112,7 @@ public class MemberIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }
@@ -126,7 +127,7 @@ public class MemberIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("member", member.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonMemberAttributes)], member.Data.Type);
         Assert.IsNotNull(member.Data.Id);
         Assert.IsNotNull(member.Links.Self);
     }

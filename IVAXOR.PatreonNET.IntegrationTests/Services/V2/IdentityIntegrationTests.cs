@@ -1,5 +1,6 @@
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
+using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -23,7 +24,7 @@ public class IdentityIntegrationTests
         var identity = await PatreonAPIv2.Identity().ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("user", identity.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
         Assert.IsNotNull(identity.Data.Id);
         Assert.IsNotNull(identity.Links.Self);
     }
@@ -47,7 +48,7 @@ public class IdentityIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("user", identity.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
         Assert.IsNotNull(identity.Data.Id);
         Assert.IsNotNull(identity.Data.Attributes.Created);
         Assert.IsNotNull(identity.Data.Attributes.Email);
@@ -65,7 +66,7 @@ public class IdentityIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("user", identity.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
         Assert.IsNotNull(identity.Data.Id);
         Assert.IsNotNull(identity.Data.Attributes.Created);
         Assert.IsNotNull(identity.Data.Attributes.Email);
@@ -110,7 +111,7 @@ public class IdentityIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("user", identity.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
         Assert.IsNotNull(identity.Data.Id);
         Assert.IsNotNull(identity.Links.Self);
     }
@@ -150,7 +151,7 @@ public class IdentityIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.AreEqual("user", identity.Data.Type);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
         Assert.IsNotNull(identity.Data.Id);
         Assert.IsNotNull(identity.Links.Self);
     }

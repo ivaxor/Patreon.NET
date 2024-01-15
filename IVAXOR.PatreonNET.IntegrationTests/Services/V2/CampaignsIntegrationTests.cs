@@ -1,4 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.Benefits;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
@@ -25,7 +26,7 @@ public class CampaignsIntegrationTests
         var campaigns = await PatreonAPIv2.Campaigns().ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 
     [TestMethod]
@@ -63,7 +64,7 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 
     [TestMethod]
@@ -75,7 +76,7 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 
     [TestMethod]
@@ -88,7 +89,7 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 
     [TestMethod]
@@ -101,7 +102,7 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 
     [TestMethod]
@@ -114,7 +115,7 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 
     [TestMethod]
@@ -127,6 +128,6 @@ public class CampaignsIntegrationTests
             .ExecuteAsync();
 
         // Assert
-        Assert.IsTrue(campaigns.Data.All(_ => _.Type == "campaign"));
+        Assert.IsTrue(campaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)]));
     }
 }
