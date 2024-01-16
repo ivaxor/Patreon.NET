@@ -34,7 +34,7 @@ public class PatreonResponseDataTypesTests
             .ToArray();
 
         // Assert
-        Assert.IsTrue(!invalidAttributes.Any(), "{0} do not implements {1} interface", invalidAttributes.FirstOrDefault()?.Name, interfaceType);
+        Assert.AreEqual(0, invalidAttributes.Length, "{0} do not implements {1} interface", invalidAttributes.FirstOrDefault()?.Name, interfaceType);
     }
 
     [TestMethod]
@@ -65,6 +65,6 @@ public class PatreonResponseDataTypesTests
             .ToArray();
 
         // Assert
-        Assert.IsTrue(!invalidRelationships.Any(), "{0} do not implements {1} interface", invalidRelationships.FirstOrDefault()?.Name, interfaceType);
+        Assert.AreEqual(0, invalidRelationships.Length, "{0} do not implements {1} interface", invalidRelationships.FirstOrDefault()?.Name, interfaceType);
     }
 }
