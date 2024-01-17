@@ -58,9 +58,17 @@ public static class PatreonTopLevelIncludes
 
         public static class Campaigns
         {
-            public static readonly string Tiers = "tiers";
-            public static readonly string Creator = "creator";
             public static readonly string Benefits = "benefits";
+            public static readonly string BenefitsTiers = "benefits.tiers";
+            public static readonly string BenefitsDeliverables = "benefits.deliverables";
+
+            public static readonly string Categories = "categories";
+            public static readonly string Creator = "creator";
+
+            public static readonly string Tiers = "tiers";
+            public static readonly string TiersBenefits = "tiers.benefits";
+            public static readonly string TiersImage = "tiers.tier_image";
+
             public static readonly string Goals = "goals";
         }
 

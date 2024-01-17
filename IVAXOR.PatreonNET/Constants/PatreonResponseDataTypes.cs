@@ -3,6 +3,7 @@ using IVAXOR.PatreonNET.Models.Resources.Attachments;
 using IVAXOR.PatreonNET.Models.Resources.Benefits;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Deliverables;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Likes;
 using IVAXOR.PatreonNET.Models.Resources.Members;
@@ -30,6 +31,7 @@ internal static class PatreonResponseDataTypes
         { "attachment", new[] { typeof(PatreonAttachmentAttributes) } },
         { "benefit", new[] { typeof(PatreonBenefitAttributes) } },
         { "campaign", new[] { typeof(PatreonCampaignV1Attributes), typeof(PatreonCampaignV2Attributes) } },
+        { "deliverable", new[] { typeof(PatreonDeliverableAttributes) } },
         { "goal", new[] { typeof(PatreonGoalAttributes) } },
         { "like", new[] { typeof(PatreonLikeAttributes) } },
         { "member", new[] { typeof(PatreonMemberAttributes) } },
@@ -48,6 +50,7 @@ internal static class PatreonResponseDataTypes
         { "attachment", new[] { typeof(PatreonAttachmentRelationships) } },
         { "benefit", new[] { typeof(PatreonBenefitRelationships) } },
         { "campaign", new[] { typeof(PatreonCampaignV1Relationships), typeof(PatreonCampaignV2Relationships) } },
+        { "deliverable", new[] { typeof(PatreonDeliverableRelationships) } },
         { "goal", new[] { typeof(PatreonGoalRelationships) } },
         { "member", new[] { typeof(PatreonMemberRelationships) } },
         { "pledge", new[] { typeof(PatreonPledgeV1Relationships), typeof(PatreonPledgeEventV2Relationships) } },

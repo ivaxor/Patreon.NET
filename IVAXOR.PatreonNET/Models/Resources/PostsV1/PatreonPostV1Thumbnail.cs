@@ -13,6 +13,9 @@ public class PatreonPostV1Thumbnail
     [JsonPropertyName("large_2")]
     public string? Large2 { get; set; }
 
+    [JsonPropertyName("position")]
+    public double? Position { get; set; }
+
     [JsonPropertyName("square")]
     public string? Square { get; set; }
 

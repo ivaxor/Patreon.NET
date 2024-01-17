@@ -5,6 +5,9 @@ namespace IVAXOR.PatreonNET.Models.Resources.PostsV1;
 
 public class PatreonPostV1File
 {
+    [JsonPropertyName("default_thumbnail")]
+    public PatreonPostV1Thumbnail? DefaultThumbnail { get; set; }
+
     [JsonPropertyName("download_url")]
     public string? DownloadUrl { get; set; }
 
@@ -16,6 +19,9 @@ public class PatreonPostV1File
 
     [JsonPropertyName("expires_at")]
     public DateTime? ExpiresAt { get; set; }
+
+    [JsonPropertyName("full_content_duration")]
+    public double? FullContentDuration { get; set; }
 
     [JsonPropertyName("full_duration")]
     public double? FullDuration { get; set; }

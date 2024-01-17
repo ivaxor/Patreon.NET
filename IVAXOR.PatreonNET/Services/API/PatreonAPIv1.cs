@@ -46,9 +46,9 @@ public class PatreonAPIv1 : IPatreonAPIv1
     public PatreonAPIv1Query<PatreonRawResponseMulti<PatreonCampaignV1Attributes, PatreonCampaignV1Relationships>, PatreonCampaignV1Attributes, PatreonCampaignV1Relationships> CurrentUserCampaigns() =>
         new($"{Url}/oauth2/api/current_user/campaigns", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv1Query<PatreonRawResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships> CampaignPledges(int campaignId) =>
+    public PatreonAPIv1Query<PatreonRawResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships> CampaignPledges(string campaignId) =>
         new($"{Url}/oauth2/api/campaigns/{campaignId}/pledges", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv1Query<PatreonRawResponseMulti<PatreonPostV1Attributes, PatreonPostV1Relationships>, PatreonPostV1Attributes, PatreonPostV1Relationships> CampaignPosts(int campaignId) =>
+    public PatreonAPIv1Query<PatreonRawResponseMulti<PatreonPostV1Attributes, PatreonPostV1Relationships>, PatreonPostV1Attributes, PatreonPostV1Relationships> CampaignPosts(string campaignId) =>
         new($"{Url}/campaigns/{campaignId}/posts", HttpClient, TokenManager, JsonSerializerOptions);
 }

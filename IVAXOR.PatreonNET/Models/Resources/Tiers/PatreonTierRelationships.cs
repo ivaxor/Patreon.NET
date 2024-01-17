@@ -10,7 +10,7 @@ public class PatreonTierRelationships : IPatreonRelationships
     /// The benefits attached to the tier, which are used for generating deliverables.
     /// </summary>
     [JsonPropertyName("benefits")]
-    public PatreonRelationshipsMulti[]? Benefits { get; set; }
+    public PatreonRelationshipsMulti? Benefits { get; set; }
 
     /// <summary>
     /// The campaign the tier belongs to.
