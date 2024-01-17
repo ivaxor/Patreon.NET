@@ -1,10 +1,12 @@
 ﻿using IVAXOR.PatreonNET.Helpers;
 using IVAXOR.PatreonNET.Models.Resources.Benefits;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.Deliverables;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,23 +21,28 @@ public class PatreonCampaignsV2Response
         var campaigns = new List<PatreonCampaignV2Response>();
 
         var campaign = response.Data.Single().Attributes;
+        var benefits = new PatreonBenefitAttributes[0];
+        var benefitsDeliverables = new Tuple<PatreonBenefitAttributes, PatreonDeliverableAttributes[]>[0];
+        PatreonUserV2Attributes? creator = null;
+        var tiers = new PatreonTierAttributes[0];
+        var tiersBenefits = new Tuple<PatreonTierAttributes, PatreonBenefitAttributes[]>[0];
+        var goals = new PatreonGoalAttributes[0];
 
         var includeDataById = response.Included?.ToDictionary(_ => _.Id, _ => _);
         if (includeDataById != null)
         {
-            var benefits = PatreonSetResponseHelpers.ParseAllFromIncludeData<PatreonBenefitAttributes>(response.Included);
-            var benefitsDeliverables = PatreonSetResponseHelpers.ParseBenefitsDeliverables(includeDataById, response.Included);
+            benefits = PatreonSetResponseHelpers.ParseAllFromIncludeData<PatreonBenefitAttributes>(response.Included);
+            benefitsDeliverables = PatreonSetResponseHelpers.ParseBenefitsDeliverables(includeDataById, response.Included);
 
-            var creator = PatreonSetResponseHelpers.ParseSingleFromIncludeData<PatreonUserV2Attributes>(response.Included);
+            creator = PatreonSetResponseHelpers.ParseSingleFromIncludeData<PatreonUserV2Attributes>(response.Included);
 
-            var tiers = PatreonSetResponseHelpers.ParseAllFromIncludeData<PatreonTierAttributes>(response.Included);
-            var tiersBenefits = PatreonSetResponseHelpers.ParseTiersBenefits(includeDataById, response.Included);
+            tiers = PatreonSetResponseHelpers.ParseAllFromIncludeData<PatreonTierAttributes>(response.Included);
+            tiersBenefits = PatreonSetResponseHelpers.ParseTiersBenefits(includeDataById, response.Included);
 
-            var goals = PatreonSetResponseHelpers.ParseAllFromIncludeData<PatreonGoalAttributes>(response.Included);
-
-            campaigns.Add(new(campaign, benefits, benefitsDeliverables, creator, tiers, tiersBenefits, goals));
+            goals = PatreonSetResponseHelpers.ParseAllFromIncludeData<PatreonGoalAttributes>(response.Included);
         }
-        else campaigns.Add(new(campaign, null, null, null, null, null, null));
+
+        campaigns.Add(new(campaign, benefits, benefitsDeliverables, creator, tiers, tiersBenefits, goals));
 
         Campaigns = campaigns.ToArray();
     }
