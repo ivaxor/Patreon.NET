@@ -1,5 +1,5 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.Users;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
 using System;
 using System.Text.Json.Serialization;
 

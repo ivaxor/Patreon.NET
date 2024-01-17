@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Resources.PostsV2;
+﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
+using IVAXOR.PatreonNET.Models.Resources.PostsV2;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -10,7 +11,7 @@ public class PostIntegrationTests
     public PostIntegrationTests()
     {
         var httpClient = new HttpClient();
-        var tokenManager = new PatreonStubTokenManager();
+        var tokenManager = new PatreonAppSettingsTokenManager();
 
         PatreonAPIv2 = new(httpClient, tokenManager);
     }

@@ -1,4 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.PostTags;

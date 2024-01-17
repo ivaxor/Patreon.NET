@@ -1,5 +1,4 @@
 ﻿using IVAXOR.PatreonNET.Constants;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,8 @@ using System.Threading;
 using IVAXOR.PatreonNET.Exceptions;
 using System.Text.Json.Serialization;
 using System.Web;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 
 namespace IVAXOR.PatreonNET.Services.API;
 

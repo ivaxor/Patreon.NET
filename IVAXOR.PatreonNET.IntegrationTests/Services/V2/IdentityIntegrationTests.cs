@@ -1,3 +1,4 @@
+using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
@@ -12,7 +13,7 @@ public class IdentityIntegrationTests
     public IdentityIntegrationTests()
     {
         var httpClient = new HttpClient();
-        var tokenManager = new PatreonStubTokenManager();
+        var tokenManager = new PatreonAppSettingsTokenManager();
 
         PatreonAPIv2 = new(httpClient, tokenManager);
     }

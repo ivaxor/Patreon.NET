@@ -1,5 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 
 namespace IVAXOR.PatreonNET.UnitTests.Constants;
 

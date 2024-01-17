@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Resources.Addresses;
+﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
+using IVAXOR.PatreonNET.Models.Resources.Addresses;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
@@ -14,7 +15,7 @@ public class MemberIntegrationTests
     public MemberIntegrationTests()
     {
         var httpClient = new HttpClient();
-        var tokenManager = new PatreonStubTokenManager();
+        var tokenManager = new PatreonAppSettingsTokenManager();
 
         PatreonAPIv2 = new(httpClient, tokenManager);
     }

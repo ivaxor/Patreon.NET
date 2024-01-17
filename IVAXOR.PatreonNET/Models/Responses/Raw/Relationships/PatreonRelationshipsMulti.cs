@@ -1,11 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Response;
+namespace IVAXOR.PatreonNET.Models.Responses.Raw.Relationships;
 
-public abstract class PatreonResponseBase
+public class PatreonRelationshipsMulti
 {
-    [JsonPropertyName("included")]
-    public PatreonIncludeData[]? Included { get; set; }
+    [JsonPropertyName("data")]
+    public PatreonRelationshipsData[]? Data { get; set; }
 
     [JsonPropertyName("links")]
     public PatreonLinks? Links { get; set; }

@@ -1,16 +1,16 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Threading;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
 using System.Text.Json;
 using IVAXOR.PatreonNET.Exceptions;
 using System.Text.Json.Serialization;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Web;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 
 namespace IVAXOR.PatreonNET.Services.API;
 

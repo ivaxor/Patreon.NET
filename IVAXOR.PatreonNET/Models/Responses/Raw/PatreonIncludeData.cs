@@ -1,9 +1,9 @@
 ﻿using IVAXOR.PatreonNET.Converters;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Response;
+namespace IVAXOR.PatreonNET.Models.Responses.Raw;
 
 [JsonConverter(typeof(PatreonIncludeDataJsonConverter))]
 public class PatreonIncludeData

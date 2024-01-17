@@ -3,7 +3,7 @@ using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.PostsV2;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Resources.Webhooks;
-using IVAXOR.PatreonNET.Models.Response;
+using IVAXOR.PatreonNET.Models.Responses.Raw;
 using IVAXOR.PatreonNET.Services.API.Interfaces;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
@@ -42,27 +42,27 @@ public class PatreonAPIv2 : IPatreonAPIv2
         JsonSerializerOptions = jsonSerializerOptions;
     }
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> Identity() =>
+    public PatreonAPIv2Query<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> Identity() =>
         new($"{Url}/identity", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaigns() =>
+    public PatreonAPIv2Query<PatreonRawResponseMulti<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaigns() =>
         new($"{Url}/campaigns", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaign(int campaignId) =>
+    public PatreonAPIv2Query<PatreonRawResponseSingle<PatreonCampaignV2Attributes, PatreonCampaignV2Relationships>, PatreonCampaignV2Attributes, PatreonCampaignV2Relationships> Campaign(int campaignId) =>
        new($"{Url}/campaigns/{campaignId}", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseMulti<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> CampaignMembers(int campaignId) =>
+    public PatreonAPIv2Query<PatreonRawResponseMulti<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> CampaignMembers(int campaignId) =>
         new($"{Url}/campaigns/{campaignId}/members", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> Member(string memberId) =>
+    public PatreonAPIv2Query<PatreonRawResponseSingle<PatreonMemberAttributes, PatreonMemberRelationships>, PatreonMemberAttributes, PatreonMemberRelationships> Member(string memberId) =>
         new($"{Url}/members/{memberId}", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> CampaignPosts(int campaignId) =>
+    public PatreonAPIv2Query<PatreonRawResponseMulti<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> CampaignPosts(int campaignId) =>
         new($"{Url}/campaigns/{campaignId}/posts", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseSingle<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> Post(int postId) =>
+    public PatreonAPIv2Query<PatreonRawResponseSingle<PatreonPostV2Attributes, PatreonPostV2Relationships>, PatreonPostV2Attributes, PatreonPostV2Relationships> Post(int postId) =>
         new($"{Url}/posts/{postId}", HttpClient, TokenManager, JsonSerializerOptions);
 
-    public PatreonAPIv2Query<PatreonResponseMulti<PatreonWebhookAttributes, PatreonWebhookRelationships>, PatreonWebhookAttributes, PatreonWebhookRelationships> Webhooks() =>
+    public PatreonAPIv2Query<PatreonRawResponseMulti<PatreonWebhookAttributes, PatreonWebhookRelationships>, PatreonWebhookAttributes, PatreonWebhookRelationships> Webhooks() =>
         new($"{Url}/webhooks", HttpClient, TokenManager, JsonSerializerOptions);
 }

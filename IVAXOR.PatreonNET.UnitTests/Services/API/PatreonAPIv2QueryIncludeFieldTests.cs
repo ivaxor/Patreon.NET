@@ -1,11 +1,12 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Responses.Raw;
 
 namespace IVAXOR.PatreonNET.UnitTests.Services.API;
 
 [TestClass]
 public class PatreonAPIv2QueryIncludeFieldTests
 {
-    protected PatreonAPIv2Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIv2Query => new("https://patreon.com", HttpClient, PatreonTokenManager);
+    protected PatreonAPIv2Query<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIv2Query => new("https://patreon.com", HttpClient, PatreonTokenManager);
 
     protected HttpClient HttpClient => new(HttpMessageHandlerMock.Object);
     protected Mock<HttpMessageHandler> HttpMessageHandlerMock { get; } = new();

@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace IVAXOR.PatreonNET.Models;
+﻿namespace IVAXOR.PatreonNET.IntegrationTests.Stubs.Models;
 
 public class PatreonClientTokens
 {

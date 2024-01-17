@@ -1,4 +1,4 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.Attachments;
@@ -11,4 +11,3 @@ public class PatreonAttachmentAttributes : IPatreonAttributes
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 }
-

@@ -1,13 +1,14 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.UsersV1;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Responses.Raw;
 
 namespace IVAXOR.PatreonNET.UnitTests.Services.API;
 
 [TestClass]
 public class PatreonAPIQueryJsonSerializerOptionsTests
 {
-    protected PatreonAPIv1Query<PatreonResponseSingle<PatreonUserV1Attributes, PatreonUserV1Relationships>, PatreonUserV1Attributes, PatreonUserV1Relationships> PatreonAPIv1Query => new("https://patreon.com", HttpClient, PatreonTokenManager, JsonSerializerOptions);
-    protected PatreonAPIv2Query<PatreonResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIv2Query => new("https://patreon.com", HttpClient, PatreonTokenManager, JsonSerializerOptions);
+    protected PatreonAPIv1Query<PatreonRawResponseSingle<PatreonUserV1Attributes, PatreonUserV1Relationships>, PatreonUserV1Attributes, PatreonUserV1Relationships> PatreonAPIv1Query => new("https://patreon.com", HttpClient, PatreonTokenManager, JsonSerializerOptions);
+    protected PatreonAPIv2Query<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIv2Query => new("https://patreon.com", HttpClient, PatreonTokenManager, JsonSerializerOptions);
 
     protected HttpClient HttpClient => new(HttpMessageHandlerMock.Object);
     protected Mock<HttpMessageHandler> HttpMessageHandlerMock { get; } = new();

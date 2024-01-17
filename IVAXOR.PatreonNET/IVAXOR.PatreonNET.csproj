@@ -24,4 +24,9 @@
     <PackageReference Include="System.Text.Json" Version="8.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Models\Responses\Combined\" />
+  </ItemGroup>
+
 </Project>

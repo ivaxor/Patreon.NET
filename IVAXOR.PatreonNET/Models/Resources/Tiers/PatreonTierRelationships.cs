@@ -1,7 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Resources.Benefits;
-using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
-using IVAXOR.PatreonNET.Models.Resources.Media;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Models.Resources.Tiers;
@@ -12,17 +10,17 @@ public class PatreonTierRelationships : IPatreonRelationships
     /// The benefits attached to the tier, which are used for generating deliverables.
     /// </summary>
     [JsonPropertyName("benefits")]
-    public PatreonBenefitAttributes[]? Benefits { get; set; }
+    public PatreonRelationshipsMulti[]? Benefits { get; set; }
 
     /// <summary>
     /// The campaign the tier belongs to.
     /// </summary>
     [JsonPropertyName("campaign")]
-    public PatreonCampaignV1Attributes? Campaign { get; set; }
+    public PatreonRelationshipsSingle? Campaign { get; set; }
 
     /// <summary>
     /// The image file associated with the tier.
     /// </summary>
     [JsonPropertyName("tier_image")]
-    public PatreonMediaAttributes? TierImage { get; set; }
+    public PatreonRelationshipsSingle? TierImage { get; set; }
 }

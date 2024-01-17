@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Response;
+namespace IVAXOR.PatreonNET.Models.Responses.Raw;
 
 public class PatreonLinks
 {

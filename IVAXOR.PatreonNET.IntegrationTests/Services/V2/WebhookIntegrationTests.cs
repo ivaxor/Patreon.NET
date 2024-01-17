@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Webhooks;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
@@ -11,7 +12,7 @@ public class WebhookIntegrationTests
     public WebhookIntegrationTests()
     {
         var httpClient = new HttpClient();
-        var tokenManager = new PatreonStubTokenManager();
+        var tokenManager = new PatreonAppSettingsTokenManager();
 
         PatreonAPIv2 = new(httpClient, tokenManager);
     }

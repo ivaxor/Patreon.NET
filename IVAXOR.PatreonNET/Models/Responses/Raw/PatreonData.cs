@@ -1,8 +1,8 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Response;
+namespace IVAXOR.PatreonNET.Models.Responses.Raw;
 
 public class PatreonData<TAttributes, TRelationships>
     where TAttributes : IPatreonAttributes

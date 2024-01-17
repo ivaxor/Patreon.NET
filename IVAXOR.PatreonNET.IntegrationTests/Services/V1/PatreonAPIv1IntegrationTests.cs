@@ -1,7 +1,9 @@
+using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV1;
 using IVAXOR.PatreonNET.Models.Resources.PledgeV1;
 using IVAXOR.PatreonNET.Models.Resources.PostsV1;
 using IVAXOR.PatreonNET.Models.Resources.UsersV1;
+using IVAXOR.PatreonNET.Models.Responses.Raw;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V1;
@@ -16,7 +18,7 @@ public class PatreonAPIv1IntegrationTests
     public PatreonAPIv1IntegrationTests()
     {
         HttpClient = new HttpClient();
-        TokenManager = new PatreonStubTokenManager();
+        TokenManager = new PatreonAppSettingsTokenManager();
 
         PatreonAPIv1 = new(HttpClient, TokenManager);
     }
@@ -107,7 +109,7 @@ public class PatreonAPIv1IntegrationTests
     {
         // Arrange
         var url = $"https://patreon.com/api/oauth2/api/campaigns/{AppSettingsProvider.CampaignId}/pledges?page%5Bcount%5D=10&sort=created&page%5Bcursor%5D=2017-08-21T20%3A16%3A49.258893%2B00%3A00";
-        var query = new PatreonAPIv1Query<PatreonResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>(url, HttpClient, TokenManager);
+        var query = new PatreonAPIv1Query<PatreonRawResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>(url, HttpClient, TokenManager);
 
         // Act
         var campaignPledges = await query.ExecuteAsync();

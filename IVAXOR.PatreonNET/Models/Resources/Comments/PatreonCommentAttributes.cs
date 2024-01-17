@@ -1,8 +1,8 @@
-﻿using IVAXOR.PatreonNET.Models.Response.Interfaces;
+﻿using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
 using System;
 using System.Text.Json.Serialization;
 
-namespace IVAXOR.PatreonNET.Models.Resources.Addresses;
+namespace IVAXOR.PatreonNET.Models.Resources.Comments;
 
 public class PatreonCommentAttributes : IPatreonAttributes
 {

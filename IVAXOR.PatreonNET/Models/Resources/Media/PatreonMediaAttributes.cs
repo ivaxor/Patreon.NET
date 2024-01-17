@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
 
 namespace IVAXOR.PatreonNET.Models.Resources.Media;
 

@@ -8,7 +8,6 @@ global using System.Text.RegularExpressions;
 global using System.Linq.Expressions;
 global using System.Reflection;
 global using IVAXOR.PatreonNET.Constants;
-global using IVAXOR.PatreonNET.Models.Response;
 global using IVAXOR.PatreonNET.Exceptions;
 global using IVAXOR.PatreonNET.Services.API;
 global using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;

@@ -2,11 +2,11 @@
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using IVAXOR.PatreonNET.Constants;
-using IVAXOR.PatreonNET.Models.Response.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using IVAXOR.PatreonNET.Models.Response.Relationships.Interfaces;
-using IVAXOR.PatreonNET.Models.Response;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
+using IVAXOR.PatreonNET.Models.Responses.Raw;
+using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 
 namespace IVAXOR.PatreonNET.Converters;
 
