@@ -1,5 +1,7 @@
 ﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
-using IVAXOR.PatreonNET.Models.Resources.PostsV2;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Responses.Sets;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -20,17 +22,18 @@ public class CampaignPostsIntegrationTests
     public async Task CampaignPosts()
     {
         // Act
-        var campaignPosts = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var campaignPosts = new PatreonCampaignPostsV2Response(response);
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)]));
+        Assert.IsTrue(campaignPosts.Posts.Any());
     }
 
     [TestMethod]
-    public async Task CampaignPosts_Full_IncludeField()
+    public async Task CampaignPosts_IncludeField()
     {
         // Act
-        var campaignPosts = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
+        var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
             .IncludeField(_ => _.AppId)
             .IncludeField(_ => _.AppStatus)
             .IncludeField(_ => _.Content)
@@ -43,20 +46,52 @@ public class CampaignPostsIntegrationTests
             .IncludeField(_ => _.Title)
             .IncludeField(_ => _.Url)
             .ExecuteAsync();
+        var campaignPosts = new PatreonCampaignPostsV2Response(response);
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)]));
+        Assert.IsTrue(campaignPosts.Posts.Any());
     }
 
     [TestMethod]
-    public async Task CampaignPosts_Full_IncludeAllFields()
+    public async Task CampaignPosts_IncludeAllFields()
     {
         // Act
-        var campaignPosts = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
+        var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
             .IncludeAllFields()
             .ExecuteAsync();
+        var campaignPosts = new PatreonCampaignPostsV2Response(response);
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)]));
+        Assert.IsTrue(campaignPosts.Posts.Any());
+    }
+
+    [TestMethod]
+    public async Task CampaignPosts_WithCampaign()
+    {
+        // Act
+        var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
+            .Include(PatreonTopLevelIncludes.V2.CampaignPosts.Campaign)
+            .IncludeAllFields<PatreonCampaignV2Attributes>()            
+            .ExecuteAsync();
+        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+
+        // Assert
+        Assert.IsTrue(campaignPosts.Posts.Any());
+        Assert.IsTrue(campaignPosts.Posts.All(_ => _.Campaign != null));
+    }
+
+    [TestMethod]
+    public async Task CampaignPosts_WithUser()
+    {
+        // Act
+        var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
+            .Include(PatreonTopLevelIncludes.V2.CampaignPosts.User)
+            .IncludeAllFields<PatreonUserV2Attributes>()
+            .ExecuteAsync();
+        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+
+        // Assert
+        Assert.IsTrue(campaignPosts.Posts.Any());
+        Assert.IsTrue(campaignPosts.Posts.All(_ => _.User != null));
     }
 }

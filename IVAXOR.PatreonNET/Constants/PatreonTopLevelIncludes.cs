@@ -59,7 +59,6 @@ public static class PatreonTopLevelIncludes
         public static class Campaigns
         {
             public static readonly string Benefits = "benefits";
-            public static readonly string BenefitsTiers = "benefits.tiers";
             public static readonly string BenefitsDeliverables = "benefits.deliverables";
 
             public static readonly string Categories = "categories";
@@ -70,6 +69,12 @@ public static class PatreonTopLevelIncludes
             public static readonly string TiersImage = "tiers.tier_image";
 
             public static readonly string Goals = "goals";
+        }
+
+        public static class CampaignPosts
+        {
+            public static readonly string Campaign = "campaign";
+            public static readonly string User = "user";
         }
 
         public static class Members

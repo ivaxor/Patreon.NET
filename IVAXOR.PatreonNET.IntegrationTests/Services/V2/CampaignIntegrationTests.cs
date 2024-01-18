@@ -38,7 +38,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_Full_IncludeField()
+    public async Task Campaign_IncludeField()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -81,7 +81,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_Full_IncludeAllFields()
+    public async Task Campaign_IncludeAllFields()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -98,12 +98,11 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithBenefits_WithBenefitsTiers()
+    public async Task Campaign_WithBenefits()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V2.Campaigns.Benefits)
-            .Include(PatreonTopLevelIncludes.V2.Campaigns.BenefitsTiers)
             .IncludeAllFields<PatreonBenefitAttributes>()
             .ExecuteAsync();
         var campaign = new PatreonCampaignV2Response(response);
@@ -115,7 +114,6 @@ public class CampaignIntegrationTests
 
         Assert.IsNotNull(campaign.Campaign);
         Assert.IsTrue(campaign.Benefits.Any());
-        Assert.IsTrue(campaign.TiersBenefits.Any());
     }
 
     [TestMethod]
@@ -179,13 +177,57 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
+    public async Task Campaign_WithTiers()
+    {
+        // Act
+        var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
+            .Include(PatreonTopLevelIncludes.V2.Campaigns.Tiers)
+            .IncludeAllFields<PatreonTierAttributes>()
+            .ExecuteAsync();
+        var campaign = new PatreonCampaignV2Response(response);
+
+        // Assert
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.CampaignId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(campaign.Campaign);
+        Assert.IsTrue(campaign.Tiers.Any());
+    }
+
+    [TestMethod]
     public async Task Campaign_WithTiers_WithTiersBenefits()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V2.Campaigns.Tiers)
-            .Include(PatreonTopLevelIncludes.V2.Campaigns.TiersBenefits)
             .IncludeAllFields<PatreonTierAttributes>()
+            .Include(PatreonTopLevelIncludes.V2.Campaigns.TiersBenefits)
+            .IncludeAllFields<PatreonBenefitAttributes>()
+            .ExecuteAsync();
+        var campaign = new PatreonCampaignV2Response(response);
+
+        // Assert
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.CampaignId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(campaign.Campaign);
+        Assert.IsTrue(campaign.Tiers.Any());
+        Assert.IsTrue(campaign.TiersBenefits.Any());
+    }
+
+    [TestMethod]
+    public async Task Campaign_WithTiers_WithTiersBenefits_WithBenefitsDeliverables()
+    {
+        // Act
+        var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
+            .Include(PatreonTopLevelIncludes.V2.Campaigns.Tiers)
+            .IncludeAllFields<PatreonTierAttributes>()
+            .Include(PatreonTopLevelIncludes.V2.Campaigns.TiersBenefits)
+            .IncludeAllFields<PatreonBenefitAttributes>()
+            .Include(PatreonTopLevelIncludes.V2.Campaigns.BenefitsDeliverables)
+            .IncludeAllFields<PatreonDeliverableAttributes>()
             .ExecuteAsync();
         var campaign = new PatreonCampaignV2Response(response);
 
