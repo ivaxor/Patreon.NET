@@ -82,6 +82,7 @@ public static class PatreonTopLevelIncludes
             public static readonly string Address = "address";
             public static readonly string Campaign = "campaign";
             public static readonly string CurrentlyEntitledTiers = "currently_entitled_tiers";
+            public static readonly string PledgeHistory = "pledge_history";
             public static readonly string User = "user";
         }
 

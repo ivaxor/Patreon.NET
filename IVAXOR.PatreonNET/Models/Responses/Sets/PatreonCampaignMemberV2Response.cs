@@ -1,6 +1,7 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.Addresses;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
+using IVAXOR.PatreonNET.Models.Resources.PledgeEventsV2;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
@@ -15,7 +16,8 @@ public class PatreonCampaignMemberV2Response
 
     public PatreonAddressAttributes? Address { get; }
     public PatreonCampaignV2Attributes? Campaign { get; }
-    public PatreonTierAttributes[] Tiers { get; } = new PatreonTierAttributes[0];
+    public PatreonTierAttributes[] CurrentlyEntitledTiers { get; } = new PatreonTierAttributes[0];
+    public PatreonPledgeEventV2Attributes[] PledgeHistory { get; } = new PatreonPledgeEventV2Attributes[0];
     public PatreonUserV2Attributes? User { get; }
 
     public PatreonCampaignMemberV2Response(PatreonMemberAttributes attributes, PatreonMemberRelationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
@@ -28,8 +30,11 @@ public class PatreonCampaignMemberV2Response
         var campaignId = relationships?.Campaign?.Data?.Id;
         Campaign = campaignId == null ? null : (PatreonCampaignV2Attributes)includedData[campaignId].Attributes;
 
-        var tierIds = relationships?.CurrentlyEntitledTiers?.Data?.Select(_ => _.Id) ?? Enumerable.Empty<string>();
-        Tiers = tierIds.Select(_ => includedData[_].Attributes).Cast<PatreonTierAttributes>().ToArray();
+        var currentlyEntitledTiersIds = relationships?.CurrentlyEntitledTiers?.Data?.Select(_ => _.Id) ?? Enumerable.Empty<string>();
+        CurrentlyEntitledTiers = currentlyEntitledTiersIds.Select(_ => includedData[_].Attributes).Cast<PatreonTierAttributes>().ToArray();
+
+        var pledgeHistoryIds = relationships?.PledgeHistory?.Data?.Select(_ => _.Id) ?? Enumerable.Empty<string>();
+        PledgeHistory = pledgeHistoryIds.Select(_ => includedData[_].Attributes).Cast<PatreonPledgeEventV2Attributes>().ToArray();
 
         var userId = relationships?.User?.Data?.Id;
         User = userId == null ? null : (PatreonUserV2Attributes)includedData[userId].Attributes;

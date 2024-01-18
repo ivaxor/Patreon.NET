@@ -1,6 +1,7 @@
 using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
+using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
@@ -31,7 +32,7 @@ public class IdentityIntegrationTests
     }
 
     [TestMethod]
-    public async Task Identity_Full_IncludeField()
+    public async Task Identity_IncludeField()
     {
         // Act
         var identity = await PatreonAPIv2.Identity()
@@ -59,7 +60,7 @@ public class IdentityIntegrationTests
     }
 
     [TestMethod]
-    public async Task Identity_Full_IncludeAllFields()
+    public async Task Identity_IncludeAllFields()
     {
         // Act
         var identity = await PatreonAPIv2.Identity()
@@ -74,6 +75,46 @@ public class IdentityIntegrationTests
         Assert.IsNotNull(identity.Data.Attributes.SocialConnections);
         Assert.IsNotNull(identity.Data.Attributes.Url);
         Assert.IsNotNull(identity.Links.Self);
+    }
+
+    [TestMethod]
+    public async Task Identity_WithMemberships()
+    {
+        // Act
+        var identity = await PatreonAPIv2.Identity()
+            .Include(PatreonTopLevelIncludes.V2.Identity.Memberships)
+            .IncludeAllFields<PatreonMemberAttributes>()
+            .ExecuteAsync();
+
+        // Assert
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
+        Assert.IsNotNull(identity.Data.Id);
+        Assert.IsNotNull(identity.Links.Self);
+    }
+
+    /// <summary>
+    /// Patreon API bug
+    /// Throws 500 server internal error when some campaign fields are included
+    /// </summary>
+    [DataTestMethod]
+    [DataRow(nameof(PatreonCampaignV2Attributes.DiscordServerId))]
+    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksEmbed))]
+    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksMsg))]
+    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksVideoUrl))]
+    public async Task Identity_WithCampaign_Exception(string campaignPropertyName)
+    {
+        // Arrange
+        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)];
+        var fieldName = typeof(PatreonCampaignV2Attributes).GetProperty(campaignPropertyName).GetCustomAttribute<JsonPropertyNameAttribute>().Name;
+        var query = PatreonAPIv2.Identity()
+            .Include(PatreonTopLevelIncludes.V2.Identity.Campaign)
+            .IncludeField(resourceName, fieldName);
+
+        // Act
+        var exception = await Assert.ThrowsExceptionAsync<PatreonAPIException>(async () => await query.ExecuteAsync());
+
+        // Assert
+        Assert.AreEqual(500, exception.StatusCode);
     }
 
     [TestMethod]
@@ -115,45 +156,5 @@ public class IdentityIntegrationTests
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
         Assert.IsNotNull(identity.Data.Id);
         Assert.IsNotNull(identity.Links.Self);
-    }
-
-    /// <summary>
-    /// Patreon API bug
-    /// Throws 500 server internal error when some campaign fields are included
-    /// </summary>
-    [DataTestMethod]
-    [DataRow(nameof(PatreonCampaignV2Attributes.DiscordServerId))]
-    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksEmbed))]
-    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksMsg))]
-    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksVideoUrl))]
-    public async Task Identity_WithCampaign_Exception(string campaignPropertyName)
-    {
-        // Arrange
-        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)];
-        var fieldName = typeof(PatreonCampaignV2Attributes).GetProperty(campaignPropertyName).GetCustomAttribute<JsonPropertyNameAttribute>().Name;
-        var query = PatreonAPIv2.Identity()
-            .Include(PatreonTopLevelIncludes.V2.Identity.Campaign)
-            .IncludeField(resourceName, fieldName);
-
-        // Act
-        var exception = await Assert.ThrowsExceptionAsync<PatreonAPIException>(async () => await query.ExecuteAsync());
-
-        // Assert
-        Assert.AreEqual(500, exception.StatusCode);
-    }
-
-    [TestMethod]
-    public async Task Identity_WithFullMemberships()
-    {
-        // Act
-        var identity = await PatreonAPIv2.Identity()
-            .Include(PatreonTopLevelIncludes.V2.Identity.Memberships)
-            .IncludeAllFields<PatreonMemberAttributes>()
-            .ExecuteAsync();
-
-        // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
-        Assert.IsNotNull(identity.Data.Id);
-        Assert.IsNotNull(identity.Links.Self);
-    }
+    }    
 }

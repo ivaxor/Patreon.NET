@@ -1,6 +1,7 @@
 ﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.Addresses;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+using IVAXOR.PatreonNET.Models.Resources.PledgeEventsV2;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Responses.Sets;
@@ -32,7 +33,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_Full_IncludeField()
+    public async Task CampaignMembers_IncludeField()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -58,7 +59,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_Full_IncludeAllFields()
+    public async Task CampaignMembers_IncludeAllFields()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -111,6 +112,22 @@ public class CampaignMembersIntegrationTests
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
+        Assert.IsTrue(campaignMembers.Members.All(_ => _.CurrentlyEntitledTiers != null));
+    }
+
+    [TestMethod]
+    public async Task CampaignMembers_WithPledgeHistory()
+    {
+        // Act
+        var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
+            .Include(PatreonTopLevelIncludes.V2.Members.PledgeHistory)
+            .IncludeAllFields<PatreonPledgeEventV2Attributes>()
+            .ExecuteAsync();
+        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+
+        // Assert
+        Assert.IsTrue(campaignMembers.Members.Any());
+        Assert.IsTrue(campaignMembers.Members.All(_ => _.PledgeHistory != null));
     }
 
     [TestMethod]
