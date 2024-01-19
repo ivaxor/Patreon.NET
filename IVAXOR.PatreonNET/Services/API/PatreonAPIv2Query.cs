@@ -26,7 +26,7 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
 
     protected HttpClient HttpClient { get; }
     protected IPatreonTokenManager TokenManager { get; }
-    protected JsonSerializerOptions JsonSerializerOptions { get; }
+    protected JsonSerializerOptions JsonSerializerOptions { get; } = PatreonJsonConstants.DefaultJsonSerializerOptions;
 
     protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
     protected Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; } = new();
@@ -42,10 +42,6 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         Url = url;
         HttpClient = httpClient;
         TokenManager = tokenManager;
-        JsonSerializerOptions = new()
-        {
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
-        };
     }
 
     public PatreonAPIv2Query(

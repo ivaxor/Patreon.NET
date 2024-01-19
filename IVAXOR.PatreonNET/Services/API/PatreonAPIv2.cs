@@ -1,4 +1,5 @@
-﻿using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
+﻿using IVAXOR.PatreonNET.Constants;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.PostsV2;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
@@ -8,7 +9,6 @@ using IVAXOR.PatreonNET.Services.API.Interfaces;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace IVAXOR.PatreonNET.Services.API;
 
@@ -18,7 +18,7 @@ public class PatreonAPIv2 : IPatreonAPIv2
 
     protected HttpClient HttpClient { get; }
     protected IPatreonTokenManager TokenManager { get; }
-    protected JsonSerializerOptions JsonSerializerOptions { get; }
+    protected JsonSerializerOptions JsonSerializerOptions { get; } = PatreonJsonConstants.DefaultJsonSerializerOptions;
 
     public PatreonAPIv2(
         HttpClient httpClient,
@@ -26,10 +26,6 @@ public class PatreonAPIv2 : IPatreonAPIv2
     {
         HttpClient = httpClient;
         TokenManager = tokenManager;
-        JsonSerializerOptions = new()
-        {
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
-        };
     }
 
     public PatreonAPIv2(

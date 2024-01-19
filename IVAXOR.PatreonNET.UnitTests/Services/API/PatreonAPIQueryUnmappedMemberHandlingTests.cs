@@ -5,7 +5,7 @@ using IVAXOR.PatreonNET.Models.Responses.Raw;
 namespace IVAXOR.PatreonNET.UnitTests.Services.API;
 
 [TestClass]
-public class PatreonAPIQueryJsonSerializerOptionsTests
+public class PatreonAPIQueryUnmappedMemberHandlingTests
 {
     protected PatreonAPIv1Query<PatreonRawResponseSingle<PatreonUserV1Attributes, PatreonUserV1Relationships>, PatreonUserV1Attributes, PatreonUserV1Relationships> PatreonAPIv1Query => new("https://patreon.com", HttpClient, PatreonTokenManager, JsonSerializerOptions);
     protected PatreonAPIv2Query<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIv2Query => new("https://patreon.com", HttpClient, PatreonTokenManager, JsonSerializerOptions);
@@ -33,7 +33,7 @@ public class PatreonAPIQueryJsonSerializerOptionsTests
     }
 
     [TestMethod]
-    public async Task PatreonAPIv1Query_JsonUnmappedMemberHandling_Skip_SkipsNewProperty()
+    public async Task PatreonAPIv1Query_UnmappedMemberHandling_Skip_SkipsNewProperty()
     {
         // Arrange
         JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip;
@@ -46,7 +46,7 @@ public class PatreonAPIQueryJsonSerializerOptionsTests
     }
 
     [TestMethod]
-    public async Task PatreonAPIv1Query_JsonUnmappedMemberHandling_Disallow_ThrowsException()
+    public async Task PatreonAPIv1Query_UnmappedMemberHandling_Disallow_ThrowsException()
     {
         // Arrange
         JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow;
@@ -59,7 +59,7 @@ public class PatreonAPIQueryJsonSerializerOptionsTests
     }
 
     [TestMethod]
-    public async Task PatreonAPIv2Query_JsonUnmappedMemberHandling_Skip_SkipsNewProperty()
+    public async Task PatreonAPIv2Query_UnmappedMemberHandling_Skip_SkipsNewProperty()
     {
         // Arrange
         JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip;
@@ -72,7 +72,7 @@ public class PatreonAPIQueryJsonSerializerOptionsTests
     }
 
     [TestMethod]
-    public async Task PatreonAPIv2Query_JsonUnmappedMemberHandling_Disallow_ThrowsException()
+    public async Task PatreonAPIv2Query_UnmappedMemberHandling_Disallow_ThrowsException()
     {
         // Arrange
         JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow;

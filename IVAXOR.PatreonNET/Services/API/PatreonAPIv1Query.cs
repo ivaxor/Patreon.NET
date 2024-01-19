@@ -4,13 +4,13 @@ using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 using System.Net.Http;
 using System.Text.Json;
 using IVAXOR.PatreonNET.Exceptions;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Web;
 using IVAXOR.PatreonNET.Models.Responses.Raw.Interfaces;
 using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
+using IVAXOR.PatreonNET.Constants;
 
 namespace IVAXOR.PatreonNET.Services.API;
 
@@ -23,7 +23,7 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
 
     protected HttpClient HttpClient { get; }
     protected IPatreonTokenManager TokenManager { get; }
-    protected JsonSerializerOptions JsonSerializerOptions { get; }
+    protected JsonSerializerOptions JsonSerializerOptions { get; } = PatreonJsonConstants.DefaultJsonSerializerOptions;
 
     protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
 
@@ -35,10 +35,6 @@ public class PatreonAPIv1Query<TResponse, TAttributes, TRelationships>
         Url = url;
         HttpClient = httpClient;
         TokenManager = tokenManager;
-        JsonSerializerOptions = new()
-        {
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
-        };
     }
 
     public PatreonAPIv1Query(
