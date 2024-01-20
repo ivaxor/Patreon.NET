@@ -6,7 +6,7 @@ namespace IVAXOR.PatreonNET.Constants;
 
 internal static class PatreonJsonConstants
 {
-    public static JsonSerializerOptions DefaultJsonSerializerOptions { get; } = new()
+    public static JsonSerializerOptions DefaultJsonSerializerOptions => new()
     {
         UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
         TypeInfoResolver = PatreonSourceGenerationContext.Default
