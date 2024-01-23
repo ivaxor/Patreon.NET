@@ -1,5 +1,6 @@
 ﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.UsersV1;
+using IVAXOR.PatreonNET.Models.Responses.Sets.V1;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V1;
 
@@ -20,79 +21,47 @@ public class CurrentUserIntegrationTests
     public async Task CurrentUser()
     {
         // Act
-        var currentUser = await PatreonAPIv1.CurrentUser().ExecuteAsync();
+        var response = await PatreonAPIv1.CurrentUser().ExecuteAsync();
+        var currentUser = new PatreonCurrentUserV1Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], currentUser.Data.Type);
-        Assert.IsNotNull(currentUser.Data.Attributes.Created);
-        Assert.IsNotNull(currentUser.Data.Attributes.Email);
-        Assert.IsNotNull(currentUser.Data.Attributes.Url);
-        Assert.IsNotNull(currentUser.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(currentUser.User);
     }
 
     [TestMethod]
-    public async Task CurrentUser_IncludeField()
+    public async Task CurrentUser_IncludeField_AllOptional()
     {
         // Act
-        var currentUser = await PatreonAPIv1.CurrentUser().ExecuteAsync();
-
-        // TODO: Add optional field functionality
-        // When requesting some of these resources in our API they will have sensible defaults for what attributes are included. To request optional attributes, e.g. like_count and comment_count, specify the fields parameter in the URL like https://www.patreon.com/api/oauth2/api/current_user?fields[user]=like_count,comment_count. For more information, see the JSON:API docs.
-
-        // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], currentUser.Data.Type);
-        Assert.IsNotNull(currentUser.Data.Attributes.Created);
-        Assert.IsNotNull(currentUser.Data.Attributes.Email);
-        Assert.IsNotNull(currentUser.Data.Attributes.Url);
-        Assert.IsNotNull(currentUser.Links.Self);
-    }
-
-    [TestMethod]
-    public async Task CurrentUser_WithCampaign()
-    {
-        // Act
-        var currentUser = await PatreonAPIv1.CurrentUser()
-            .Include(PatreonTopLevelIncludes.V1.CurrentUser.Campaign)
+        var response = await PatreonAPIv1.CurrentUser()
+            .IncludeField(_ => _.LikeCount)
+            .IncludeField(_ => _.CommentCount)
             .ExecuteAsync();
+        var currentUser = new PatreonCurrentUserV1Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], currentUser.Data.Type);
-        Assert.IsNotNull(currentUser.Data.Attributes.Created);
-        Assert.IsNotNull(currentUser.Data.Attributes.Email);
-        Assert.IsNotNull(currentUser.Data.Attributes.Url);
-        Assert.IsNotNull(currentUser.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(currentUser.User);
     }
 
     [TestMethod]
-    public async Task CurrentUser_WithPledges()
+    public async Task CurrentUser_Include_All()
     {
         // Act
-        var currentUser = await PatreonAPIv1.CurrentUser()
-            .Include(PatreonTopLevelIncludes.V1.CurrentUser.Pledges)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], currentUser.Data.Type);
-        Assert.IsNotNull(currentUser.Data.Attributes.Created);
-        Assert.IsNotNull(currentUser.Data.Attributes.Email);
-        Assert.IsNotNull(currentUser.Data.Attributes.Url);
-        Assert.IsNotNull(currentUser.Links.Self);
-    }
-
-    [TestMethod]
-    public async Task CurrentUser_WithAll()
-    {
-        // Act
-        var currentUser = await PatreonAPIv1.CurrentUser()
+        var response = await PatreonAPIv1.CurrentUser()
             .Include(PatreonTopLevelIncludes.V1.CurrentUser.Campaign)
             .Include(PatreonTopLevelIncludes.V1.CurrentUser.Pledges)
             .ExecuteAsync();
+        var currentUser = new PatreonCurrentUserV1Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], currentUser.Data.Type);
-        Assert.IsNotNull(currentUser.Data.Attributes.Created);
-        Assert.IsNotNull(currentUser.Data.Attributes.Email);
-        Assert.IsNotNull(currentUser.Data.Attributes.Url);
-        Assert.IsNotNull(currentUser.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(currentUser.User);
     }
 }

@@ -32,7 +32,7 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns_Full_IncludeField()
+    public async Task Campaigns_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.Campaigns()
@@ -71,7 +71,7 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns_Full_IncludeAllFields()
+    public async Task Campaigns_IncludeAllFields()
     {
         // Act
         var response = await PatreonAPIv2.Campaigns()
@@ -84,7 +84,7 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns_WithTiers()
+    public async Task Campaigns_Include_IncludeAllFields_Tiers()
     {
         // Act
         var response = await PatreonAPIv2.Campaigns()
@@ -98,7 +98,7 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns_WithCreator()
+    public async Task Campaigns_Include_IncludeAllFields_Creator()
     {
         // Act
         var response = await PatreonAPIv2.Campaigns()
@@ -112,7 +112,7 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns_WithBenefits()
+    public async Task Campaigns_Include_IncludeAllFields_Benefits()
     {
         // Act
         var response = await PatreonAPIv2.Campaigns()
@@ -126,7 +126,7 @@ public class CampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaigns_WithGoals()
+    public async Task Campaigns_Include_IncludeAllFields_Goals()
     {
         // Act
         var response = await PatreonAPIv2.Campaigns()

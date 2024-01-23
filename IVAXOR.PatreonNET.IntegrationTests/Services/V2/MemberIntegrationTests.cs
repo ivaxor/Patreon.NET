@@ -37,7 +37,7 @@ public class MemberIntegrationTests
     }
 
     [TestMethod]
-    public async Task Member_Full_IncludeField()
+    public async Task Member_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
@@ -67,7 +67,7 @@ public class MemberIntegrationTests
     }
 
     [TestMethod]
-    public async Task Member_Full_IncludeAllFields()
+    public async Task Member_IncludeAllFields()
     {
         // Act
         var response = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
@@ -84,7 +84,7 @@ public class MemberIntegrationTests
     }
 
     [TestMethod]
-    public async Task Member_WithAddress()
+    public async Task Member_Include_IncludeAllFields_Address()
     {
         // Act
         var response = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
@@ -102,7 +102,7 @@ public class MemberIntegrationTests
     }
 
     [TestMethod]
-    public async Task Member_WithCampaign()
+    public async Task Member_Include_IncludeAllFields_Campaign()
     {
         // Act
         var response = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
@@ -121,7 +121,7 @@ public class MemberIntegrationTests
     }
 
     [TestMethod]
-    public async Task Member_WithCurrentlyEntitledTiers()
+    public async Task Member_Include_IncludeAllFields_CurrentlyEntitledTiers()
     {
         // Act
         var response = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)
@@ -140,7 +140,7 @@ public class MemberIntegrationTests
     }
 
     [TestMethod]
-    public async Task Member_WithUser()
+    public async Task Member_Include_IncludeAllFields_User()
     {
         // Act
         var response = await PatreonAPIv2.Member(AppSettingsProvider.MemberId)

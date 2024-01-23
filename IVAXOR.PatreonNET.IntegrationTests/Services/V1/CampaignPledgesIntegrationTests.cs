@@ -28,55 +28,7 @@ public class CampaignPledgesIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignPledges_WithAddress()
-    {
-        // Act
-        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)
-            .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Address)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CampaignPledges_WithCreator()
-    {
-        // Act
-        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)
-            .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Creator)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CampaignPledges_WithPatron()
-    {
-        // Act
-        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)
-            .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Patron)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CampaignPledges_WithReward()
-    {
-        // Act
-        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)
-            .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Reward)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CampaignPledges_WithAll()
+    public async Task CampaignPledges_Include_All()
     {
         // Act
         var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)

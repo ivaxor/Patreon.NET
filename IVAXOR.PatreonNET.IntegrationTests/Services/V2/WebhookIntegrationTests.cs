@@ -30,7 +30,7 @@ public class WebhookIntegrationTests
     }
 
     [TestMethod]
-    public async Task Webhooks_Full_IncludeField()
+    public async Task Webhooks_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.Webhooks()
@@ -48,7 +48,7 @@ public class WebhookIntegrationTests
     }
 
     [TestMethod]
-    public async Task Webhooks_Full_IncludeAllFields()
+    public async Task Webhooks_IncludeAllFields()
     {
         // Act
         var response = await PatreonAPIv2.Webhooks()
@@ -64,7 +64,7 @@ public class WebhookIntegrationTests
     /// No documentation on how to query client fields
     /// </summary>
     [TestMethod]
-    public async Task Webhooks_WithClient()
+    public async Task Webhooks_Include_IncludeAllFields_Client()
     {
         // Act
         var response = await PatreonAPIv2.Webhooks()
@@ -77,7 +77,7 @@ public class WebhookIntegrationTests
     }
 
     [TestMethod]
-    public async Task Webhooks_WithCampaign()
+    public async Task Webhooks_Include_IncludeAllFields_Campaign()
     {
         // Act
         var response = await PatreonAPIv2.Webhooks()

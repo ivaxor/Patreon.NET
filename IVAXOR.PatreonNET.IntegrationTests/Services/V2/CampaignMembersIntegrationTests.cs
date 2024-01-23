@@ -33,7 +33,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_IncludeField()
+    public async Task CampaignMembers_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -72,7 +72,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithAddress()
+    public async Task CampaignMembers_Include_IncludeAllFields_Address()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -86,7 +86,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithCampaign()
+    public async Task CampaignMembers_Include_IncludeAllFields_Campaign()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -101,7 +101,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithCurrentlyEntitledTiers()
+    public async Task CampaignMembers_Include_IncludeAllFields_CurrentlyEntitledTiers()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -116,7 +116,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithPledgeHistory()
+    public async Task CampaignMembers_Include_IncludeAllFields_PledgeHistory()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
@@ -131,7 +131,7 @@ public class CampaignMembersIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignMembers_WithUser()
+    public async Task CampaignMembers_Include_IncludeAllFields_User()
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)

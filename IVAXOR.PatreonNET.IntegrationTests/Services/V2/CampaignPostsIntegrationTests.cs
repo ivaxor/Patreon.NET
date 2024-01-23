@@ -30,7 +30,7 @@ public class CampaignPostsIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignPosts_IncludeField()
+    public async Task CampaignPosts_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
@@ -66,7 +66,7 @@ public class CampaignPostsIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignPosts_WithCampaign()
+    public async Task CampaignPosts_Include_IncludeAllFields_Campaign()
     {
         // Act
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
@@ -81,7 +81,7 @@ public class CampaignPostsIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignPosts_WithUser()
+    public async Task CampaignPosts_Include_IncludeAllFields_User()
     {
         // Act
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)

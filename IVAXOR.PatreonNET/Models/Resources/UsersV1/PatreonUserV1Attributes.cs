@@ -143,4 +143,12 @@ public class PatreonUserV1Attributes : IPatreonAttributes
 
     [JsonPropertyName("youtube")]
     public string? Youtube { get; set; }
+
+    #region Optional
+    [JsonPropertyName("like_count")]
+    public int? LikeCount { get; set; }
+
+    [JsonPropertyName("comment_count")]
+    public int? CommentCount { get; set; }
+    #endregion
 }

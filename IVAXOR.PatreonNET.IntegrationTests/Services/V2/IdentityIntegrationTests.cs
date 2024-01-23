@@ -34,7 +34,7 @@ public class IdentityIntegrationTests
     }
 
     [TestMethod]
-    public async Task Identity_IncludeField()
+    public async Task Identity_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.Identity()
@@ -76,7 +76,7 @@ public class IdentityIntegrationTests
     }
 
     [TestMethod]
-    public async Task Identity_WithMemberships()
+    public async Task Identity_Include_IncludeAllFields_Memberships()
     {
         // Act
         var response = await PatreonAPIv2.Identity()
@@ -101,7 +101,7 @@ public class IdentityIntegrationTests
     [DataRow(nameof(PatreonCampaignV2Attributes.ThanksEmbed))]
     [DataRow(nameof(PatreonCampaignV2Attributes.ThanksMsg))]
     [DataRow(nameof(PatreonCampaignV2Attributes.ThanksVideoUrl))]
-    public async Task Identity_WithCampaign_Exception(string campaignPropertyName)
+    public async Task Identity_Include_IncludeField_Campaign_Exception(string campaignPropertyName)
     {
         // Arrange
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)];
@@ -118,7 +118,7 @@ public class IdentityIntegrationTests
     }
 
     [TestMethod]
-    public async Task Identity_WithCampaign()
+    public async Task Identity_Include_IncludeField_Campaign()
     {
         // Act
         var response = await PatreonAPIv2.Identity()

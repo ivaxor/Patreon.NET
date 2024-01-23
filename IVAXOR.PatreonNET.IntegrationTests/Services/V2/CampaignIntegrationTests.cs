@@ -38,7 +38,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_IncludeField()
+    public async Task Campaign_IncludeField_All()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -98,7 +98,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithBenefits()
+    public async Task Campaign_Include_IncludeAllFields_Benefits()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -117,7 +117,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithBenefits_WithBenefitsDeliverables()
+    public async Task Campaign_Include_IncludeAllFields_BenefitsDeliverables()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -141,7 +141,7 @@ public class CampaignIntegrationTests
     /// TODO: Investigate
     /// </summary>
     [TestMethod]
-    public async Task Campaign_WithCategories()
+    public async Task Campaign_Include_Categories()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -158,7 +158,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithCreator()
+    public async Task Campaign_Include_IncludeAllFields_Creator()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -177,7 +177,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithTiers()
+    public async Task Campaign_Include_IncludeAllFields_Tiers()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -196,7 +196,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithTiers_WithTiersBenefits()
+    public async Task Campaign_Include_IncludeAllFields_TiersBenefits()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -218,7 +218,7 @@ public class CampaignIntegrationTests
     }
 
     [TestMethod]
-    public async Task Campaign_WithTiers_WithTiersBenefits_WithBenefitsDeliverables()
+    public async Task Campaign_Include_IncludeAllFields_TiersBenefitsDeliverables()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)
@@ -246,7 +246,7 @@ public class CampaignIntegrationTests
     /// https://support.patreon.com/hc/en-us/articles/203913409-How-to-set-Goals-for-your-page
     /// </summary>
     [TestMethod]
-    public async Task Campaign_WithGoals()
+    public async Task Campaign_Include_IncludeAllFields_Goals()
     {
         // Act
         var response = await PatreonAPIv2.Campaign(AppSettingsProvider.CampaignId)

@@ -27,55 +27,7 @@ public class CurrentUserCampaignsIntegrationTests
     }
 
     [TestMethod]
-    public async Task CurrentUserCampaigns_WithCreator()
-    {
-        // Act
-        var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns()
-            .Include(PatreonTopLevelIncludes.V1.CurrentUserCampaigns.Creator)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(currentUserCampaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CurrentUserCampaigns_WithGoals()
-    {
-        // Act
-        var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns()
-            .Include(PatreonTopLevelIncludes.V1.CurrentUserCampaigns.Goals)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(currentUserCampaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CurrentUserCampaigns_WithRewards()
-    {
-        // Act
-        var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns()
-            .Include(PatreonTopLevelIncludes.V1.CurrentUserCampaigns.Rewards)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(currentUserCampaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CurrentUserCampaigns_WithPledges()
-    {
-        // Act
-        var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns()
-            .Include(PatreonTopLevelIncludes.V1.CurrentUserCampaigns.Pledges)
-            .ExecuteAsync();
-
-        // Assert
-        Assert.IsTrue(currentUserCampaigns.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV1Attributes)]));
-    }
-
-    [TestMethod]
-    public async Task CurrentUserCampaigns_WithAll()
+    public async Task CurrentUserCampaigns_Include_All()
     {
         // Act
         var currentUserCampaigns = await PatreonAPIv1.CurrentUserCampaigns()

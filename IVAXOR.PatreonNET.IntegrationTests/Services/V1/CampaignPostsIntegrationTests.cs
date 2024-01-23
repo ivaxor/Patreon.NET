@@ -27,7 +27,7 @@ public class CampaignPostsIntegrationTests
     }
 
     [TestMethod]
-    public async Task CampaignPosts_Include()
+    public async Task CampaignPosts_Include_All()
     {
         // Act
         var campaignPosts = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId)
