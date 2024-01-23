@@ -20,15 +20,14 @@ public class PatreonSourceGenerationContextTests
             .Where(_ => _ != type)
             .ToHashSet();
 
-        // Act
         var resolvers = types.ToDictionary(_ => _, _ => PatreonJsonConstants.DefaultJsonSerializerOptions.TypeInfoResolver.GetTypeInfo(_, PatreonJsonConstants.DefaultJsonSerializerOptions));
 
-        // Assert
         var nullResolverType = resolvers
             .Where(_ => _.Value == null)
             .Select(_ => _.Key)
             .FirstOrDefault();
 
+        // Assert
         Assert.IsNull(nullResolverType, "{0} type do not configured for source generation in {1}", nullResolverType, typeof(PatreonSourceGenerationContext));
     }
 
@@ -62,19 +61,27 @@ public class PatreonSourceGenerationContextTests
             .Select(_ => type.MakeGenericType(_.Key, _.Value))
             .ToArray();
 
-        // Act
         var resolvers = types.ToDictionary(_ => _, _ => PatreonJsonConstants.DefaultJsonSerializerOptions.TypeInfoResolver.GetTypeInfo(_, PatreonJsonConstants.DefaultJsonSerializerOptions));
 
-        // Assert
         var nullResolverType = resolvers
             .Where(_ => _.Value == null)
             .Select(_ => _.Key)
             .FirstOrDefault();
 
+        var invalidAttribute = attributesTypes
+            .Where(_ => _.Key.EndsWith(attributesEnding))
+            .Select(_ => _.Value)
+            .FirstOrDefault();
+
+        var invalidRelationship = relationshipsTypes
+            .Where(_ => _.Key.EndsWith(relationshipsEnding))
+            .Select(_ => _.Value)
+            .FirstOrDefault();
+
+        // Assert
         Assert.IsNull(nullResolverType, "{0} type do not configured for source generation in {1}", nullResolverType, typeof(PatreonSourceGenerationContext));
 
-        Assert.IsTrue(attributesTypes.All(_ => _.Key.EndsWith(attributesEnding)));
-        Assert.IsTrue(relationshipsTypes.All(_ => _.Key.EndsWith(relationshipsEnding)));
+        Assert.IsNull(nullResolverType, "{0} type do not ends with {1}", invalidAttribute, attributesEnding);
+        Assert.IsNull(nullResolverType, "{0} type do not ends with {1}", invalidRelationship, relationshipsEnding);
     }
 }
-

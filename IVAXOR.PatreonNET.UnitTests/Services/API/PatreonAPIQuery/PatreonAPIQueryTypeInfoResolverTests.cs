@@ -2,7 +2,7 @@
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
 
-namespace IVAXOR.PatreonNET.UnitTests.Services.API;
+namespace IVAXOR.PatreonNET.UnitTests.Services.API.PatreonAPIQuery;
 
 [TestClass]
 public class PatreonAPIQueryTypeInfoResolverTests
@@ -28,7 +28,7 @@ public class PatreonAPIQueryTypeInfoResolverTests
             .ReturnsAsync(new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"00000000\",\"type\":\"user\",\"newUnknownProperty\":\"test\"}}"),
+                Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"00000000\",\"type\":\"user\"}}"),
             });
     }
 

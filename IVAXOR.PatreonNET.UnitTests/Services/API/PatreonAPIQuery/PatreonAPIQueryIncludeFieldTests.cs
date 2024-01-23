@@ -1,23 +1,12 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
 
-namespace IVAXOR.PatreonNET.UnitTests.Services.API;
+namespace IVAXOR.PatreonNET.UnitTests.Services.API.PatreonAPIQuery;
 
 [TestClass]
 public class PatreonAPIQueryIncludeFieldTests
 {
-    protected PatreonAPIQuery<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIQuery => new("https://patreon.com", HttpClient, PatreonTokenManager);
-
-    protected HttpClient HttpClient => new(HttpMessageHandlerMock.Object);
-    protected Mock<HttpMessageHandler> HttpMessageHandlerMock { get; } = new();
-
-    protected IPatreonTokenManager PatreonTokenManager => new Mock<IPatreonTokenManager>().Object;
-
-    [TestInitialize]
-    public void Initialize()
-    {
-        HttpMessageHandlerMock.Reset();
-    }
+    protected PatreonAPIQuery<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIQuery => new("https://patreon.com", null, null);
 
     [TestMethod]
     public async Task IncludeField_Expression_MemberExpression()
@@ -29,15 +18,12 @@ public class PatreonAPIQueryIncludeFieldTests
         var memberJsonPropertyName = memberInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)];
 
-        SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
-
+        // Act
         var query = PatreonAPIQuery.IncludeField(expression);
 
-        // Act
-        var result = await query.ExecuteAsync();
-
         // Assert
-        Assert.IsNotNull(result);
+        Assert.AreEqual(resourceName, query.IncludedFieldsByResource.Single().Key);
+        Assert.AreEqual(memberJsonPropertyName, query.IncludedFieldsByResource.Single().Value.Single());
     }
 
     [TestMethod]
@@ -51,15 +37,12 @@ public class PatreonAPIQueryIncludeFieldTests
         var memberJsonPropertyName = memberInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)];
 
-        SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
-
+        // Act
         var query = PatreonAPIQuery.IncludeField(expression);
 
-        // Act
-        var result = await query.ExecuteAsync();
-
         // Assert
-        Assert.IsNotNull(result);
+        Assert.AreEqual(resourceName, query.IncludedFieldsByResource.Single().Key);
+        Assert.AreEqual(memberJsonPropertyName, query.IncludedFieldsByResource.Single().Value.Single());
     }
 
     [TestMethod]
@@ -70,15 +53,12 @@ public class PatreonAPIQueryIncludeFieldTests
         var memberJsonPropertyName = memberInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)];
 
-        SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
-
+        // Act
         var query = PatreonAPIQuery.IncludeField(memberInfo);
 
-        // Act
-        var result = await query.ExecuteAsync();
-
         // Assert
-        Assert.IsNotNull(result);
+        Assert.AreEqual(resourceName, query.IncludedFieldsByResource.Single().Key);
+        Assert.AreEqual(memberJsonPropertyName, query.IncludedFieldsByResource.Single().Value.Single());
     }
 
     [TestMethod]
@@ -89,15 +69,12 @@ public class PatreonAPIQueryIncludeFieldTests
         var memberJsonPropertyName = memberInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)];
 
-        SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
-
+        // Act
         var query = PatreonAPIQuery.IncludeField(resourceName, memberJsonPropertyName);
 
-        // Act
-        var result = await query.ExecuteAsync();
-
         // Assert
-        Assert.IsNotNull(result);
+        Assert.AreEqual(resourceName, query.IncludedFieldsByResource.Single().Key);
+        Assert.AreEqual(memberJsonPropertyName, query.IncludedFieldsByResource.Single().Value.Single());
     }
 
     [TestMethod]
@@ -110,29 +87,11 @@ public class PatreonAPIQueryIncludeFieldTests
             .ToArray();
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)];
 
-        SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyNames);
-
+        // Act
         var query = PatreonAPIQuery.IncludeAllFields();
 
-        // Act
-        var result = await query.ExecuteAsync();
-
         // Assert
-        Assert.IsNotNull(result);
-    }
-
-    private void SetupIncludeFieldHttpMessageHandlerMock(string resourceName, params string[] memberJsonPropertyNames)
-    {
-        HttpMessageHandlerMock
-           .Protected()
-           .Setup<Task<HttpResponseMessage>>(
-               "SendAsync",
-               ItExpr.Is<HttpRequestMessage>(_ => _.RequestUri.AbsoluteUri.Contains($"fields%5B{resourceName}%5D") && memberJsonPropertyNames.All(__ => _.RequestUri.AbsoluteUri.Contains(__))),
-               ItExpr.IsAny<CancellationToken>())
-           .ReturnsAsync(new HttpResponseMessage()
-           {
-               StatusCode = HttpStatusCode.OK,
-               Content = new StringContent("{\"data\":{\"attributes\":{},\"id\":\"00000000\",\"type\":\"user\"}}"),
-           });
+        Assert.AreEqual(resourceName, query.IncludedFieldsByResource.Single().Key);
+        CollectionAssert.AreEqual(memberJsonPropertyNames, query.IncludedFieldsByResource.Single().Value.ToArray());
     }
 }

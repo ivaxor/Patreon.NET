@@ -1,7 +1,7 @@
 ﻿using IVAXOR.PatreonNET.Models.Resources.UsersV2;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
 
-namespace IVAXOR.PatreonNET.UnitTests.Services.API;
+namespace IVAXOR.PatreonNET.UnitTests.Services.API.PatreonAPIQuery;
 
 [TestClass]
 public class PatreonAPIQueryHttpStatusCodeTests

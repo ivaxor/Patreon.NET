@@ -28,11 +28,11 @@ public class PatreonAPIQuery<TResponse, TAttributes, TRelationships>
     protected IPatreonTokenManager TokenManager { get; }
     protected JsonSerializerOptions JsonSerializerOptions { get; } = PatreonJsonConstants.DefaultJsonSerializerOptions;
 
-    protected HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
-    protected Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; } = new();
-    protected int? PageSize { get; set; }
-    protected Tuple<string, bool>? SortByDesc { get; set; }
-    protected DateTime? Cursor { get; set; }
+    protected internal HashSet<string> TopLevelIncludes { get; } = new(StringComparer.OrdinalIgnoreCase);
+    protected internal Dictionary<string, HashSet<string>> IncludedFieldsByResource { get; } = new();
+    protected internal int? PageSize { get; protected set; }
+    protected internal Tuple<string, bool>? SortByDesc { get; protected set; }
+    protected internal DateTime? Cursor { get; protected set; }
 
     public PatreonAPIQuery(
         string url,
@@ -56,6 +56,8 @@ public class PatreonAPIQuery<TResponse, TAttributes, TRelationships>
         JsonSerializerOptions = jsonSerializerOptions;
     }
 
+    /// <exception cref="PatreonAPIException">Patreon API response do not contains success status code</exception>
+    /// <exception cref="JsonException">Patreon API response contains new/unknown fields</exception>
     public async ValueTask<TResponse> ExecuteAsync(CancellationToken cancellationToken = default)
     {
         var urlBuilder = new UriBuilder(Url);
@@ -144,7 +146,7 @@ public class PatreonAPIQuery<TResponse, TAttributes, TRelationships>
     /// Each attribute can be prepended with - to indicate descending order.
     /// Currently, we support created and updated for pledges.
     /// </summary>
-    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> SortBy(Expression<Func<TAttributes, DateTime>> selector, bool descending = false)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> SortBy(Expression<Func<TAttributes, DateTime?>> selector, bool descending)
     {
         var propertyInfo = selector.Body switch
         {
@@ -153,9 +155,17 @@ public class PatreonAPIQuery<TResponse, TAttributes, TRelationships>
             _ => throw new NotImplementedException()
         };
         var fieldName = propertyInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
+        return SortBy(fieldName, descending);
+    }
 
+    /// <summary>
+    /// Comma-separated attributes to sort by, in order of precedence.
+    /// Each attribute can be prepended with - to indicate descending order.
+    /// Currently, we support created and updated for pledges.
+    /// </summary>
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> SortBy(string fieldName, bool descending)
+    {
         SortByDesc = new(fieldName, descending);
-
         return this;
     }
 
@@ -168,13 +178,15 @@ public class PatreonAPIQuery<TResponse, TAttributes, TRelationships>
         return this;
     }
 
-    protected string BuildQuery()
+    protected internal string BuildQuery()
     {
-        var includedFields = IncludedFieldsByResource.ToDictionary(_ => $"fields[{_.Key}]", _ => string.Join(",", _.Value));
-
         var queryParams = HttpUtility.ParseQueryString(string.Empty);
+
         if (TopLevelIncludes.Any()) queryParams.Add("include", string.Join(",", TopLevelIncludes));
-        if (includedFields.Any()) includedFields.AsParallel().ForAll(_ => queryParams.Add(_.Key, _.Value));
+
+        var includedFields = IncludedFieldsByResource.ToDictionary(_ => $"fields[{_.Key}]", _ => string.Join(",", _.Value));
+        if (includedFields.Any()) foreach (var includedField in includedFields) queryParams.Add(includedField.Key, includedField.Value);
+
         if (PageSize != null) queryParams.Add("page[count]", PageSize.Value.ToString());
         if (SortByDesc != null) queryParams.Add("sort", SortByDesc.Item2 ? $"-{SortByDesc.Item1}" : SortByDesc.Item1);
         if (SortByDesc != null && Cursor != null) queryParams.Add("page[cursor]", Cursor.Value.ToString("yyyy-MM-dd"));

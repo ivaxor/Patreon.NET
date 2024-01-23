@@ -9,7 +9,7 @@ public class PatreonResponseDataTypesTests
     [TestMethod]
     public void PatreonAttributesByTypes_Unique()
     {
-        // Arramge
+        // Arrange
         var attributes = PatreonResponseDataTypes.PatreonAttributesByTypes.Values
             .SelectMany(_ => _)
             .ToArray();
@@ -25,7 +25,7 @@ public class PatreonResponseDataTypesTests
     [TestMethod]
     public void PatreonAttributesByTypes_ImplementsInterface()
     {
-        // Arramge
+        // Arrange
         var interfaceType = typeof(IPatreonAttributes);
 
         var invalidAttributes = PatreonResponseDataTypes.PatreonAttributesByTypes.Values
@@ -40,7 +40,7 @@ public class PatreonResponseDataTypesTests
     [TestMethod]
     public void PatreonRelationshipsByTypes_Unique()
     {
-        // Arramge
+        // Arrange
         var relationships = PatreonResponseDataTypes.PatreonRelationshipsByTypes.Values
             .SelectMany(_ => _)
             .ToArray();
@@ -56,7 +56,7 @@ public class PatreonResponseDataTypesTests
     [TestMethod]
     public void PatreonRelationshipsByTypes_ImplementsInterface()
     {
-        // Arramge
+        // Arrange
         var interfaceType = typeof(IPatreonRelationships);
 
         var invalidRelationships = PatreonResponseDataTypes.PatreonRelationshipsByTypes.Values

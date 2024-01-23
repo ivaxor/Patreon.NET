@@ -18,10 +18,9 @@ public class PatreonAttributesRelationshipsTests
             .Where(_ => _ != assignableType)
             .ToHashSet();
 
-        // Act
-        // Assert
         var invalidType = types.FirstOrDefault(_ => !_.Name.EndsWith(ending));
 
+        // Assert
         Assert.IsNull(invalidType, "{0} class name do not ends with \"{1}\"", invalidType, ending);
     }
 }
