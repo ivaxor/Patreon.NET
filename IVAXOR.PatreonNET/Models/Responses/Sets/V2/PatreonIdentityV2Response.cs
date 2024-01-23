@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace IVAXOR.PatreonNET.Models.Responses.Sets.V2;
-public class PatreonIdenityV2Response
+public class PatreonIdentityV2Response
 {
     public PatreonUserV2Attributes Identity { get; }
 
@@ -14,9 +14,9 @@ public class PatreonIdenityV2Response
 
     public PatreonMemberAttributes[] Memberships { get; }
 
-    public PatreonIdenityV2Response(PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships> response) : this(response.Data.Attributes, response.Data.Relationships, response.Included?.ToDictionary(_ => _.Id, _ => _)) { }
+    public PatreonIdentityV2Response(PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships> response) : this(response.Data.Attributes, response.Data.Relationships, response.Included?.ToDictionary(_ => _.Id, _ => _)) { }
 
-    public PatreonIdenityV2Response(PatreonUserV2Attributes attributes, PatreonUserV2Relationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
+    public PatreonIdentityV2Response(PatreonUserV2Attributes attributes, PatreonUserV2Relationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
     {
         Identity = attributes;
 

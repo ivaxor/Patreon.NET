@@ -22,7 +22,7 @@ public class CampaignPostsIntegrationTests
     {
         // Act
         var response = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
-        var posts = new PatreonPostsV1Reponse(response);
+        var posts = new PatreonPostsV1Response(response);
 
         // Assert
         Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV1Attributes)]));
@@ -41,7 +41,7 @@ public class CampaignPostsIntegrationTests
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.User)
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.UserDefinedTags)
             .ExecuteAsync();
-        var posts = new PatreonPostsV1Reponse(response);
+        var posts = new PatreonPostsV1Response(response);
 
         // Assert
         Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV1Attributes)]));

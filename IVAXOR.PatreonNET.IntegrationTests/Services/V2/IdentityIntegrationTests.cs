@@ -24,7 +24,7 @@ public class IdentityIntegrationTests
     {
         // Act
         var response = await PatreonAPIv2.Identity().ExecuteAsync();
-        var identity = new PatreonIdenityV2Response(response);
+        var identity = new PatreonIdentityV2Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
@@ -50,7 +50,7 @@ public class IdentityIntegrationTests
             .IncludeField(_ => _.Url)
             .IncludeField(_ => _.Vanity)
             .ExecuteAsync();
-        var identity = new PatreonIdenityV2Response(response);
+        var identity = new PatreonIdentityV2Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
@@ -66,7 +66,7 @@ public class IdentityIntegrationTests
         var response = await PatreonAPIv2.Identity()
             .IncludeAllFields()
             .ExecuteAsync();
-        var identity = new PatreonIdenityV2Response(response);
+        var identity = new PatreonIdentityV2Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
@@ -83,7 +83,7 @@ public class IdentityIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Identity.Memberships)
             .IncludeAllFields<PatreonMemberAttributes>()
             .ExecuteAsync();
-        var identity = new PatreonIdenityV2Response(response);
+        var identity = new PatreonIdentityV2Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
@@ -151,7 +151,7 @@ public class IdentityIntegrationTests
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Url)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Vanity)
             .ExecuteAsync();
-        var identity = new PatreonIdenityV2Response(response);
+        var identity = new PatreonIdentityV2Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);

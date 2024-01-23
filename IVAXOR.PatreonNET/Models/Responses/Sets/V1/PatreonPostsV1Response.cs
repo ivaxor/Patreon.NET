@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace IVAXOR.PatreonNET.Models.Responses.Sets.V1;
 
-public class PatreonPostsV1Reponse
+public class PatreonPostsV1Response
 {
-    public PatreonPostV1Reponse[] Posts { get; }
+    public PatreonPostV1Response[] Posts { get; }
 
-    public PatreonPostsV1Reponse(PatreonRawResponseMulti<PatreonPostV1Attributes, PatreonPostV1Relationships> response)
+    public PatreonPostsV1Response(PatreonRawResponseMulti<PatreonPostV1Attributes, PatreonPostV1Relationships> response)
     {
         var includedData = response.Included?.ToDictionary(_ => _.Id, _ => _);
 
         Posts = response.Data
-            .Select(_ => new PatreonPostV1Reponse(_.Attributes, _.Relationships, includedData))
+            .Select(_ => new PatreonPostV1Response(_.Attributes, _.Relationships, includedData))
             .ToArray();
     }
 }

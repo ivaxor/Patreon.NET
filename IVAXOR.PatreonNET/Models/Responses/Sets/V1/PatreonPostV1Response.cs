@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace IVAXOR.PatreonNET.Models.Responses.Sets.V1;
 
-public class PatreonPostV1Reponse
+public class PatreonPostV1Response
 {
     public PatreonPostV1Attributes Post { get; }
 
@@ -23,7 +23,7 @@ public class PatreonPostV1Reponse
     public PatreonUserV1Attributes? User { get; }
     public PatreonPostTagAttributes[] UserDefinedTags { get; }
 
-    public PatreonPostV1Reponse(PatreonPostV1Attributes attributes, PatreonPostV1Relationships? relationships, Dictionary<string, PatreonIncludeData>? includedData)
+    public PatreonPostV1Response(PatreonPostV1Attributes attributes, PatreonPostV1Relationships? relationships, Dictionary<string, PatreonIncludeData>? includedData)
     {
         Post = attributes;
 
