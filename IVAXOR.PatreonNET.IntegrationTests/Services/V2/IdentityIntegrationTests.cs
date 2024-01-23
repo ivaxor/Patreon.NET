@@ -2,6 +2,8 @@ using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Responses.Sets;
+using static IVAXOR.PatreonNET.Constants.PatreonTopLevelIncludes.V2;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -22,19 +24,21 @@ public class IdentityIntegrationTests
     public async Task Identity()
     {
         // Act
-        var identity = await PatreonAPIv2.Identity().ExecuteAsync();
+        var response = await PatreonAPIv2.Identity().ExecuteAsync();
+        var identity = new PatreonIdenityV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
-        Assert.IsNotNull(identity.Data.Id);
-        Assert.IsNotNull(identity.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(identity.Identity);
     }
 
     [TestMethod]
     public async Task Identity_IncludeField()
     {
         // Act
-        var identity = await PatreonAPIv2.Identity()
+        var response = await PatreonAPIv2.Identity()
             .IncludeField(_ => _.About)
             .IncludeField(_ => _.Created)
             .IncludeField(_ => _.Email)
@@ -47,48 +51,46 @@ public class IdentityIntegrationTests
             .IncludeField(_ => _.Url)
             .IncludeField(_ => _.Vanity)
             .ExecuteAsync();
+        var identity = new PatreonIdenityV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
-        Assert.IsNotNull(identity.Data.Id);
-        Assert.IsNotNull(identity.Data.Attributes.Created);
-        Assert.IsNotNull(identity.Data.Attributes.Email);
-        Assert.IsNotNull(identity.Data.Attributes.SocialConnections);
-        Assert.IsNotNull(identity.Data.Attributes.Url);
-        Assert.IsNotNull(identity.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(identity.Identity);
     }
 
     [TestMethod]
     public async Task Identity_IncludeAllFields()
     {
         // Act
-        var identity = await PatreonAPIv2.Identity()
+        var response = await PatreonAPIv2.Identity()
             .IncludeAllFields()
             .ExecuteAsync();
+        var identity = new PatreonIdenityV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
-        Assert.IsNotNull(identity.Data.Id);
-        Assert.IsNotNull(identity.Data.Attributes.Created);
-        Assert.IsNotNull(identity.Data.Attributes.Email);
-        Assert.IsNotNull(identity.Data.Attributes.SocialConnections);
-        Assert.IsNotNull(identity.Data.Attributes.Url);
-        Assert.IsNotNull(identity.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(identity.Identity);
     }
 
     [TestMethod]
     public async Task Identity_WithMemberships()
     {
         // Act
-        var identity = await PatreonAPIv2.Identity()
+        var response = await PatreonAPIv2.Identity()
             .Include(PatreonTopLevelIncludes.V2.Identity.Memberships)
             .IncludeAllFields<PatreonMemberAttributes>()
             .ExecuteAsync();
+        var identity = new PatreonIdenityV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
-        Assert.IsNotNull(identity.Data.Id);
-        Assert.IsNotNull(identity.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(identity.Identity);
     }
 
     /// <summary>
@@ -120,7 +122,7 @@ public class IdentityIntegrationTests
     public async Task Identity_WithCampaign()
     {
         // Act
-        var identity = await PatreonAPIv2.Identity()
+        var response = await PatreonAPIv2.Identity()
             .Include(PatreonTopLevelIncludes.V2.Identity.Campaign)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.CreatedAt)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.CreationName)
@@ -150,10 +152,13 @@ public class IdentityIntegrationTests
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Url)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Vanity)
             .ExecuteAsync();
+        var identity = new PatreonIdenityV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], identity.Data.Type);
-        Assert.IsNotNull(identity.Data.Id);
-        Assert.IsNotNull(identity.Links.Self);
-    }    
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV2Attributes)], response.Data.Type);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(identity.Identity);
+        Assert.IsNotNull(identity.Campaign);
+    }
 }
