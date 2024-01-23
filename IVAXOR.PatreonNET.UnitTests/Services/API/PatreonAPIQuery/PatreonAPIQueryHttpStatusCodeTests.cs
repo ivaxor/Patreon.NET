@@ -38,6 +38,12 @@ public class PatreonAPIQueryHttpStatusCodeTests
     [DataRow(HttpStatusCode.Unauthorized)]
     [DataRow(HttpStatusCode.Forbidden)]
     [DataRow(HttpStatusCode.NotFound)]
+    [DataRow(HttpStatusCode.MethodNotAllowed)]
+    [DataRow(HttpStatusCode.NotAcceptable)]
+    [DataRow(HttpStatusCode.Gone)]
+    [DataRow(HttpStatusCode.TooManyRequests)]
+    [DataRow(HttpStatusCode.InternalServerError)]
+    [DataRow(HttpStatusCode.ServiceUnavailable)]
     public async Task ExecuteAsync_UnsuccessStatusCode_ThrowsException(HttpStatusCode httpStatusCode)
     {
         // Arrange
