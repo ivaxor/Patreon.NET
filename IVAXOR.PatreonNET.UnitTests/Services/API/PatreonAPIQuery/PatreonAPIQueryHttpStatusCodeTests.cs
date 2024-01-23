@@ -33,6 +33,9 @@ public class PatreonAPIQueryHttpStatusCodeTests
         Assert.IsNotNull(result);
     }
 
+    /// <summary>
+    /// https://docs.patreon.com/#errors
+    /// </summary>
     [DataTestMethod]
     [DataRow(HttpStatusCode.BadRequest)]
     [DataRow(HttpStatusCode.Unauthorized)]
