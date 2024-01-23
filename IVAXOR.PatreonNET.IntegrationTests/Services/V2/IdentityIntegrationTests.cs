@@ -2,7 +2,7 @@ using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Members;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
-using IVAXOR.PatreonNET.Models.Responses.Sets;
+using IVAXOR.PatreonNET.Models.Responses.Sets.V2;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 

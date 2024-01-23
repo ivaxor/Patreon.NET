@@ -17,7 +17,7 @@ using IVAXOR.PatreonNET.Models.Responses.Raw.Relationships.Interfaces;
 
 namespace IVAXOR.PatreonNET.Services.API;
 
-public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
+public class PatreonAPIQuery<TResponse, TAttributes, TRelationships>
     where TResponse : IPatreonResponse<TAttributes, TRelationships>
     where TAttributes : IPatreonAttributes
     where TRelationships : IPatreonRelationships
@@ -34,7 +34,7 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     protected Tuple<string, bool>? SortByDesc { get; set; }
     protected DateTime? Cursor { get; set; }
 
-    public PatreonAPIv2Query(
+    public PatreonAPIQuery(
         string url,
         HttpClient httpClient,
         IPatreonTokenManager tokenManager)
@@ -44,7 +44,7 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         TokenManager = tokenManager;
     }
 
-    public PatreonAPIv2Query(
+    public PatreonAPIQuery(
         string url,
         HttpClient httpClient,
         IPatreonTokenManager tokenManager,
@@ -72,13 +72,13 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         return JsonSerializer.Deserialize<TResponse>(json, JsonSerializerOptions);
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> Include(string topLevelInclude)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> Include(string topLevelInclude)
     {
         TopLevelIncludes.Add(topLevelInclude);
         return this;
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(string resourceName, string fieldName)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> IncludeField(string resourceName, string fieldName)
     {
         if (!IncludedFieldsByResource.TryGetValue(resourceName, out var fields)) fields = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         fields.Add(fieldName);
@@ -87,12 +87,12 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         return this;
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(Expression<Func<TAttributes, object>> selector)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> IncludeField(Expression<Func<TAttributes, object>> selector)
     {
         return IncludeField<TAttributes>(selector);
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField<TNonBaseAttributes>(Expression<Func<TNonBaseAttributes, object>> selector)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> IncludeField<TNonBaseAttributes>(Expression<Func<TNonBaseAttributes, object>> selector)
         where TNonBaseAttributes : IPatreonAttributes
     {
         var memberInfo = selector.Body switch
@@ -105,19 +105,19 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
         return IncludeField(memberInfo);
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeField(MemberInfo memberInfo)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> IncludeField(MemberInfo memberInfo)
     {
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[memberInfo.DeclaringType];
         var fieldName = memberInfo.GetCustomAttribute<JsonPropertyNameAttribute>().Name;
         return IncludeField(resourceName, fieldName);
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeAllFields()
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> IncludeAllFields()
     {
         return IncludeAllFields<TAttributes>();
     }
 
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> IncludeAllFields<TNonBaseAttributes>()
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> IncludeAllFields<TNonBaseAttributes>()
          where TNonBaseAttributes : IPatreonAttributes
     {
         var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(TNonBaseAttributes)];
@@ -133,7 +133,7 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     /// <summary>
     /// Maximum number of results returned.
     /// </summary>
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> SetPageSize(int pageSize)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> SetPageSize(int pageSize)
     {
         PageSize = pageSize;
         return this;
@@ -144,7 +144,7 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     /// Each attribute can be prepended with - to indicate descending order.
     /// Currently, we support created and updated for pledges.
     /// </summary>
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> SortBy(Expression<Func<TAttributes, DateTime>> selector, bool descending = false)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> SortBy(Expression<Func<TAttributes, DateTime>> selector, bool descending = false)
     {
         var propertyInfo = selector.Body switch
         {
@@ -162,7 +162,7 @@ public class PatreonAPIv2Query<TResponse, TAttributes, TRelationships>
     /// <summary>
     /// From the sorted results, start returning where the first attribute in sort equals this value.
     /// </summary>
-    public PatreonAPIv2Query<TResponse, TAttributes, TRelationships> SetCursor(DateTime cursor)
+    public PatreonAPIQuery<TResponse, TAttributes, TRelationships> SetCursor(DateTime cursor)
     {
         Cursor = cursor;
         return this;

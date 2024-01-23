@@ -4,9 +4,9 @@ using IVAXOR.PatreonNET.Models.Responses.Raw;
 namespace IVAXOR.PatreonNET.UnitTests.Services.API;
 
 [TestClass]
-public class PatreonAPIv2QueryIncludeFieldTests
+public class PatreonAPIQueryIncludeFieldTests
 {
-    protected PatreonAPIv2Query<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIv2Query => new("https://patreon.com", HttpClient, PatreonTokenManager);
+    protected PatreonAPIQuery<PatreonRawResponseSingle<PatreonUserV2Attributes, PatreonUserV2Relationships>, PatreonUserV2Attributes, PatreonUserV2Relationships> PatreonAPIQuery => new("https://patreon.com", HttpClient, PatreonTokenManager);
 
     protected HttpClient HttpClient => new(HttpMessageHandlerMock.Object);
     protected Mock<HttpMessageHandler> HttpMessageHandlerMock { get; } = new();
@@ -31,10 +31,10 @@ public class PatreonAPIv2QueryIncludeFieldTests
 
         SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
 
+        var query = PatreonAPIQuery.IncludeField(expression);
+
         // Act
-        var result = await PatreonAPIv2Query
-            .IncludeField(expression)
-            .ExecuteAsync();
+        var result = await query.ExecuteAsync();
 
         // Assert
         Assert.IsNotNull(result);
@@ -53,10 +53,10 @@ public class PatreonAPIv2QueryIncludeFieldTests
 
         SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
 
+        var query = PatreonAPIQuery.IncludeField(expression);
+
         // Act
-        var result = await PatreonAPIv2Query
-            .IncludeField(expression)
-            .ExecuteAsync();
+        var result = await query.ExecuteAsync();
 
         // Assert
         Assert.IsNotNull(result);
@@ -72,10 +72,10 @@ public class PatreonAPIv2QueryIncludeFieldTests
 
         SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
 
+        var query = PatreonAPIQuery.IncludeField(memberInfo);
+
         // Act
-        var result = await PatreonAPIv2Query
-           .IncludeField(memberInfo)
-           .ExecuteAsync();
+        var result = await query.ExecuteAsync();
 
         // Assert
         Assert.IsNotNull(result);
@@ -91,10 +91,10 @@ public class PatreonAPIv2QueryIncludeFieldTests
 
         SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyName);
 
+        var query = PatreonAPIQuery.IncludeField(resourceName, memberJsonPropertyName);
+
         // Act
-        var result = await PatreonAPIv2Query
-           .IncludeField(resourceName, memberJsonPropertyName)
-           .ExecuteAsync();
+        var result = await query.ExecuteAsync();
 
         // Assert
         Assert.IsNotNull(result);
@@ -112,10 +112,10 @@ public class PatreonAPIv2QueryIncludeFieldTests
 
         SetupIncludeFieldHttpMessageHandlerMock(resourceName, memberJsonPropertyNames);
 
+        var query = PatreonAPIQuery.IncludeAllFields();
+
         // Act
-        var result = await PatreonAPIv2Query
-           .IncludeAllFields()
-           .ExecuteAsync();
+        var result = await query.ExecuteAsync();
 
         // Assert
         Assert.IsNotNull(result);

@@ -5,7 +5,7 @@ using IVAXOR.PatreonNET.Models.Resources.Deliverables;
 using IVAXOR.PatreonNET.Models.Resources.Goals;
 using IVAXOR.PatreonNET.Models.Resources.Tiers;
 using IVAXOR.PatreonNET.Models.Resources.UsersV2;
-using IVAXOR.PatreonNET.Models.Responses.Sets;
+using IVAXOR.PatreonNET.Models.Responses.Sets.V2;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
