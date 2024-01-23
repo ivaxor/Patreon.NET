@@ -1,5 +1,6 @@
 using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.PostsV1;
+using IVAXOR.PatreonNET.Models.Responses.Sets.V1;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V1;
 
@@ -20,17 +21,18 @@ public class CampaignPostsIntegrationTests
     public async Task CampaignPosts()
     {
         // Act
-        var campaignPosts = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var response = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var posts = new PatreonPostsV1Reponse(response);
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV1Attributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV1Attributes)]));
     }
 
     [TestMethod]
     public async Task CampaignPosts_Include_All()
     {
         // Act
-        var campaignPosts = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId)
+        var response = await PatreonAPIv1.CampaignPosts(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.Attachments)
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.Campaign)
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.ContentLocks)
@@ -39,8 +41,9 @@ public class CampaignPostsIntegrationTests
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.User)
             .Include(PatreonTopLevelIncludes.V1.CampaignPosts.UserDefinedTags)
             .ExecuteAsync();
+        var posts = new PatreonPostsV1Reponse(response);
 
         // Assert
-        Assert.IsTrue(campaignPosts.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV1Attributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV1Attributes)]));
     }
 }

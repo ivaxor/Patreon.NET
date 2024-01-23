@@ -22,13 +22,13 @@ public class CurrentUserIntegrationTests
     {
         // Act
         var response = await PatreonAPIv1.CurrentUser().ExecuteAsync();
-        var currentUser = new PatreonCurrentUserV1Response(response);
+        var user = new PatreonUserV1Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], response.Data.Type);
         Assert.IsNotNull(response.Links.Self);
 
-        Assert.IsNotNull(currentUser.User);
+        Assert.IsNotNull(user.User);
     }
 
     [TestMethod]
@@ -39,13 +39,13 @@ public class CurrentUserIntegrationTests
             .IncludeField(_ => _.LikeCount)
             .IncludeField(_ => _.CommentCount)
             .ExecuteAsync();
-        var currentUser = new PatreonCurrentUserV1Response(response);
+        var user = new PatreonUserV1Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], response.Data.Type);
         Assert.IsNotNull(response.Links.Self);
 
-        Assert.IsNotNull(currentUser.User);
+        Assert.IsNotNull(user.User);
     }
 
     [TestMethod]
@@ -56,12 +56,12 @@ public class CurrentUserIntegrationTests
             .Include(PatreonTopLevelIncludes.V1.CurrentUser.Campaign)
             .Include(PatreonTopLevelIncludes.V1.CurrentUser.Pledges)
             .ExecuteAsync();
-        var currentUser = new PatreonCurrentUserV1Response(response);
+        var user = new PatreonUserV1Response(response);
 
         // Assert
         Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonUserV1Attributes)], response.Data.Type);
         Assert.IsNotNull(response.Links.Self);
 
-        Assert.IsNotNull(currentUser.User);
+        Assert.IsNotNull(user.User);
     }
 }

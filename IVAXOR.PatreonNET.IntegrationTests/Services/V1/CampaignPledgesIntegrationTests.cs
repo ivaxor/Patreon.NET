@@ -1,6 +1,7 @@
 ﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.PledgeV1;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
+using IVAXOR.PatreonNET.Models.Responses.Sets.V1;
 using IVAXOR.PatreonNET.Services.TokenManagers.Interfaces;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V1;
@@ -21,25 +22,27 @@ public class CampaignPledgesIntegrationTests
     public async Task CampaignPledges()
     {
         // Act
-        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var response = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId).ExecuteAsync();
+        var pledges = new PatreonPledgesV1Response(response);
 
         // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
     }
 
     [TestMethod]
     public async Task CampaignPledges_Include_All()
     {
         // Act
-        var campaignPledges = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)
+        var response = await PatreonAPIv1.CampaignPledges(AppSettingsProvider.CampaignId)
             .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Address)
             .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Creator)
             .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Patron)
             .Include(PatreonTopLevelIncludes.V1.CampaignPledges.Reward)
             .ExecuteAsync();
+        var pledges = new PatreonPledgesV1Response(response);
 
         // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
     }
 
     [TestMethod]
@@ -50,9 +53,10 @@ public class CampaignPledgesIntegrationTests
         var query = new PatreonAPIQuery<PatreonRawResponseMulti<PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>, PatreonPledgeV1Attributes, PatreonPledgeV1Relationships>(url, HttpClient, TokenManager);
 
         // Act
-        var campaignPledges = await query.ExecuteAsync();
+        var response = await query.ExecuteAsync();
+        var pledges = new PatreonPledgesV1Response(response);
 
         // Assert
-        Assert.IsTrue(campaignPledges.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPledgeV1Attributes)]));
     }
 }
