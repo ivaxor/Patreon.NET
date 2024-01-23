@@ -70,7 +70,7 @@ public class CampaignPostsIntegrationTests
     {
         // Act
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
-            .Include(PatreonTopLevelIncludes.V2.CampaignPosts.Campaign)
+            .Include(PatreonTopLevelIncludes.V2.Posts.Campaign)
             .IncludeAllFields<PatreonCampaignV2Attributes>()            
             .ExecuteAsync();
         var campaignPosts = new PatreonPostsV2Response(response);
@@ -85,7 +85,7 @@ public class CampaignPostsIntegrationTests
     {
         // Act
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
-            .Include(PatreonTopLevelIncludes.V2.CampaignPosts.User)
+            .Include(PatreonTopLevelIncludes.V2.Posts.User)
             .IncludeAllFields<PatreonUserV2Attributes>()
             .ExecuteAsync();
         var campaignPosts = new PatreonPostsV2Response(response);

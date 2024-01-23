@@ -71,7 +71,7 @@ public static class PatreonTopLevelIncludes
             public static readonly string Goals = "goals";
         }
 
-        public static class CampaignPosts
+        public static class Posts
         {
             public static readonly string Campaign = "campaign";
             public static readonly string User = "user";

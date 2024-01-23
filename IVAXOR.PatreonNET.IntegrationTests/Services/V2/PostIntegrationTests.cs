@@ -1,5 +1,8 @@
 ﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
+using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.PostsV2;
+using IVAXOR.PatreonNET.Models.Resources.UsersV2;
+using IVAXOR.PatreonNET.Models.Responses.Sets;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -20,19 +23,22 @@ public class PostIntegrationTests
     public async Task Post()
     {
         // Act
-        var post = await PatreonAPIv2.Post(AppSettingsProvider.PostId).ExecuteAsync();
+        var response = await PatreonAPIv2.Post(AppSettingsProvider.PostId).ExecuteAsync();
+        var post = new PatreonPostV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], post.Data.Type);
-        Assert.IsNotNull(post.Data.Id);
-        Assert.IsNotNull(post.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.PostId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(post.Post);
     }
 
     [TestMethod]
     public async Task Post_Full_IncludeField()
     {
         // Act
-        var post = await PatreonAPIv2.Post(AppSettingsProvider.PostId)
+        var response = await PatreonAPIv2.Post(AppSettingsProvider.PostId)
             .IncludeField(_ => _.AppId)
             .IncludeField(_ => _.AppStatus)
             .IncludeField(_ => _.Content)
@@ -44,24 +50,68 @@ public class PostIntegrationTests
             .IncludeField(_ => _.PublishedAt)
             .IncludeField(_ => _.Url)
             .ExecuteAsync();
+        var post = new PatreonPostV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], post.Data.Type);
-        Assert.IsNotNull(post.Data.Id);
-        Assert.IsNotNull(post.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.PostId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(post.Post);
     }
 
     [TestMethod]
     public async Task Post_Full_IncludeAllFields()
     {
         // Act
-        var post = await PatreonAPIv2.Post(AppSettingsProvider.PostId)
+        var response = await PatreonAPIv2.Post(AppSettingsProvider.PostId)
             .IncludeAllFields()
             .ExecuteAsync();
+        var post = new PatreonPostV2Response(response);
 
         // Assert
-        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], post.Data.Type);
-        Assert.IsNotNull(post.Data.Id);
-        Assert.IsNotNull(post.Links.Self);
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.PostId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(post.Post);
+    }
+
+    [TestMethod]
+    public async Task Post_WithUser()
+    {
+        // Act
+        var response = await PatreonAPIv2.Post(AppSettingsProvider.PostId)
+            .Include(PatreonTopLevelIncludes.V2.Posts.User)
+            .IncludeAllFields<PatreonUserV2Attributes>()
+            .ExecuteAsync();
+        var post = new PatreonPostV2Response(response);
+
+        // Assert
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.PostId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(post.Post);
+        Assert.IsNotNull(post.User);
+    }
+
+    [TestMethod]
+    public async Task Post_WithCampaign()
+    {
+        // Act
+        var response = await PatreonAPIv2.Post(AppSettingsProvider.PostId)
+            .Include(PatreonTopLevelIncludes.V2.Posts.Campaign)
+            .IncludeAllFields<PatreonCampaignV2Attributes>()
+            .ExecuteAsync();
+        var post = new PatreonPostV2Response(response);
+
+        // Assert
+        Assert.AreEqual(PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonPostV2Attributes)], response.Data.Type);
+        Assert.AreEqual(AppSettingsProvider.PostId, response.Data.Id);
+        Assert.IsNotNull(response.Links.Self);
+
+        Assert.IsNotNull(post.Post);
+        Assert.IsNotNull(post.Campaign);
     }
 }
