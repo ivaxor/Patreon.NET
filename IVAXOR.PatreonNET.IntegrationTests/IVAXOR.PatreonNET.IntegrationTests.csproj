@@ -9,8 +9,9 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
+  <ItemGroup>
 	  <EmbeddedResource Include="appsettings.json" LogicalName="appsettings.json" />
+	  <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
   </ItemGroup>
 
   <ItemGroup>
