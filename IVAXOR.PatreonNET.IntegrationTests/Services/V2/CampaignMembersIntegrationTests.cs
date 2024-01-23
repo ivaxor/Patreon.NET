@@ -26,7 +26,7 @@ public class CampaignMembersIntegrationTests
     {
         // Act
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId).ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -52,7 +52,7 @@ public class CampaignMembersIntegrationTests
             .IncludeField(_ => _.PledgeRelationshipStart)
             .IncludeField(_ => _.WillPayAmountCents)
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -65,7 +65,7 @@ public class CampaignMembersIntegrationTests
         var response = await PatreonAPIv2.CampaignMembers(AppSettingsProvider.CampaignId)
             .IncludeAllFields()
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -79,7 +79,7 @@ public class CampaignMembersIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Members.Address)
             .IncludeAllFields<PatreonAddressAttributes>()
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -93,7 +93,7 @@ public class CampaignMembersIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Members.Campaign)
             .IncludeAllFields<PatreonCampaignV2Attributes>()
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -108,7 +108,7 @@ public class CampaignMembersIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Members.CurrentlyEntitledTiers)
             .IncludeAllFields<PatreonTierAttributes>()
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -123,7 +123,7 @@ public class CampaignMembersIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Members.PledgeHistory)
             .IncludeAllFields<PatreonPledgeEventV2Attributes>()
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());
@@ -138,7 +138,7 @@ public class CampaignMembersIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Members.User)
             .IncludeAllFields<PatreonUserV2Attributes>()
             .ExecuteAsync();
-        var campaignMembers = new PatreonCampaignMembersV2Response(response);
+        var campaignMembers = new PatreonMembershipsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignMembers.Members.Any());

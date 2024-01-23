@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace IVAXOR.PatreonNET.Models.Responses.Sets;
 
-public class PatreonCampaignMemberV2Response
+public class PatreonMembershipV2Response
 {
     public PatreonMemberAttributes Member { get; }
 
@@ -20,7 +20,9 @@ public class PatreonCampaignMemberV2Response
     public PatreonPledgeEventV2Attributes[] PledgeHistory { get; } = new PatreonPledgeEventV2Attributes[0];
     public PatreonUserV2Attributes? User { get; }
 
-    public PatreonCampaignMemberV2Response(PatreonMemberAttributes attributes, PatreonMemberRelationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
+    public PatreonMembershipV2Response(PatreonRawResponseSingle<PatreonMemberAttributes, PatreonMemberRelationships> response) : this(response.Data.Attributes, response.Data.Relationships, response.Included?.ToDictionary(_ => _.Id, _ => _)) { }
+
+    public PatreonMembershipV2Response(PatreonMemberAttributes attributes, PatreonMemberRelationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
     {
         Member = attributes;
 

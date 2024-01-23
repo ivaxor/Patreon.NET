@@ -23,7 +23,7 @@ public class CampaignPostsIntegrationTests
     {
         // Act
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId).ExecuteAsync();
-        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+        var campaignPosts = new PatreonPostsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignPosts.Posts.Any());
@@ -46,7 +46,7 @@ public class CampaignPostsIntegrationTests
             .IncludeField(_ => _.Title)
             .IncludeField(_ => _.Url)
             .ExecuteAsync();
-        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+        var campaignPosts = new PatreonPostsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignPosts.Posts.Any());
@@ -59,7 +59,7 @@ public class CampaignPostsIntegrationTests
         var response = await PatreonAPIv2.CampaignPosts(AppSettingsProvider.CampaignId)
             .IncludeAllFields()
             .ExecuteAsync();
-        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+        var campaignPosts = new PatreonPostsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignPosts.Posts.Any());
@@ -73,7 +73,7 @@ public class CampaignPostsIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.CampaignPosts.Campaign)
             .IncludeAllFields<PatreonCampaignV2Attributes>()            
             .ExecuteAsync();
-        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+        var campaignPosts = new PatreonPostsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignPosts.Posts.Any());
@@ -88,7 +88,7 @@ public class CampaignPostsIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.CampaignPosts.User)
             .IncludeAllFields<PatreonUserV2Attributes>()
             .ExecuteAsync();
-        var campaignPosts = new PatreonCampaignPostsV2Response(response);
+        var campaignPosts = new PatreonPostsV2Response(response);
 
         // Assert
         Assert.IsTrue(campaignPosts.Posts.Any());

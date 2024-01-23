@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace IVAXOR.PatreonNET.Models.Responses.Sets;
 
-public class PatreonCampaignPostV2Response
+public class PatreonPostV2Response
 {
     public PatreonPostV2Attributes Post { get; set; }
     public PatreonUserV2Attributes? User { get; set; }
     public PatreonCampaignV2Attributes? Campaign { get; set; }
 
-    public PatreonCampaignPostV2Response(PatreonPostV2Attributes attributes, PatreonPostV2Relationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
+    public PatreonPostV2Response(PatreonPostV2Attributes attributes, PatreonPostV2Relationships relationships, Dictionary<string, PatreonIncludeData>? includedData)
     {
         Post = attributes;
 
