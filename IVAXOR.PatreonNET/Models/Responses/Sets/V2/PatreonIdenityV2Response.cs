@@ -5,7 +5,7 @@ using IVAXOR.PatreonNET.Models.Responses.Raw;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace IVAXOR.PatreonNET.Models.Responses.Sets;
+namespace IVAXOR.PatreonNET.Models.Responses.Sets.V2;
 public class PatreonIdenityV2Response
 {
     public PatreonUserV2Attributes Identity { get; }

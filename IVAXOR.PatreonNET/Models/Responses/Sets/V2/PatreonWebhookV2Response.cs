@@ -4,7 +4,7 @@ using IVAXOR.PatreonNET.Models.Resources.Webhooks;
 using IVAXOR.PatreonNET.Models.Responses.Raw;
 using System.Collections.Generic;
 
-namespace IVAXOR.PatreonNET.Models.Responses.Sets;
+namespace IVAXOR.PatreonNET.Models.Responses.Sets.V2;
 
 public class PatreonWebhookV2Response
 {

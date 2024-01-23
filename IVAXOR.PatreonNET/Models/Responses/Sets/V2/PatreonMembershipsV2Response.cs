@@ -2,7 +2,7 @@
 using IVAXOR.PatreonNET.Models.Responses.Raw;
 using System.Linq;
 
-namespace IVAXOR.PatreonNET.Models.Responses.Sets;
+namespace IVAXOR.PatreonNET.Models.Responses.Sets.V2;
 
 public class PatreonMembershipsV2Response
 {
