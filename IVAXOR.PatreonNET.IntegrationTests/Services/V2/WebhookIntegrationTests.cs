@@ -1,6 +1,7 @@
 ﻿using IVAXOR.PatreonNET.IntegrationTests.Stubs.Services;
 using IVAXOR.PatreonNET.Models.Resources.CampaignsV2;
 using IVAXOR.PatreonNET.Models.Resources.Webhooks;
+using IVAXOR.PatreonNET.Models.Responses.Sets;
 
 namespace IVAXOR.PatreonNET.IntegrationTests.Services.V2;
 
@@ -21,17 +22,18 @@ public class WebhookIntegrationTests
     public async Task Webhooks()
     {
         // Act
-        var webhooks = await PatreonAPIv2.Webhooks().ExecuteAsync();
+        var response = await PatreonAPIv2.Webhooks().ExecuteAsync();
+        var webhooks = new PatreonWebhooksV2Response(response);
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     [TestMethod]
     public async Task Webhooks_Full_IncludeField()
     {
         // Act
-        var webhooks = await PatreonAPIv2.Webhooks()
+        var response = await PatreonAPIv2.Webhooks()
             .IncludeField(_ => _.LastAttemptedAt)
             .IncludeField(_ => _.NumConsecutiveTimesFailed)
             .IncludeField(_ => _.Paused)
@@ -39,21 +41,23 @@ public class WebhookIntegrationTests
             .IncludeField(_ => _.Triggers)
             .IncludeField(_ => _.Uri)
             .ExecuteAsync();
+        var webhooks = new PatreonWebhooksV2Response(response);
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     [TestMethod]
     public async Task Webhooks_Full_IncludeAllFields()
     {
         // Act
-        var webhooks = await PatreonAPIv2.Webhooks()
+        var response = await PatreonAPIv2.Webhooks()
             .IncludeAllFields()
             .ExecuteAsync();
+        var webhooks = new PatreonWebhooksV2Response(response);
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     /// <summary>
@@ -63,24 +67,26 @@ public class WebhookIntegrationTests
     public async Task Webhooks_WithClient()
     {
         // Act
-        var webhooks = await PatreonAPIv2.Webhooks()
+        var response = await PatreonAPIv2.Webhooks()
             .Include(PatreonTopLevelIncludes.V2.Webhooks.Client)
             .ExecuteAsync();
+        var webhooks = new PatreonWebhooksV2Response(response);
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 
     [TestMethod]
     public async Task Webhooks_WithCampaign()
     {
         // Act
-        var webhooks = await PatreonAPIv2.Webhooks()
+        var response = await PatreonAPIv2.Webhooks()
             .Include(PatreonTopLevelIncludes.V2.Webhooks.Campaign)
             .IncludeAllFields<PatreonCampaignV2Attributes>()
             .ExecuteAsync();
+        var webhooks = new PatreonWebhooksV2Response(response);
 
         // Assert
-        Assert.IsTrue(webhooks.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
+        Assert.IsTrue(response.Data.All(_ => _.Type == PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonWebhookAttributes)]));
     }
 }
