@@ -28,6 +28,9 @@ public class PatreonUserSocialConnections
     [JsonPropertyName("spotify_open_access")]
     public PatreonUserSocialConnection? SpotifyOpenAccess { get; set; }
 
+    [JsonPropertyName("tiktok")]
+    public PatreonUserSocialConnection? TikTok { get; set; }
+
     [JsonPropertyName("twitch")]
     public PatreonUserSocialConnection? Twitch { get; set; }
 
