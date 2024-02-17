@@ -37,6 +37,9 @@ public class PatreonUserSocialConnections
     [JsonPropertyName("twitter")]
     public PatreonUserSocialConnection? Twitter { get; set; }
 
+    [JsonPropertyName("twitter2")]
+    public PatreonUserSocialConnection? Twitter2 { get; set; }
+
     [JsonPropertyName("vimeo")]
     public PatreonUserSocialConnection? Vimeo { get; set; }
 

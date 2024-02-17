@@ -92,31 +92,6 @@ public class IdentityIntegrationTests
         Assert.IsNotNull(identity.Identity);
     }
 
-    /// <summary>
-    /// Patreon API bug
-    /// Throws 500 server internal error when some campaign fields are included
-    /// </summary>
-    [DataTestMethod]
-    [DataRow(nameof(PatreonCampaignV2Attributes.DiscordServerId))]
-    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksEmbed))]
-    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksMsg))]
-    [DataRow(nameof(PatreonCampaignV2Attributes.ThanksVideoUrl))]
-    public async Task Identity_Include_IncludeField_Campaign_Exception(string campaignPropertyName)
-    {
-        // Arrange
-        var resourceName = PatreonResponseDataTypes.TypeByPatreonAttributes[typeof(PatreonCampaignV2Attributes)];
-        var fieldName = typeof(PatreonCampaignV2Attributes).GetProperty(campaignPropertyName).GetCustomAttribute<JsonPropertyNameAttribute>().Name;
-        var query = PatreonAPIv2.Identity()
-            .Include(PatreonTopLevelIncludes.V2.Identity.Campaign)
-            .IncludeField(resourceName, fieldName);
-
-        // Act
-        var exception = await Assert.ThrowsExceptionAsync<PatreonAPIException>(async () => await query.ExecuteAsync());
-
-        // Assert
-        Assert.AreEqual(500, exception.StatusCode);
-    }
-
     [TestMethod]
     public async Task Identity_Include_IncludeField_Campaign()
     {
@@ -125,7 +100,7 @@ public class IdentityIntegrationTests
             .Include(PatreonTopLevelIncludes.V2.Identity.Campaign)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.CreatedAt)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.CreationName)
-            //.IncludeField<PatreonCampaignV2Attributes>(_ => _.DiscordServerId)
+            .IncludeField<PatreonCampaignV2Attributes>(_ => _.DiscordServerId)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.GoogleAnalyticsId)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.HasRss)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.HasSentRssNotify)
@@ -145,9 +120,9 @@ public class IdentityIntegrationTests
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.RssFeedTitle)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.ShowEarnings)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Summary)
-            //.IncludeField<PatreonCampaignV2Attributes>(_ => _.ThanksEmbed)
-            //.IncludeField<PatreonCampaignV2Attributes>(_ => _.ThanksMsg)
-            //.IncludeField<PatreonCampaignV2Attributes>(_ => _.ThanksVideoUrl)
+            .IncludeField<PatreonCampaignV2Attributes>(_ => _.ThanksEmbed)
+            .IncludeField<PatreonCampaignV2Attributes>(_ => _.ThanksMsg)
+            .IncludeField<PatreonCampaignV2Attributes>(_ => _.ThanksVideoUrl)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Url)
             .IncludeField<PatreonCampaignV2Attributes>(_ => _.Vanity)
             .ExecuteAsync();
