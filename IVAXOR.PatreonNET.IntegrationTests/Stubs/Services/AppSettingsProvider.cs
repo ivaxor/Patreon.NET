@@ -12,7 +12,7 @@ public static class AppSettingsProvider
 
     static AppSettingsProvider()
     {
-        using var appsettingsFileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("appsettings.json");
+        using var appsettingsFileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("IVAXOR.PatreonNET.IntegrationTests.appsettings.json");
         var jsonDocument = JsonDocument.Parse(appsettingsFileStream);
 
         CampaignId = jsonDocument.RootElement.GetProperty(nameof(CampaignId)).GetString();

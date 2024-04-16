@@ -84,6 +84,9 @@ public class PatreonPostV1Attributes : IPatreonAttributes
     [JsonPropertyName("scheduled_for")]
     public DateTime? ScheduledFor { get; set; }
 
+    [JsonPropertyName("share_images")]
+    public PatreonPostV1ShareImages? ShareImages { get; set; }    
+
     [JsonPropertyName("teaser_text")]
     public string? TeaserText { get; set; }
 

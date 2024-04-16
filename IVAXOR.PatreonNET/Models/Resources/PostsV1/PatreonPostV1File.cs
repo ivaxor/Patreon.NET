@@ -5,6 +5,9 @@ namespace IVAXOR.PatreonNET.Models.Resources.PostsV1;
 
 public class PatreonPostV1File
 {
+    [JsonPropertyName("closed_captions_enabled")]
+    public bool? ClosedCaptionsEnabled { get; set; }
+
     [JsonPropertyName("default_thumbnail")]
     public PatreonPostV1Thumbnail? DefaultThumbnail { get; set; }
 
