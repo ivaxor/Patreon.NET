@@ -8,7 +8,7 @@
     <Description>.NET library for Patreon</Description>    
     <Authors>IVAXOR</Authors>
     <Company>IVAXOR</Company>
-    <Version>0.0.9</Version>
+    <Version>0.0.10</Version>
     <RepositoryUrl>https://github.com/ivaxor/Patreon.NET</RepositoryUrl>
     <PackageTags>patreon</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>    
