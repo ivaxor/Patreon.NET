@@ -42,15 +42,19 @@ public class PatreonIncludeDataJsonConverter : JsonConverter<PatreonIncludeData>
     {
         if (attributeTypes.Count() == 1) return attributeJsonElement.Deserialize(attributeTypes.Single(), options);
 
-        var attributeType = attributeTypes.First();
-        try
+        var exceptions = new List<JsonException>();
+        foreach (var attributeType in attributeTypes)
         {
-            return attributeJsonElement.Deserialize(attributeType, options);
+            try
+            {
+                return attributeJsonElement.Deserialize(attributeType, options);
+            }
+            catch (JsonException exception)
+            {
+                exceptions.Add(exception);
+            }
         }
-        catch (JsonException)
-        {
-            attributeTypes = attributeTypes.Where(_ => _ != attributeType);
-            return IterativeParse(attributeJsonElement, attributeTypes, options);
-        }
+
+        throw new AggregateException(exceptions);
     }
 }

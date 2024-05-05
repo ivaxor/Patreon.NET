@@ -84,6 +84,9 @@ public class PatreonCampaignV1Attributes : IPatreonAttributes
     [JsonPropertyName("is_monthly")]
     public bool? IsMonthly { get; set; }
 
+    [JsonPropertyName("is_new_fandom")]
+    public bool? IsNewFandom { get; set; }
+
     /// <summary>
     /// true if the creator has marked the campaign as containing nsfw content.
     /// </summary>

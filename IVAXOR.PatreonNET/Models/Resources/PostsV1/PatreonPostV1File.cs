@@ -32,6 +32,9 @@ public class PatreonPostV1File
     [JsonPropertyName("height")]
     public int? Height { get; set; }
 
+    [JsonPropertyName("image_colors")]
+    public PatreonPostV1ImageColors? ImageColors { get; set; }
+
     [JsonPropertyName("media_id")]
     public int? MediaId { get; set; }
 
